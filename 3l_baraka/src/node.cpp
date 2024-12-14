@@ -1,3 +1,5 @@
 #include "node.h"
 
-node::node() {prev = next = null;}
+// Constructor
+node::node(const song& s, node* nextNode, node* prevNode)
+    : data(s), next(nextNode), prev(prevNode) {}

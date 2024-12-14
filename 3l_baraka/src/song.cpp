@@ -1,22 +1,22 @@
 #include "song.h"
 
 // Constructor
-Song::Song(const QString& title, const QString& artist, int duration)
+song::song(const QString& title, const QString& artist, int duration)
     : title(title), artist(artist), duration(duration), plays(0) {}
 
 // Getters
-QString Song::getTitle() const { return title; }
-QString Song::getArtist() const { return artist; }
-float Song::getDuration() const { return duration; }
-int Song::getPlays() const { return plays; }
+QString song::getTitle() const { return title; }
+QString song::getArtist() const { return artist; }
+float song::getDuration() const { return duration; }
+int song::getPlays() const { return plays; }
 
 // Setters
-void Song::setTitle(const QString& newTitle) { title = newTitle; }
-void Song::setArtist(const QString& newArtist) { artist = newArtist; }
-void Song::setDuration(float newDuration) { duration = newDuration; }
+void song::setTitle(const QString& newTitle) { title = newTitle; }
+void song::setArtist(const QString& newArtist) { artist = newArtist; }
+void song::setDuration(float newDuration) { duration = newDuration; }
 
 // Functionalities
-void Song::playSong() {
+void song::playSong() {
     // Increment the play counter
     plays++;
 
@@ -25,12 +25,12 @@ void Song::playSong() {
     qDebug() << "Play count for this song:" << plays;
 }
 
-void Song::searchAndPlay(const QString& songName, const QString& directory) {
+void song::searchAndPlay(const QString& songName, const QString& directory) {
     // Create a QDir object for the specified directory
     QDir temp(directory);  // 'directory' is passed from main(), pointing to the song's location
 
     // Set filter to search for .mp3 files
-    temp.setNameFilters(QStringList() << "D:\spotify\spotify-project\3l_baraka\resources");
+    temp.setNameFilters(QStringList() << "D:\\spotify\\spotify-project\\3l_baraka\\resources");
     temp.setFilter(QDir::Files);
 
     // Get the list of files in the directory
@@ -54,7 +54,7 @@ void Song::searchAndPlay(const QString& songName, const QString& directory) {
 }
 
 
-void Song::displaySongInfo() const {
+void song::displaySongInfo() const {
     qDebug() << "Song Info:";
     qDebug() << "Title:" << title;
     qDebug() << "Artist:" << artist;

@@ -1,69 +1,87 @@
 #include "playlist.h"
 
-playList::playList(Qstring name) {
-    head = null; tail = null;
+playList::playList(QString name) {
+    head = nullptr; tail = nullptr;
     count = 0; this->name = name;
     capacity = 10;
-    song * newsong = new song[capacity];
+    new song[capacity];
 }
 
-void playList::addSong(song song){
+void playList::addSong(song songData) {
+    node* newSong = new node(songData);
 
-    node * newsong = new node;
-    if(head ==null){
-        head = newsong;
-        tail = newsong;
-    }
-    else{
-        tail->next=newsong;
-        newsong->prev=tail;
-        tail=newsong;
+    if (head == nullptr) {  // If the list is empty
+        head = tail = newSong;
+    } else {  // Append to the end
+        tail->next = newSong;
+        newSong->prev = tail;
+        tail = newSong;
     }
     count++;
 }
 
-void playList::removeSong(QString name){
-    node * temp =head;
-    if(head->data->name==name){
+
+void playList::removeSong(QString name) {
+    if (head == nullptr) {
+        qDebug() << "Playlist is empty!";
+        return;
+    }
+
+    node* temp = head;
+
+    // Remove from head
+    if (head->data.getTitle() == name) {
         temp = head->next;
-        head->next->prev = null;
+        if (temp) temp->prev = nullptr;
         delete head;
-        head=temp;
-        count --;
+        head = temp;
+        if (!head) tail = nullptr;  // If the list is now empty
+        count--;
         return;
     }
-    if(tail->data->name==name){
-        temp->prev->next=null;
-        temp = temp->prev;
+
+    // Remove from tail
+    if (tail->data.getTitle() == name) {
+        temp = tail->prev;
+        if (temp) temp->next = nullptr;
         delete tail;
-        tail=temp;
-        count --;
+        tail = temp;
+        if (!tail) head = nullptr;  // If the list is now empty
+        count--;
         return;
     }
-    while(temp->data->name!=name){
-        if(temp==null){
-            qDebug << notfound;
-            return;
-        }
+
+    // Remove from the middle
+    while (temp && temp->data.getTitle() != name) {
         temp = temp->next;
     }
-        temp->prev->next = temp->next;
-        temp->next->prev = temp->prev;
-        delete temp;
-        count --;
+
+    if (!temp) {
+        qDebug() << "Song not found!";
+        return;
+    }
+
+    temp->prev->next = temp->next;
+    if (temp->next) temp->next->prev = temp->prev;
+
+    delete temp;
+    count--;
 }
 
-void playList::displaySongs(){
-    node*temp=head;
-    qDebug << this->name;
-    while(temp){
-        qdebug << temp->data->name;
-        temp=temp->next
+
+void playList::displaySongs() {
+    node* temp = head;
+    qDebug() << "Playlist: " << this->name;
+
+    while (temp) {
+        qDebug() << temp->data.getTitle();
+        temp = temp->next;
     }
 }
 
-void displaySum(){
-    qDebug << this->count;
+
+void playList::displaySum(){
+    qDebug() << count;
 }
 
 

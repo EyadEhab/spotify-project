@@ -1,14 +1,21 @@
 #ifndef PLAYLIST_H
 #define PLAYLIST_H
-
+#include <node.h>
+#include <QString>
+#include <QDebug>
+#include <QDir>
+#include <QFileInfoList>
+#include <QFileInfo>
+#include <QStringList>
 
 class playList
 {
 private:
 
-    Qstring name;
+    QString name;
     int count;
-    node * head,tail;
+    node * head;
+    node * tail;
     int capacity;
 
 public:
