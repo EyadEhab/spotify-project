@@ -11,11 +11,13 @@ CONFIG += c++17
 SOURCES += \
     main.cpp \
     mainwindow.cpp \
+    node.cpp \
     playlist.cpp \
     song.cpp
 
 HEADERS += \
     mainwindow.h \
+    node.h \
     playlist.h \
     song.h
 
