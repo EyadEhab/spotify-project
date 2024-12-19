@@ -1,13 +1,8 @@
 #ifndef NODE_H
 #define NODE_H
-#include <QString>
-#include <QDebug>
-#include <QDir>
-#include <QFileInfoList>
-#include <QFileInfo>
-#include <QStringList>
-
+#include <string>
 #include "song.h"
+using namespace std;
 
 class node {
 public:

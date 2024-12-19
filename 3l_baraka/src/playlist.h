@@ -1,29 +1,24 @@
 #ifndef PLAYLIST_H
 #define PLAYLIST_H
-#include <node.h>
-#include <QString>
-#include <QDebug>
-#include <QDir>
-#include <QFileInfoList>
-#include <QFileInfo>
-#include <QStringList>
+#include "node.h"
+#include <string>
+using namespace std;
 
 class playList
 {
 private:
-
-    QString name;
+    string name;
     int count;
-    node * head;
-    node * tail;
+    node* head;
+    node* tail;
     int capacity;
 
 public:
-    playList(QString);
+    playList(string);
     void addSong(song song);
-    void removeSong(QString name);
+    void removeSong(string name);
     void displaySongs();
-    //void search(QString song);
+    //void search(string song);
     void shufflePlay();
     void sortNoOfPlays();
     void sortReverseOfPlays();
@@ -31,8 +26,6 @@ public:
     void sortByAlphArtist();
     void sortByRecent();
     void displaySum();
-
-
 };
 
 #endif // PLAYLIST_H

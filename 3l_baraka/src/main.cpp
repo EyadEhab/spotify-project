@@ -1,12 +1,6 @@
-#include "mainwindow.h"
-#include "song.h"
-#include "playlist.h"
-#include <QApplication>
+#include <iostream>
+using namespace std;
 
-int main(int argc, char *argv[])
-{
-    QApplication a(argc, argv);
-    MainWindow w;
-    w.show();
-    return a.exec();
+int main() {
+    return 0;
 }

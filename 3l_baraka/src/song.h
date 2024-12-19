@@ -1,15 +1,12 @@
 #ifndef SONG_H
 #define SONG_H
-#include <QString>
-#include <QDebug>
-#include <QDir>
-#include <QFileInfoList>
-#include <QFileInfo>
-#include <QStringList>
+#include <string>
+using namespace std;
+
 class song {
 private:
-    QString title;   // Song title
-    QString artist;  // Artist name
+    string title;    // Song title
+    string artist;   // Artist name
     float duration;  // Duration in seconds
     int plays;       // Play count
 
@@ -18,21 +15,21 @@ public:
     song() : title(""), artist(""), duration(0), plays(0) {}
 
     // Parameterized constructor
-    song(const QString& title, const QString& artist, int duration);
+    song(const string& title, const string& artist, int duration);
 
     // Getters and Setters
-    QString getTitle() const;
-    QString getArtist() const;
+    string getTitle() const;
+    string getArtist() const;
     float getDuration() const;
     int getPlays() const;
-    void setTitle(const QString& newTitle);
-    void setArtist(const QString& newArtist);
+    void setTitle(const string& newTitle);
+    void setArtist(const string& newArtist);
     void setDuration(float newDuration);
 
     // Functionalities
     void playSong();
     void displaySongInfo() const;
-    void searchAndPlay(const QString& songName, const QString& directory);
+    void searchAndPlay(const string& songName, const string& directory);
 };
 
 #endif

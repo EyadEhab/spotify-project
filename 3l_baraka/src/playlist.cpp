@@ -1,8 +1,12 @@
 #include "playlist.h"
+#include <iostream>
+#include <string>
 
-playList::playList(QString name) {
-    head = nullptr; tail = nullptr;
-    count = 0; this->name = name;
+playList::playList(string name) {
+    head = nullptr;
+    tail = nullptr;
+    count = 0;
+    this->name = name;
     capacity = 10;
     new song[capacity];
 }
@@ -20,10 +24,9 @@ void playList::addSong(song songData) {
     count++;
 }
 
-
-void playList::removeSong(QString name) {
+void playList::removeSong(string name) {
     if (head == nullptr) {
-        qDebug() << "Playlist is empty!";
+        cout << "Playlist is empty!" << endl;
         return;
     }
 
@@ -57,7 +60,7 @@ void playList::removeSong(QString name) {
     }
 
     if (!temp) {
-        qDebug() << "Song not found!";
+        cout << "Song not found!" << endl;
         return;
     }
 
@@ -68,29 +71,16 @@ void playList::removeSong(QString name) {
     count--;
 }
 
-
 void playList::displaySongs() {
     node* temp = head;
-    qDebug() << "Playlist: " << this->name;
+    cout << "Playlist: " << this->name << endl;
 
     while (temp) {
-        qDebug() << temp->data.getTitle();
+        cout << temp->data.getTitle() << endl;
         temp = temp->next;
     }
 }
 
-
-void playList::displaySum(){
-    qDebug() << count;
+void playList::displaySum() {
+    cout << count << endl;
 }
-
-
-
-
-
-
-
-
-
-
-

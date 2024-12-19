@@ -1,18 +1,19 @@
 #include "song.h"
+#include <iostream>
 
 // Constructor
-song::song(const QString& title, const QString& artist, int duration)
+song::song(const string& title, const string& artist, int duration)
     : title(title), artist(artist), duration(duration), plays(0) {}
 
 // Getters
-QString song::getTitle() const { return title; }
-QString song::getArtist() const { return artist; }
+string song::getTitle() const { return title; }
+string song::getArtist() const { return artist; }
 float song::getDuration() const { return duration; }
 int song::getPlays() const { return plays; }
 
 // Setters
-void song::setTitle(const QString& newTitle) { title = newTitle; }
-void song::setArtist(const QString& newArtist) { artist = newArtist; }
+void song::setTitle(const string& newTitle) { title = newTitle; }
+void song::setArtist(const string& newArtist) { artist = newArtist; }
 void song::setDuration(float newDuration) { duration = newDuration; }
 
 // Functionalities
@@ -21,43 +22,21 @@ void song::playSong() {
     plays++;
 
     // Simulate playing the song
-    qDebug() << "Now playing:" << title << "by" << artist;
-    qDebug() << "Play count for this song:" << plays;
+    cout << "Now playing: " << title << " by " << artist << endl;
+    cout << "Play count for this song: " << plays << endl;
 }
 
-void song::searchAndPlay(const QString& songName, const QString& directory) {
-    // Create a QDir object for the specified directory
-    QDir temp(directory);  // 'directory' is passed from main(), pointing to the song's location
-
-    // Set filter to search for .mp3 files
-    temp.setNameFilters(QStringList() << "D:\\spotify\\spotify-project\\3l_baraka\\resources");
-    temp.setFilter(QDir::Files);
-
-    // Get the list of files in the directory
-    QFileInfoList files = temp.entryInfoList();
-
-    bool found = false;
-
-    // Iterate over the files and check if any match the song title
-    for (const QFileInfo &file : files) {
-        if (file.fileName().startsWith(songName, Qt::CaseInsensitive)) {
-            found = true;
-            qDebug() << "Song found: " << file.fileName();
-            playSong(); // Play the song if found
-            break;
-        }
-    }
-
-    if (!found) {
-        qDebug() << "Song not found in the directory!";
-    }
+void song::searchAndPlay(const string& songName, const string& directory) {
+    // Simplified version without Qt file operations
+    cout << "Searching for song: " << songName << " in directory: " << directory << endl;
+    cout << "File operations will need to be implemented using standard C++ file handling" << endl;
+    playSong();
 }
-
 
 void song::displaySongInfo() const {
-    qDebug() << "Song Info:";
-    qDebug() << "Title:" << title;
-    qDebug() << "Artist:" << artist;
-    qDebug() << "Duration:" << duration << "seconds";
-    qDebug() << "Plays:" << plays;
+    cout << "Song Info:" << endl;
+    cout << "Title: " << title << endl;
+    cout << "Artist: " << artist << endl;
+    cout << "Duration: " << duration << " seconds" << endl;
+    cout << "Plays: " << plays << endl;
 }
