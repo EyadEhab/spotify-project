@@ -18,22 +18,19 @@
   <component name="CMakeReloadState">
     <option name="reloaded" value="true" />
   </component>
+  <component name="CMakeRunConfigurationManager">
+    <generated>
+      <config projectName="3l_baraka" targetName="3l_baraka" />
+    </generated>
+  </component>
   <component name="CMakeSettings">
     <configurations>
       <configuration PROFILE_NAME="Debug" ENABLED="true" CONFIG_NAME="Debug" />
     </configurations>
   </component>
   <component name="ChangeListManager">
-    <list default="true" id="456aa3d1-7c9b-4b3e-a6a7-f529baa531dd" name="Changes" comment="">
-      <change beforePath="$PROJECT_DIR$/.idea/editor.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/editor.xml" afterDir="false" />
+    <list default="true" id="456aa3d1-7c9b-4b3e-a6a7-f529baa531dd" name="Changes" comment="removed QT code from files">
       <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/main.cpp" beforeDir="false" afterPath="$PROJECT_DIR$/src/main.cpp" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/node.cpp" beforeDir="false" afterPath="$PROJECT_DIR$/src/node.cpp" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/node.h" beforeDir="false" afterPath="$PROJECT_DIR$/src/node.h" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/playlist.cpp" beforeDir="false" afterPath="$PROJECT_DIR$/src/playlist.cpp" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/playlist.h" beforeDir="false" afterPath="$PROJECT_DIR$/src/playlist.h" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/song.cpp" beforeDir="false" afterPath="$PROJECT_DIR$/src/song.cpp" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/song.h" beforeDir="false" afterPath="$PROJECT_DIR$/src/song.h" afterDir="false" />
     </list>
     <option name="SHOW_DIALOG" value="false" />
     <option name="HIGHLIGHT_CONFLICTS" value="true" />
@@ -43,9 +40,22 @@
   <component name="ClangdSettings">
     <option name="formatViaClangd" value="false" />
   </component>
+  <component name="ExecutionTargetManager" SELECTED_TARGET="CMakeBuildProfile:Debug" />
   <component name="Git.Settings">
     <option name="RECENT_GIT_ROOT_PATH" value="$PROJECT_DIR$/.." />
   </component>
+  <component name="GitHubPullRequestSearchHistory"><![CDATA[{
+  "lastFilter": {
+    "state": "OPEN",
+    "assignee": "EyadEhab"
+  }
+}]]></component>
+  <component name="GithubPullRequestsUISettings"><![CDATA[{
+  "selectedUrlAndAccountId": {
+    "url": "https://github.com/EyadEhab/spotify-project.git",
+    "accountId": "265ccc2d-1d9e-43e8-ad1d-383c3b9ebb54"
+  }
+}]]></component>
   <component name="ProjectApplicationVersion">
     <option name="ide" value="CLion" />
     <option name="majorVersion" value="2024" />
@@ -62,6 +72,7 @@
   </component>
   <component name="PropertiesComponent"><![CDATA[{
   "keyToString": {
+    "CMake Application.3l_baraka.executor": "Run",
     "RunOnceActivity.RadMigrateCodeStyle": "true",
     "RunOnceActivity.ShowReadmeOnStart": "true",
     "RunOnceActivity.cidr.known.project.marker": "true",
@@ -102,12 +113,25 @@
       <option name="presentableId" value="Default" />
       <updated>1734098327976</updated>
       <workItem from="1734098329603" duration="600000" />
-      <workItem from="1734614002438" duration="635000" />
+      <workItem from="1734614002438" duration="1968000" />
     </task>
+    <task id="LOCAL-00001" summary="removed QT code from files">
+      <option name="closed" value="true" />
+      <created>1734614737036</created>
+      <option name="number" value="00001" />
+      <option name="presentableId" value="LOCAL-00001" />
+      <option name="project" value="LOCAL" />
+      <updated>1734614737036</updated>
+    </task>
+    <option name="localTasksCounter" value="2" />
     <servers />
   </component>
   <component name="TypeScriptGeneratedFilesManager">
     <option name="version" value="3" />
+  </component>
+  <component name="VcsManagerConfiguration">
+    <MESSAGE value="removed QT code from files" />
+    <option name="LAST_COMMIT_MESSAGE" value="removed QT code from files" />
   </component>
   <component name="XSLT-Support.FileAssociations.UIState">
     <expand />

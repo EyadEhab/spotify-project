@@ -1,0 +1,6 @@
+# ninja log v6
+1	138	1734614652387521760	CMakeFiles/3l_baraka.dir/src/node.cpp.o	54a747201d47fe69
+2	156	1734614652387521760	CMakeFiles/3l_baraka.dir/src/song.cpp.o	f8d7581374b687ab
+1	165	1734614652387521760	CMakeFiles/3l_baraka.dir/src/main.cpp.o	58d5786335320369
+1	166	1734614652387521760	CMakeFiles/3l_baraka.dir/src/playlist.cpp.o	44826b3b2b8d6e42
+166	206	1734614652550851584	3l_baraka	b95942b20d664ffb
