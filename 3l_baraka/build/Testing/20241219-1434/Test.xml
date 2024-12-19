@@ -1,0 +1,35 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<Site BuildName="(empty)"
+	BuildStamp="20241219-1434-Experimental"
+	Name="(empty)"
+	Generator="ctest-3.31.2"
+	CompilerName=""
+	CompilerVersion=""
+	OSName="Linux"
+	Hostname="Eyad"
+	OSRelease="6.10.11-amd64"
+	OSVersion="#1 SMP PREEMPT_DYNAMIC Debian 6.10.11-1parrot1 (2024-10-03)"
+	OSPlatform="x86_64"
+	Is64Bits="1"
+	VendorString="GenuineIntel"
+	VendorID="Intel Corporation"
+	FamilyID="6"
+	ModelID="154"
+	ModelName="12th Gen Intel(R) Core(TM) i5-12450H"
+	ProcessorCacheSize="12288"
+	NumberOfLogicalCPU="12"
+	NumberOfPhysicalCPU="8"
+	TotalVirtualMemory="13999"
+	TotalPhysicalMemory="7737"
+	LogicalProcessorsPerPhysical="1"
+	ProcessorClockFrequency="4100"
+	>
+	<Testing>
+		<StartDateTime>Dec 19 16:34 EET</StartDateTime>
+		<StartTestTime>1734618861</StartTestTime>
+		<TestList/>
+		<EndDateTime>Dec 19 16:34 EET</EndDateTime>
+		<EndTestTime>1734618861</EndTestTime>
+		<ElapsedMinutes>0</ElapsedMinutes>
+	</Testing>
+</Site>
