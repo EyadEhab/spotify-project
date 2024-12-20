@@ -1,6 +1,8 @@
 #ifndef SONG_H
 #define SONG_H
+#include <stack>
 #include <string>
+#include <node.h>
 using namespace std;
 
 class song {
@@ -9,6 +11,7 @@ private:
     string artist;   // Artist name
     float duration;  // Duration in seconds
     int plays;       // Play count
+    stack<song*> stack;
 
 public:
     // Default constructor
@@ -27,7 +30,7 @@ public:
     void setDuration(float newDuration);
 
     // Functionalities
-    void playSong();
+    void playSong(string);
     void displaySongInfo() const;
     void searchAndPlay(const string& songName, const string& directory);
 };

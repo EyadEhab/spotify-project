@@ -17,7 +17,7 @@ void song::setArtist(const string& newArtist) { artist = newArtist; }
 void song::setDuration(float newDuration) { duration = newDuration; }
 
 // Functionalities
-void song::playSong() {
+void song::playSong(string songName) {
     // Increment the play counter
     plays++;
 

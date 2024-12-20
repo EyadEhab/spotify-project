@@ -2,25 +2,32 @@
 #define PLAYLIST_H
 #include "node.h"
 #include <string>
+#include <random>
+#include <stack>
 using namespace std;
 
 class playList
 {
 private:
+
     string name;
     int count;
     node* head;
     node* tail;
-    int capacity;
+    stack<song*> stack1;
 
 public:
     playList(string);
     void addSong(song song);
     void removeSong(string name);
+    void removeAllSongs();
     void displaySongs();
     //void search(string song);
     void shufflePlay();
-    void sortNoOfPlays();
+    int getCount();
+    int getRandomNumber();
+    void swapSong(node*, node* );
+    void sortByNoOfPlays();
     void sortReverseOfPlays();
     void sortByAlphSong();
     void sortByAlphArtist();
