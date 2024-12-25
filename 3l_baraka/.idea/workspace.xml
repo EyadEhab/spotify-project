@@ -29,15 +29,25 @@
     </configurations>
   </component>
   <component name="ChangeListManager">
-    <list default="true" id="456aa3d1-7c9b-4b3e-a6a7-f529baa531dd" name="Changes" comment="removed QT code from files">
-      <change beforePath="$PROJECT_DIR$/.idea/material_theme_project_new.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/material_theme_project_new.xml" afterDir="false" />
+    <list default="true" id="456aa3d1-7c9b-4b3e-a6a7-f529baa531dd" name="Changes" comment="done the remaining function in the playlist.cpp">
       <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/build/.cmake/api/v1/reply/index-2024-12-19T14-32-38-0943.json" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/CMakeLists.txt" beforeDir="false" afterPath="$PROJECT_DIR$/CMakeLists.txt" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/build/.cache/clangd/index/playlist.cpp.CFF8C4D70E441C11.idx" beforeDir="false" afterPath="$PROJECT_DIR$/build/.cache/clangd/index/playlist.cpp.CFF8C4D70E441C11.idx" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/build/.cache/clangd/index/playlist.h.1FA80E6CEE194C7D.idx" beforeDir="false" afterPath="$PROJECT_DIR$/build/.cache/clangd/index/playlist.h.1FA80E6CEE194C7D.idx" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/build/.cache/clangd/index/song.cpp.9DF849EE3188AD24.idx" beforeDir="false" afterPath="$PROJECT_DIR$/build/.cache/clangd/index/song.cpp.9DF849EE3188AD24.idx" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/build/.cache/clangd/index/song.h.E685A7FC81D6CD07.idx" beforeDir="false" afterPath="$PROJECT_DIR$/build/.cache/clangd/index/song.h.E685A7FC81D6CD07.idx" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/build/CMakeFiles/3l_baraka.dir/compiler_depend.internal" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/build/CMakeFiles/3l_baraka.dir/compiler_depend.make" beforeDir="false" afterPath="$PROJECT_DIR$/build/CMakeFiles/3l_baraka.dir/compiler_depend.make" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/cmake-build-debug/.cmake/api/v1/reply/cmakeFiles-v1-bb5105d192795346b978.json" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/cmake-build-debug/.cmake/api/v1/reply/codemodel-v2-b57e1883991260f3d662.json" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/cmake-build-debug/.cmake/api/v1/reply/index-2024-12-19T13-23-57-0259.json" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/cmake-build-debug/.cmake/api/v1/reply/target-3l_baraka-Debug-a2da56ebe28900f7e069.json" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/cmake-build-debug/.ninja_deps" beforeDir="false" afterPath="$PROJECT_DIR$/cmake-build-debug/.ninja_deps" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/cmake-build-debug/.ninja_log" beforeDir="false" afterPath="$PROJECT_DIR$/cmake-build-debug/.ninja_log" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/cmake-build-debug/CMakeFiles/clion-Debug-log.txt" beforeDir="false" afterPath="$PROJECT_DIR$/cmake-build-debug/CMakeFiles/clion-Debug-log.txt" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/cmake-build-debug/Testing/Temporary/LastTest.log" beforeDir="false" afterPath="$PROJECT_DIR$/cmake-build-debug/Testing/Temporary/LastTest.log" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/playlist.cpp" beforeDir="false" afterPath="$PROJECT_DIR$/src/playlist.cpp" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/cmake-build-debug/build.ninja" beforeDir="false" afterPath="$PROJECT_DIR$/cmake-build-debug/build.ninja" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/src/playlist.h" beforeDir="false" afterPath="$PROJECT_DIR$/src/playlist.h" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/song.cpp" beforeDir="false" afterPath="$PROJECT_DIR$/src/song.cpp" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/song.h" beforeDir="false" afterPath="$PROJECT_DIR$/src/song.h" afterDir="false" />
     </list>
     <option name="SHOW_DIALOG" value="false" />
     <option name="HIGHLIGHT_CONFLICTS" value="true" />
@@ -116,7 +126,10 @@
       <updated>1734098327976</updated>
       <workItem from="1734098329603" duration="600000" />
       <workItem from="1734614002438" duration="4176000" />
-      <workItem from="1734705999596" duration="8839000" />
+      <workItem from="1734705999596" duration="9487000" />
+      <workItem from="1735128685652" duration="102000" />
+      <workItem from="1735129573344" duration="406000" />
+      <workItem from="1735130023040" duration="2000" />
     </task>
     <task id="LOCAL-00001" summary="removed QT code from files">
       <option name="closed" value="true" />
@@ -126,7 +139,15 @@
       <option name="project" value="LOCAL" />
       <updated>1734614737036</updated>
     </task>
-    <option name="localTasksCounter" value="2" />
+    <task id="LOCAL-00002" summary="done the remaining function in the playlist.cpp">
+      <option name="closed" value="true" />
+      <created>1734715400642</created>
+      <option name="number" value="00002" />
+      <option name="presentableId" value="LOCAL-00002" />
+      <option name="project" value="LOCAL" />
+      <updated>1734715400642</updated>
+    </task>
+    <option name="localTasksCounter" value="3" />
     <servers />
   </component>
   <component name="TypeScriptGeneratedFilesManager">
@@ -134,7 +155,8 @@
   </component>
   <component name="VcsManagerConfiguration">
     <MESSAGE value="removed QT code from files" />
-    <option name="LAST_COMMIT_MESSAGE" value="removed QT code from files" />
+    <MESSAGE value="done the remaining function in the playlist.cpp" />
+    <option name="LAST_COMMIT_MESSAGE" value="done the remaining function in the playlist.cpp" />
   </component>
   <component name="XSLT-Support.FileAssociations.UIState">
     <expand />

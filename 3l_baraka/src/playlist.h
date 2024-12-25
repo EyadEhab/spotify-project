@@ -4,12 +4,13 @@
 #include <string>
 #include <random>
 #include <stack>
+#include <BSTNode.h>
 using namespace std;
 
 class playList
 {
 private:
-
+    BSTNode * root;
     string name;
     int count;
     node* head;

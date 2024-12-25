@@ -12,4 +12,6 @@ add_executable(3l_baraka
     src/playlist.cpp
     src/playlist.h
     src/song.cpp
-    src/song.h)
+    src/song.h
+        src/BSTNode.cpp
+        src/BSTNode.h)
