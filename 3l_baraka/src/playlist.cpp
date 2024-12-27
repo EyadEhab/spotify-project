@@ -380,6 +380,109 @@ void playList::postOrderRebuild() {
 
 
 
+void playList::load(const string& playlistName, const string& filename) {
+    ifstream inFile(filename);  // Open the file for reading
+
+    if (!inFile) {
+        cout << "Error opening file for loading!" << endl;
+        return;
+    }
+
+    string line;
+    bool playlistFound = false;
+
+    // Read through each line of the file
+    while (getline(inFile, line)) {
+        stringstream ss(line);
+        string name, songTitle;
+        int songCount;
+
+        // Read the playlist name and store it in 'name'
+        getline(ss, name, ',');
+
+        // If the playlist matches the requested name
+        if (name == playlistName) {
+            playlistFound = true;  // Mark playlist as found
+            this->name = name;     // Set the playlist name
+            break;                 // Stop once we find the playlist
+        }
+    }
+
+    if (!playlistFound) {
+        cout << "Playlist name '" << playlistName << "' not found in the file!" << endl;
+        inFile.close();
+        return;
+    }
+
+    // Now read the line that contains the playlist songs
+    // The first element is the playlist name, followed by song names, and the last element is the song count
+    stringstream ss(line);
+    vector<string> songNames;
+    int songCount = 0;
+
+    // Skip the playlist name
+    getline(ss, name, ',');
+
+    // Read each song name until we get to the song count
+    while (getline(ss, songTitle, ',')) {
+        // If it's the last element (song count), break out of the loop
+        if (stringstream(songTitle) >> songCount) {
+            break;
+        }
+        songNames.push_back(songTitle);  // Add the song name to the list
+    }
+
+    // Check that the song count matches the number of songs
+    if (songNames.size() != songCount) {
+        cout << "Warning: The song count does not match the actual number of songs!" << endl;
+    }
+
+    // Clear any existing songs in the playlist
+    removeAllSongs();
+
+    // Add each song to the playlist
+    for (const auto& song : songNames) {
+        song newSong(song);  // Assuming 'song' has a constructor that accepts just the song name
+        addSong(newSong);
+    }
+
+    cout << "Playlist '" << playlistName << "' loaded successfully!" << endl;
+    inFile.close();  // Close the file
+}
+
+void playList::save(const string& filename) {
+    ofstream outFile(filename, ios::app);  // Open file in append mode
+
+    if (!outFile) {
+        cout << "Error opening file for saving!" << endl;
+        return;
+    }
+
+    // Write the playlist name
+    outFile << this->name << ",";
+
+    // Write all the song names in the playlist
+    node* current = head;
+    while (current) {
+        outFile << current->data.getTitle();  // Assuming getTitle() returns the song name
+        if (current->next) {
+            outFile << ",";  // Add comma between songs
+        }
+        current = current->next;
+    }
+
+    // Write the number of songs in the playlist as the last item
+    outFile << "," << getCount();  // getCount() returns the number of songs
+
+    outFile << endl;  // End the line for the playlist
+
+    cout << "Playlist '" << this->name << "' saved successfully!" << endl;
+
+    outFile.close();  // Close the file
+}
+
+
+
 
 
 
