@@ -113,6 +113,42 @@ void playList::displaySum() {
     cout << count << endl;
 }
 
+void playList::insertIntoBST(BSTNode*& root, const song& s)
+{
+    if (root == nullptr) {
+        root = new BSTNode(s);
+        return;
+    }
+    if (s.getTitle() < root->data.getTitle()) {
+        insertIntoBST(root->left, s);
+    } else {
+        insertIntoBST(root->right, s);
+    }
+}
+
+void playList::clearBST(BSTNode*& root) {
+    if (root == nullptr) return;
+    clearBST(root->left);
+    clearBST(root->right);
+    delete root;
+    root = nullptr;
+}
+
+void playList::buildTree(BSTNode* root) {
+    // Clear the existing tree
+    clearBST(this->root);
+    this->root = nullptr;
+
+    // Traverse linked list and build BST
+    node* current = head;
+    while (current != nullptr) {
+        insertIntoBST(this->root, current->data);
+        current = current->next;
+    }
+}
+
+
+
 int playList::getRandomNumber()
 {
     random_device rd; // Obtain a random number from hardware
@@ -283,5 +319,67 @@ void playList::sortByRecent()
 
     cout << "Playlist sorted by recent songs." << endl;
 }
+
+void playList::inOrderTraversal(BSTNode* root, vector<song>& result) {
+    if (root == nullptr) return;
+    inOrderTraversal(root->left, result);
+    result.push_back(root->data);
+    inOrderTraversal(root->right, result);
+}
+
+void playList::preOrderTraversal(BSTNode* root, vector<song>& result) {
+    if (root == nullptr) return;
+    result.push_back(root->data);
+    preOrderTraversal(root->left, result);
+    preOrderTraversal(root->right, result);
+}
+
+void playList::postOrderTraversal(BSTNode* root, vector<song>& result) {
+    if (root == nullptr) return;
+    postOrderTraversal(root->left, result);
+    postOrderTraversal(root->right, result);
+    result.push_back(root->data);
+}
+
+void playList::rebuildLinkedListFromVector(const vector<song>& songs) {
+    // Clear the existing linked list
+    removeAllSongs();
+
+    // Rebuild linked list from the vector
+    for (const auto& s : songs) {
+        addSong(s);
+    }
+}
+
+// Wrapper for in-order traversal
+void playList::inOrderRebuild() {
+    vector<song> result;
+    inOrderTraversal(root, result);
+    rebuildLinkedListFromVector(result);
+    cout << "Rebuilt linked list in in-order:" << endl;
+    displaySongs();
+}
+
+// Wrapper for pre-order traversal
+void playList::preOrderRebuild() {
+    vector<song> result;
+    preOrderTraversal(root, result);
+    rebuildLinkedListFromVector(result);
+    cout << "Rebuilt linked list in pre-order:" << endl;
+    displaySongs();
+}
+
+// Wrapper for post-order traversal
+void playList::postOrderRebuild() {
+    vector<song> result;
+    postOrderTraversal(root, result);
+    rebuildLinkedListFromVector(result);
+    cout << "Rebuilt linked list in post-order:" << endl;
+    displaySongs();
+}
+
+
+
+
 
 

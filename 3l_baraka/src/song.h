@@ -3,6 +3,8 @@
 #include <stack>
 #include <string>
 #include <node.h>
+#include <stack>
+#include "miniaudio.h"
 using namespace std;
 
 class song {
@@ -11,11 +13,13 @@ private:
     string artist;   // Artist name
     float duration;  // Duration in seconds
     int plays;       // Play count
-    stack<song*> stack;
+    string filepath;
+    stack <song*> stack1;
+    ma_engine engine;
 
 public:
     // Default constructor
-    song() : title(""), artist(""), duration(0), plays(0) {}
+    song() : title(""), artist(""), duration(0), plays(0),filepath("../resourses/media/") {};
 
     // Parameterized constructor
     song(const string& title, const string& artist, int duration);
@@ -28,7 +32,7 @@ public:
     void setTitle(const string& newTitle);
     void setArtist(const string& newArtist);
     void setDuration(float newDuration);
-
+    void playSong()
     // Functionalities
     void playSong(string);
     void displaySongInfo() const;

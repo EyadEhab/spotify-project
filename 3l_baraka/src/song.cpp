@@ -3,7 +3,10 @@
 
 // Constructor
 song::song(const string& title, const string& artist, int duration)
-    : title(title), artist(artist), duration(duration), plays(0) {}
+    : title(title), artist(artist), duration(duration), plays(0),filepath("../resourses/media/")
+{
+    ma_engine_init(NULL, &engine);
+}
 
 // Getters
 string song::getTitle() const { return title; }
@@ -22,7 +25,7 @@ void song::playSong(string songName) {
     plays++;
 
     // Simulate playing the song
-    cout << "Now playing: " << title << " by " << artist << endl;
+    cout s<< "Now playing: " << title << " by " << artist << endl;
     cout << "Play count for this song: " << plays << endl;
 }
 
