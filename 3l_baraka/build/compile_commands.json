@@ -22,5 +22,11 @@
   "command": "/usr/bin/clang++-15  -I\"/media/eyad/a5ca1888-ccc2-42dc-9e91-871ec5dce3b3/eyad/All/cis year 2/first term/data struc/spotify-project/3l_baraka/src\" -g -o CMakeFiles/3l_baraka.dir/src/song.cpp.o -c \"/media/eyad/a5ca1888-ccc2-42dc-9e91-871ec5dce3b3/eyad/All/cis year 2/first term/data struc/spotify-project/3l_baraka/src/song.cpp\"",
   "file": "/media/eyad/a5ca1888-ccc2-42dc-9e91-871ec5dce3b3/eyad/All/cis year 2/first term/data struc/spotify-project/3l_baraka/src/song.cpp",
   "output": "CMakeFiles/3l_baraka.dir/src/song.cpp.o"
+},
+{
+  "directory": "/media/eyad/a5ca1888-ccc2-42dc-9e91-871ec5dce3b3/eyad/All/cis year 2/first term/data struc/spotify-project/3l_baraka/build",
+  "command": "/usr/bin/clang++-15  -I\"/media/eyad/a5ca1888-ccc2-42dc-9e91-871ec5dce3b3/eyad/All/cis year 2/first term/data struc/spotify-project/3l_baraka/src\" -g -o CMakeFiles/3l_baraka.dir/src/BSTNode.cpp.o -c \"/media/eyad/a5ca1888-ccc2-42dc-9e91-871ec5dce3b3/eyad/All/cis year 2/first term/data struc/spotify-project/3l_baraka/src/BSTNode.cpp\"",
+  "file": "/media/eyad/a5ca1888-ccc2-42dc-9e91-871ec5dce3b3/eyad/All/cis year 2/first term/data struc/spotify-project/3l_baraka/src/BSTNode.cpp",
+  "output": "CMakeFiles/3l_baraka.dir/src/BSTNode.cpp.o"
 }
 ]

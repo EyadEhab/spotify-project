@@ -3,12 +3,16 @@
 #include <fstream>
 #include <sstream>
 #include <vector>
-
+#include <chrono>
+#include <thread>
+#include "miniaudio.h"
+#include <iomanip>
+#include <ctime>
 using namespace std;
 
 // Constructor
-song::song(const string& title, const string& artist, int duration)
-    : title(title), artist(artist), duration(duration), plays(0), filepath("../resources/media/") {
+song::song(const string title, const string artist, int duration)
+    : title(title), artist(artist), duration(duration), plays(0), filepath("../resources/media/") ,timePlayed(""){
     ma_engine_init(NULL, &engine);
 }
 
@@ -23,14 +27,95 @@ void song::setTitle(const string& newTitle) { title = newTitle; }
 void song::setArtist(const string& newArtist) { artist = newArtist; }
 void song::setDuration(float newDuration) { duration = newDuration; }
 
-// Functionalities
-void song::playSong(string songName) {
+void song::updateTimePlayed() {
+    // Get current time
+    time_t now = time(nullptr);
+    tm* ltm = localtime(&now);
+
+    // Create stringstream for formatting
+    stringstream ss;
+
+    // Format: YYYYMMDDHHMM
+    ss << (1900 + ltm->tm_year)  // Year
+       << setfill('0') << setw(2) << (1 + ltm->tm_mon)  // Month
+       << setfill('0') << setw(2) << ltm->tm_mday  // Day
+       << setfill('0') << setw(2) << ltm->tm_hour  // Hour
+       << setfill('0') << setw(2) << ltm->tm_min;  // Minute
+
+    timePlayed = ss.str();
+}
+
+void song::playSong(const string& songName) {
     // Increment the play counter
     plays++;
 
-    // Simulate playing the song
-    cout << "Now playing: " << title << " by " << artist << endl;
-    cout << "Play count for this song: " << plays << endl;
+    // Construct the full path to the audio file
+    string fullPath = "../resources/" + songName;  // Using the class member filepath
+
+    // Initialize sound object
+    ma_sound sound;
+    ma_result result = ma_sound_init_from_file(&engine, fullPath.c_str(), 0, NULL, NULL, &sound);
+    if (result != MA_SUCCESS) {
+        cerr << "Failed to load sound file: " << fullPath << endl;
+        cerr << "Error: " << ma_result_description(result) << endl;
+        return;
+    }
+
+    // Start playing the sound
+    result = ma_sound_start(&sound);
+    if (result != MA_SUCCESS) {
+        cerr << "Failed to start playback: " << ma_result_description(result) << endl;
+        ma_sound_uninit(&sound);
+        return;
+    }
+
+    // Get the duration in seconds
+    float totalDuration;
+    ma_sound_get_length_in_seconds(&sound, &totalDuration);
+
+    if (totalDuration <= 0) {
+        cerr << "Invalid sound duration" << endl;
+        ma_sound_uninit(&sound);
+        return;
+    }
+
+    // Display initial song info
+    cout << "\nNow playing: " << title << " by " << artist << endl;
+    cout << "Play count: " << plays << endl;
+    cout << "Duration: " << static_cast<int>(totalDuration) << " seconds" << endl;
+
+    // Progress bar loop
+    while (ma_sound_is_playing(&sound)) {
+        float currentPositionInSeconds;
+        ma_sound_get_cursor_in_seconds(&sound, &currentPositionInSeconds);  // Fixed function name
+
+        // Calculate progress percentage
+        int progress = static_cast<int>((currentPositionInSeconds / totalDuration) * 100);
+        progress = min(100, max(0, progress)); // Ensure progress stays between 0-100
+
+        // Display progress bar
+        cout << "\rProgress: [";
+        int barWidth = 50;
+        int pos = barWidth * progress / 100;
+
+        for (int i = 0; i < barWidth; ++i) {
+            if (i < pos) cout << "=";
+            else if (i == pos) cout << ">";
+            else cout << " ";
+        }
+
+        cout << "] " << progress << "% ("
+             << static_cast<int>(currentPositionInSeconds) << "/"
+             << static_cast<int>(totalDuration) << "s)" << flush;
+
+        // Sleep to reduce CPU usage
+        this_thread::sleep_for(chrono::milliseconds(100));
+    }
+
+    cout << "\nPlayback completed!" << endl;
+
+    // Cleanup
+    ma_sound_uninit(&sound);
 }
 
 void song::searchAndPlay(const string& songName, const string& directory) {
@@ -49,9 +134,9 @@ void song::displaySongInfo() const {
 }
 
 // Load a single song from a text file
-song song::loadSong(const string& filename="../resources/musics.txt", const string& songTitle) {
+song* song::load(const string& songTitle, const string& filename="../resources/musics.txt") {
     ifstream file(filename);
-    song emptySong("", "", 0); // Return an empty song if not found
+    song* emptySong = new song("", "", 0); // Return an empty song if not found
 
     if (file.is_open()) {
         string line;
@@ -69,8 +154,8 @@ song song::loadSong(const string& filename="../resources/musics.txt", const stri
 
             // If the title matches the requested song, return this song
             if (title == songTitle) {
-                song s(title, artist, duration);
-                s.plays = plays;
+                song* s=new song(title, artist, duration);
+                s->plays = plays;
                 file.close();
                 return s;
             }
@@ -86,7 +171,7 @@ song song::loadSong(const string& filename="../resources/musics.txt", const stri
 }
 
 // Delete a specific song from the text file
-bool song::deleteSong(const string& filename="../resources/musics.txt", const string& titleToDelete) {
+bool song::deleteSong(const string& titleToDelete, const string& filename="../resources/musics.txt") {
     ifstream file(filename);
     vector<string> lines;
 

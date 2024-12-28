@@ -1,53 +1,62 @@
 #ifndef PLAYLIST_H
 #define PLAYLIST_H
+#include "BSTNode.h"
 #include "node.h"
-#include <string>
+#include <chrono>
+#include <fstream>
 #include <random>
+#include <sstream>
 #include <stack>
-#include <BSTNode.h>
+#include <string>
+#include <thread>
+
 using namespace std;
 
-class playList
-{
+class playList {
 private:
-    BSTNode * root;
-    string name;
-    int count;
-    node* head;
-    node* tail;
-    stack<song*> stack1;
+  BSTNode *root;
+  string name;
+  int count;
+  node *head;
+  node *tail;
+  stack<song *> stack1;
 
 public:
-    playList(string);
-    void addSong(song song);
-    void removeSong(string name);
-    void removeAllSongs();
-    void displaySongs();
-    void buildTree(BSTNode * root);
-    //void search(string song);
+  playList(string);
+  void addSong(song* song);
+  void removeSong(string name);
+  void removeAllSongs();
+  void displaySongs();
+  void buildTree(BSTNode *root);
+  // void search(string song);
 
-    void shufflePlay();
-    int getCount();
-    int getRandomNumber();
-    void swapSong(node*, node* );
-    void sortByNoOfPlays();
-    void sortReverseOfPlays();
-    void sortByAlphSong();
-    void sortByAlphArtist();
-    void sortByRecent();
-    void displaySum();
-    void insertIntoBST(BSTNode*& , const song& );
-    void buildTree(BSTNode*);
-    void inOrderTraversal(BSTNode* , vector<song>& );
-    void preOrderTraversal(BSTNode* , vector<song>& );
-    void postOrderTraversal(BSTNode* , vector<song>& );
-    void reverseOrderTraversal(BSTNode* , vector<song>& );
-    void rebuildTree(BSTNode* root);
-    void displayPlaylist();
-    void rebuildLinkedListFromVector(const vector<song>& );
-    void inorderRebuild(BSTNode* root);
-    void preorderRebuild(BSTNode* root);
-    void postorderRebuild(BSTNode* root);
+  void shufflePlay();
+  int getCount();
+  int getRandomNumber();
+  void swapSong(node *, node *);
+  void sortByNoOfPlays();
+  void sortReverseOfPlays();
+  void sortByAlphSong();
+  void sortByAlphArtist();
+  void sortByRecent();
+  void displaySum();
+  void insertIntoBST(BSTNode*& root, const song* s);
+  void insertIntoBST(BSTNode *&, const song &);
+  void clearBST(BSTNode*& root);
+  void inOrderTraversal(BSTNode *, vector<song> &);
+  void preOrderTraversal(BSTNode *, vector<song> &);
+  void postOrderTraversal(BSTNode *, vector<song> &);
+  void reverseOrderTraversal(BSTNode *, vector<song> &);
+  void rebuildTree(BSTNode *root);
+  void displayPlaylist();
+  void rebuildLinkedListFromVector(vector<song> &);
+  void inOrderRebuild();
+  void preOrderRebuild();
+  void inorderRebuild();
+  void preorderRebuild();
+  void save(const string &filename);
+  void postOrderRebuild();
+  bool load(const string &playlistName, const string &filename, const string &);
 };
 
 #endif // PLAYLIST_H

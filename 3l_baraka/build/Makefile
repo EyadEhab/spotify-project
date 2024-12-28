@@ -129,6 +129,30 @@ depend:
 	$(MAKE) $(MAKESILENT) -f CMakeFiles/3l_baraka.dir/build.make CMakeFiles/3l_baraka.dir/build
 .PHONY : 3l_baraka/fast
 
+src/BSTNode.o: src/BSTNode.cpp.o
+.PHONY : src/BSTNode.o
+
+# target to build an object file
+src/BSTNode.cpp.o:
+	$(MAKE) $(MAKESILENT) -f CMakeFiles/3l_baraka.dir/build.make CMakeFiles/3l_baraka.dir/src/BSTNode.cpp.o
+.PHONY : src/BSTNode.cpp.o
+
+src/BSTNode.i: src/BSTNode.cpp.i
+.PHONY : src/BSTNode.i
+
+# target to preprocess a source file
+src/BSTNode.cpp.i:
+	$(MAKE) $(MAKESILENT) -f CMakeFiles/3l_baraka.dir/build.make CMakeFiles/3l_baraka.dir/src/BSTNode.cpp.i
+.PHONY : src/BSTNode.cpp.i
+
+src/BSTNode.s: src/BSTNode.cpp.s
+.PHONY : src/BSTNode.s
+
+# target to generate assembly for a file
+src/BSTNode.cpp.s:
+	$(MAKE) $(MAKESILENT) -f CMakeFiles/3l_baraka.dir/build.make CMakeFiles/3l_baraka.dir/src/BSTNode.cpp.s
+.PHONY : src/BSTNode.cpp.s
+
 src/main.o: src/main.cpp.o
 .PHONY : src/main.o
 
@@ -234,6 +258,9 @@ help:
 	@echo "... edit_cache"
 	@echo "... rebuild_cache"
 	@echo "... 3l_baraka"
+	@echo "... src/BSTNode.o"
+	@echo "... src/BSTNode.i"
+	@echo "... src/BSTNode.s"
 	@echo "... src/main.o"
 	@echo "... src/main.i"
 	@echo "... src/main.s"

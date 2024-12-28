@@ -11,7 +11,7 @@ public:
     BSTNode* right;
 
     // Constructor
-    BSTNode(const song& s, BSTNode* leftNode = nullptr, BSTNode* rightNode = nullptr);
+    BSTNode(const song s);
 };
 
 

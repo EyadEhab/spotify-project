@@ -1,7 +1,12 @@
 # ninja log v6
-1	138	1734614652387521760	CMakeFiles/3l_baraka.dir/src/node.cpp.o	54a747201d47fe69
-2	156	1734614652387521760	CMakeFiles/3l_baraka.dir/src/song.cpp.o	f8d7581374b687ab
-1	166	1734614652387521760	CMakeFiles/3l_baraka.dir/src/playlist.cpp.o	44826b3b2b8d6e42
-1	170	1734617998339695662	CMakeFiles/3l_baraka.dir/src/main.cpp.o	58d5786335320369
+2	300	1735409211303152459	CMakeFiles/3l_baraka.dir/src/BSTNode.cpp.o	f4e42046ebf228bf
 170	217	1734617998509691821	3l_baraka	b95942b20d664ffb
-1	219	1735305778506972811	CMakeFiles/3l_baraka.dir/src/node.cpp.o	54a747201d47fe69
+1	451	1735409211303152459	CMakeFiles/3l_baraka.dir/src/main.cpp.o	58d5786335320369
+2	662	1735409862105204689	CMakeFiles/3l_baraka.dir/src/playlist.cpp.o	44826b3b2b8d6e42
+1	468	1735409938976791868	CMakeFiles/3l_baraka.dir/src/song.cpp.o	f8d7581374b687ab
+2	190	1735407717043736078	CMakeFiles/3l_baraka.dir/src/node.cpp.o	54a747201d47fe69
+0	17	1735410293485370756	build.ninja	ff1c08b013c2a21a
+1	2370	1735410293492037271	CMakeFiles/3l_baraka.dir/src/miniaudio.c.o	ea18ad65f217d687
+0	2381	1735410293492037271	CMakeFiles/miniaudio.dir/src/miniaudio.c.o	cb1cc60dfbbaa923
+2381	2609	1735410295871982828	libminiaudio.a	919a96e3f8a96a3b
+2609	2687	1735410296098644309	3l_baraka	30981c823e1f0ec1

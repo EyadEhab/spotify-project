@@ -1,6 +1,8 @@
 file(REMOVE_RECURSE
   "3l_baraka"
   "3l_baraka.pdb"
+  "CMakeFiles/3l_baraka.dir/src/BSTNode.cpp.o"
+  "CMakeFiles/3l_baraka.dir/src/BSTNode.cpp.o.d"
   "CMakeFiles/3l_baraka.dir/src/main.cpp.o"
   "CMakeFiles/3l_baraka.dir/src/main.cpp.o.d"
   "CMakeFiles/3l_baraka.dir/src/node.cpp.o"

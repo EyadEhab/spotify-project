@@ -41,13 +41,46 @@ include CMakeFiles/rules.ninja
 
 cmake_ninja_workdir = /media/eyad/a5ca1888-ccc2-42dc-9e91-871ec5dce3b3/eyad/All/cis$ year$ 2/first$ term/data$ struc/spotify-project/3l_baraka/cmake-build-debug/
 # =============================================================================
+# Object build statements for STATIC_LIBRARY target miniaudio
+
+
+#############################################
+# Order-only phony target for miniaudio
+
+build cmake_object_order_depends_target_miniaudio: phony || .
+
+build CMakeFiles/miniaudio.dir/src/miniaudio.c.o: C_COMPILER__miniaudio_unscanned_Debug /media/eyad/a5ca1888-ccc2-42dc-9e91-871ec5dce3b3/eyad/All/cis$ year$ 2/first$ term/data$ struc/spotify-project/3l_baraka/src/miniaudio.c || cmake_object_order_depends_target_miniaudio
+  DEFINES = -DMINIAUDIO_IMPLEMENTATION
+  DEP_FILE = CMakeFiles/miniaudio.dir/src/miniaudio.c.o.d
+  FLAGS = -g -fdiagnostics-color=always
+  INCLUDES = -I"/media/eyad/a5ca1888-ccc2-42dc-9e91-871ec5dce3b3/eyad/All/cis year 2/first term/data struc/spotify-project/3l_baraka/src"
+  OBJECT_DIR = CMakeFiles/miniaudio.dir
+  OBJECT_FILE_DIR = CMakeFiles/miniaudio.dir/src
+
+
+# =============================================================================
+# Link build statements for STATIC_LIBRARY target miniaudio
+
+
+#############################################
+# Link the static library libminiaudio.a
+
+build libminiaudio.a: C_STATIC_LIBRARY_LINKER__miniaudio_Debug CMakeFiles/miniaudio.dir/src/miniaudio.c.o
+  LANGUAGE_COMPILE_FLAGS = -g
+  OBJECT_DIR = CMakeFiles/miniaudio.dir
+  POST_BUILD = :
+  PRE_LINK = :
+  TARGET_FILE = libminiaudio.a
+  TARGET_PDB = miniaudio.a.dbg
+
+# =============================================================================
 # Object build statements for EXECUTABLE target 3l_baraka
 
 
 #############################################
 # Order-only phony target for 3l_baraka
 
-build cmake_object_order_depends_target_3l_baraka: phony || .
+build cmake_object_order_depends_target_3l_baraka: phony || cmake_object_order_depends_target_miniaudio
 
 build CMakeFiles/3l_baraka.dir/src/main.cpp.o: CXX_COMPILER__3l_baraka_unscanned_Debug /media/eyad/a5ca1888-ccc2-42dc-9e91-871ec5dce3b3/eyad/All/cis$ year$ 2/first$ term/data$ struc/spotify-project/3l_baraka/src/main.cpp || cmake_object_order_depends_target_3l_baraka
   DEP_FILE = CMakeFiles/3l_baraka.dir/src/main.cpp.o.d
@@ -84,6 +117,13 @@ build CMakeFiles/3l_baraka.dir/src/BSTNode.cpp.o: CXX_COMPILER__3l_baraka_unscan
   OBJECT_DIR = CMakeFiles/3l_baraka.dir
   OBJECT_FILE_DIR = CMakeFiles/3l_baraka.dir/src
 
+build CMakeFiles/3l_baraka.dir/src/miniaudio.c.o: C_COMPILER__3l_baraka_unscanned_Debug /media/eyad/a5ca1888-ccc2-42dc-9e91-871ec5dce3b3/eyad/All/cis$ year$ 2/first$ term/data$ struc/spotify-project/3l_baraka/src/miniaudio.c || cmake_object_order_depends_target_3l_baraka
+  DEP_FILE = CMakeFiles/3l_baraka.dir/src/miniaudio.c.o.d
+  FLAGS = -g -fdiagnostics-color=always
+  INCLUDES = -I"/media/eyad/a5ca1888-ccc2-42dc-9e91-871ec5dce3b3/eyad/All/cis year 2/first term/data struc/spotify-project/3l_baraka/src"
+  OBJECT_DIR = CMakeFiles/3l_baraka.dir
+  OBJECT_FILE_DIR = CMakeFiles/3l_baraka.dir/src
+
 
 # =============================================================================
 # Link build statements for EXECUTABLE target 3l_baraka
@@ -92,8 +132,9 @@ build CMakeFiles/3l_baraka.dir/src/BSTNode.cpp.o: CXX_COMPILER__3l_baraka_unscan
 #############################################
 # Link the executable 3l_baraka
 
-build 3l_baraka: CXX_EXECUTABLE_LINKER__3l_baraka_Debug CMakeFiles/3l_baraka.dir/src/main.cpp.o CMakeFiles/3l_baraka.dir/src/node.cpp.o CMakeFiles/3l_baraka.dir/src/playlist.cpp.o CMakeFiles/3l_baraka.dir/src/song.cpp.o CMakeFiles/3l_baraka.dir/src/BSTNode.cpp.o
+build 3l_baraka: CXX_EXECUTABLE_LINKER__3l_baraka_Debug CMakeFiles/3l_baraka.dir/src/main.cpp.o CMakeFiles/3l_baraka.dir/src/node.cpp.o CMakeFiles/3l_baraka.dir/src/playlist.cpp.o CMakeFiles/3l_baraka.dir/src/song.cpp.o CMakeFiles/3l_baraka.dir/src/BSTNode.cpp.o CMakeFiles/3l_baraka.dir/src/miniaudio.c.o | libminiaudio.a || libminiaudio.a
   FLAGS = -g
+  LINK_LIBRARIES = libminiaudio.a  -lm  -lpthread  -ldl
   OBJECT_DIR = CMakeFiles/3l_baraka.dir
   POST_BUILD = :
   PRE_LINK = :
@@ -126,6 +167,8 @@ build rebuild_cache: phony CMakeFiles/rebuild_cache.util
 # =============================================================================
 # Target aliases.
 
+build miniaudio: phony libminiaudio.a
+
 # =============================================================================
 # Folder targets.
 
@@ -134,7 +177,7 @@ build rebuild_cache: phony CMakeFiles/rebuild_cache.util
 #############################################
 # Folder: /media/eyad/a5ca1888-ccc2-42dc-9e91-871ec5dce3b3/eyad/All/cis year 2/first term/data struc/spotify-project/3l_baraka/cmake-build-debug
 
-build all: phony 3l_baraka
+build all: phony libminiaudio.a 3l_baraka
 
 # =============================================================================
 # Built-in targets

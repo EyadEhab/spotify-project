@@ -4,5 +4,5 @@
 
 #include "BSTNode.h"
 
-BSTNode::BSTNode(const song& s, BSTNode* leftNode, BSTNode* rightNode)
-:data(s), left(leftNode), right(rightNode){}
+BSTNode::BSTNode(const song s)
+:data(s), left(NULL), right(NULL){}

@@ -85,12 +85,12 @@ clean: CMakeFiles/3l_baraka.dir/clean
 CMakeFiles/3l_baraka.dir/all:
 	$(MAKE) $(MAKESILENT) -f CMakeFiles/3l_baraka.dir/build.make CMakeFiles/3l_baraka.dir/depend
 	$(MAKE) $(MAKESILENT) -f CMakeFiles/3l_baraka.dir/build.make CMakeFiles/3l_baraka.dir/build
-	@$(CMAKE_COMMAND) -E cmake_echo_color "--switch=$(COLOR)" --progress-dir="/media/eyad/a5ca1888-ccc2-42dc-9e91-871ec5dce3b3/eyad/All/cis year 2/first term/data struc/spotify-project/3l_baraka/build/CMakeFiles" --progress-num=1,2,3,4,5 "Built target 3l_baraka"
+	@$(CMAKE_COMMAND) -E cmake_echo_color "--switch=$(COLOR)" --progress-dir="/media/eyad/a5ca1888-ccc2-42dc-9e91-871ec5dce3b3/eyad/All/cis year 2/first term/data struc/spotify-project/3l_baraka/build/CMakeFiles" --progress-num=1,2,3,4,5,6 "Built target 3l_baraka"
 .PHONY : CMakeFiles/3l_baraka.dir/all
 
 # Build rule for subdir invocation for target.
 CMakeFiles/3l_baraka.dir/rule: cmake_check_build_system
-	$(CMAKE_COMMAND) -E cmake_progress_start "/media/eyad/a5ca1888-ccc2-42dc-9e91-871ec5dce3b3/eyad/All/cis year 2/first term/data struc/spotify-project/3l_baraka/build/CMakeFiles" 5
+	$(CMAKE_COMMAND) -E cmake_progress_start "/media/eyad/a5ca1888-ccc2-42dc-9e91-871ec5dce3b3/eyad/All/cis year 2/first term/data struc/spotify-project/3l_baraka/build/CMakeFiles" 6
 	$(MAKE) $(MAKESILENT) -f CMakeFiles/Makefile2 CMakeFiles/3l_baraka.dir/all
 	$(CMAKE_COMMAND) -E cmake_progress_start "/media/eyad/a5ca1888-ccc2-42dc-9e91-871ec5dce3b3/eyad/All/cis year 2/first term/data struc/spotify-project/3l_baraka/build/CMakeFiles" 0
 .PHONY : CMakeFiles/3l_baraka.dir/rule
