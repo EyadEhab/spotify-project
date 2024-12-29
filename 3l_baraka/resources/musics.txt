@@ -1,0 +1,2 @@
+amrdiab,amrdiab,180,0
+tamer,tamer,200,2

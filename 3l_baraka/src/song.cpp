@@ -22,33 +22,38 @@ string song::getArtist() const { return artist; }
 float song::getDuration() const { return duration; }
 int song::getPlays() const { return plays; }
 
+string song::getTimePlayed() const
+{
+    return timePlayed;
+}
+
 // Setters
 void song::setTitle(const string& newTitle) { title = newTitle; }
 void song::setArtist(const string& newArtist) { artist = newArtist; }
 void song::setDuration(float newDuration) { duration = newDuration; }
 
 void song::updateTimePlayed() {
-    // Get current time
+    // Get the current time
     time_t now = time(nullptr);
     tm* ltm = localtime(&now);
 
     // Create stringstream for formatting
     stringstream ss;
 
-    // Format: YYYYMMDDHHMM
+    // Format: YYYYMMDDHHMMSS
     ss << (1900 + ltm->tm_year)  // Year
        << setfill('0') << setw(2) << (1 + ltm->tm_mon)  // Month
-       << setfill('0') << setw(2) << ltm->tm_mday  // Day
-       << setfill('0') << setw(2) << ltm->tm_hour  // Hour
-       << setfill('0') << setw(2) << ltm->tm_min;  // Minute
+       << setfill('0') << setw(2) << ltm->tm_mday       // Day
+       << setfill('0') << setw(2) << ltm->tm_hour       // Hour
+       << setfill('0') << setw(2) << ltm->tm_min        // Minute
+       << setfill('0') << setw(2) << ltm->tm_sec;       // Seconds
 
+    // Save the formatted string
     timePlayed = ss.str();
 }
 
-void song::playSong(const string& songName) {
-    // Increment the play counter
-    plays++;
 
+void song::playSong(const string& songName) {
     // Construct the full path to the audio file
     string fullPath = "../resources/" + songName;  // Using the class member filepath
 
@@ -111,6 +116,12 @@ void song::playSong(const string& songName) {
         // Sleep to reduce CPU usage
         this_thread::sleep_for(chrono::milliseconds(100));
     }
+    plays++;
+    updateTimePlayed();
+    if (saveTimePlayedAndPlayCount("../resources/musics.txt"))
+        cout << "\n song updated successfully " << endl;
+    else
+        cout << "\n song updated failed " << endl;
 
     cout << "\nPlayback completed!" << endl;
 
@@ -131,6 +142,59 @@ void song::displaySongInfo() const {
     cout << "Artist: " << artist << endl;
     cout << "Duration: " << duration << " seconds" << endl;
     cout << "Plays: " << plays << endl;
+    cout << "Time Played: " << timePlayed << endl;
+}
+
+bool song::saveTimePlayedAndPlayCount(const string& filename = "../resources/musics.txt")
+{
+    ifstream inFile(filename);
+    vector<string> lines;
+    bool songFound = false;
+
+    if (inFile.is_open()) {
+        string line;
+        // Read all lines from the file
+        while (getline(inFile, line)) {
+            stringstream ss(line);
+            string existingTitle;
+            getline(ss, existingTitle, ','); // Extract the title
+
+            if (existingTitle == title) {
+                // Song found, update its play count and time played
+                songFound = true;
+                string updatedLine = title + "," + artist + "," + to_string(duration) + "," +
+                                     to_string(plays) + "," + timePlayed;
+                lines.push_back(updatedLine);
+            } else {
+                // Keep the line as is
+                lines.push_back(line);
+            }
+        }
+        inFile.close();
+    } else {
+        cerr << "Unable to open file for reading: " << filename << endl;
+        return false;
+    }
+
+    if (!songFound) {
+        // Song is not in the file, add it
+        cerr << "Unable to find song for writing" << endl;
+        return false;
+    }
+
+    // Write the updated content back to the file
+    ofstream outFile(filename);
+    if (outFile.is_open()) {
+        for (const auto& line : lines) {
+            outFile << line << endl;
+        }
+        outFile.close();
+        cout << "Successfully updated song play count and time played in " << filename << endl;
+        return true;
+    } else {
+        cerr << "Unable to open file for writing: " << filename << endl;
+        return false;
+    }
 }
 
 // Load a single song from a text file

@@ -29,8 +29,10 @@ public:
   void displaySongs();
   void buildTree(BSTNode *root);
   // void search(string song);
-
+  bool doesPlaylistExist(const string& name, const string& filename = "../resources/playlist.txt");
+  bool containsSong(const string& songTitle);
   void shufflePlay();
+  vector<string> displaySongsInPlaylist();
   int getCount();
   int getRandomNumber();
   void swapSong(node *, node *);
@@ -55,6 +57,7 @@ public:
   void inorderRebuild();
   void preorderRebuild();
   void save(const string &filename);
+  void playSongs();
   void postOrderRebuild();
   bool load(const string &playlistName, const string &filename, const string &);
 };

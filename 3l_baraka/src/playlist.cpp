@@ -22,6 +22,7 @@ void playList::addSong(song* songData) {
         tail = newSong;
     }
     count++;
+    save("../resources/playlist.txt");
 }
 
 void playList::removeSong(string name) {
@@ -40,6 +41,7 @@ void playList::removeSong(string name) {
         head = temp;
         if (!head) tail = nullptr;  // If the list is now empty
         count--;
+        save("../resources/playlist.txt");
         return;
     }
 
@@ -51,6 +53,7 @@ void playList::removeSong(string name) {
         tail = temp;
         if (!tail) head = nullptr;  // If the list is now empty
         count--;
+        save("../resources/playlist.txt");
         return;
     }
 
@@ -69,6 +72,7 @@ void playList::removeSong(string name) {
 
     delete temp;
     count--;
+    save("../resources/playlist.txt");
 }
 
 void playList::removeAllSongs() {
@@ -79,6 +83,7 @@ void playList::removeAllSongs() {
     }
     tail = nullptr;
     count = 0;
+    save("../resources/playlist.txt");
 }
 
 void playList::displaySongs() {
@@ -86,20 +91,10 @@ void playList::displaySongs() {
     cout << "Playlist: " << this->name << endl;
 
     while (temp) {
-        cout << temp->data->getTitle() << endl;
+        cout << "\t";
+        cout << "\t  " << temp->data->getTitle() << endl;
         temp = temp->next;
     }
-}
-
-void playList::shufflePlay()
-{
-    int random = getRandomNumber();
-    node* temp = head;
-    for (int i = 0; i < random; i++)
-    {
-        temp = temp->next;
-    }
-    temp->data->playSong(temp->data->getTitle());
 }
 
 int playList::getCount()
@@ -156,172 +151,150 @@ int playList::getRandomNumber()
     return distr(gen);
 }
 
-void playList::swapSong(node* a, node* b)
-{
-    node* temp = a;
-    a = b;
-    b = temp;
+void playList::swapSong(node* a, node* b) {
+    // Swap the data of the two nodes
+    song* temp = a->data;
+    a->data = b->data;
+    b->data = temp;
 }
+
 void playList::sortByNoOfPlays() {
-    vector<node*> sortedByNoOfPlays;
-
-    // Collect all nodes
-    node* temp = head;
-    while (temp) {
-        sortedByNoOfPlays.push_back(temp);
-        temp = temp->next;
+    if (!head || !head->next) {
+        return;  // No need to sort if there's 0 or 1 song
     }
 
-    // Sort the vector by number of plays (descending order)
-    sort(sortedByNoOfPlays.begin(), sortedByNoOfPlays.end(), [](node* a, node* b) {
-        return a->data->getPlays() > b->data->getPlays();
-    });
+    bool swapped;
+    node* ptr1;
+    node* lptr = nullptr;  // Pointer to the last sorted element
 
-    // Rebuild the playlist with sorted nodes
-    removeAllSongs();
-    for (node* n : sortedByNoOfPlays) {
-        addSong(n->data);
-    }
-    head->prev = nullptr;
-    tail->next = nullptr;
-}
+    do {
+        swapped = false;
+        ptr1 = head;
 
-void playList::sortReverseOfPlays()
-{
-    vector<node> sortedByNoOfPlays;
-
-    for (int i = 0; i < count; i++)
-    {
-        node* temp = head;
-        int min = head->data->getPlays();
-        while (temp)
-        {
-            if (temp->data->getPlays() < min)
-            {
-                min = temp->data->getPlays();
+        while (ptr1->next != lptr) {
+            if (ptr1->data->getPlays() < ptr1->next->data->getPlays()) {
+                swapSong(ptr1, ptr1->next);  // Swap nodes
+                swapped = true;
             }
+            ptr1 = ptr1->next;
         }
-        sortedByNoOfPlays.push_back(*temp);
-    }
-    removeAllSongs();
-    for (int i = 0; i < count; i++)
-    {
-        addSong(sortedByNoOfPlays[i].data);
-        sortedByNoOfPlays.pop_back();
-    }
-    head->prev = nullptr;
-    tail->next = nullptr;
+        lptr = ptr1;  // Update the last sorted node
+    } while (swapped);
+
+    save("../resources/playlist.txt");
+    cout << "Sorted by No of Plays" << endl;
 }
 
-void playList::sortByAlphSong()
-{
-    vector<node> sortedByAlphSongs;
 
-    for (int i = 0; i < count; i++)
-    {
-        node* temp = head;
-        string max = head->data->getTitle();
-        while (temp)
-        {
-            if (temp->data->getTitle() < max)
-            {
-                max = temp->data->getTitle();
+void playList::sortReverseOfPlays() {
+    if (!head || !head->next) {
+        return;  // No need to sort if there's 0 or 1 song
+    }
+
+    bool swapped;
+    node* ptr1;
+    node* lptr = nullptr;  // Pointer to the last sorted element
+
+    do {
+        swapped = false;
+        ptr1 = head;
+
+        while (ptr1->next != lptr) {
+            if (ptr1->data->getPlays() > ptr1->next->data->getPlays()) {
+                swapSong(ptr1, ptr1->next);  // Swap nodes
+                swapped = true;
             }
+            ptr1 = ptr1->next;
         }
-        sortedByAlphSongs.push_back(*temp);
-    }
-    for (int i = 0; i < count; i++)
-    {
-        addSong(sortedByAlphSongs[i].data);
-        sortedByAlphSongs.pop_back();
-    }
-    head->prev = nullptr;
-    tail->next = nullptr;
+        lptr = ptr1;  // Update the last sorted node
+    } while (swapped);
+
+    save("../resources/playlist.txt");
+    cout << "Sorted by reverse No of Plays" << endl;
 }
 
-void playList::sortByAlphArtist()
-{
-    vector<node> sortedByAlphSongs;
 
-    for (int i = 0; i < count; i++)
-    {
-        node* temp = head;
-        string max = head->data->getArtist();
-        while (temp)
-        {
-            if (temp->data->getArtist() < max)
-            {
-                max = temp->data->getArtist();
+void playList::sortByAlphSong() {
+    if (!head || !head->next) {
+        return;  // No need to sort if there's 0 or 1 song
+    }
+
+    bool swapped;
+    node* ptr1;
+    node* lptr = nullptr;  // Pointer to the last sorted element
+
+    do {
+        swapped = false;
+        ptr1 = head;
+
+        while (ptr1->next != lptr) {
+            if (ptr1->data->getTitle() > ptr1->next->data->getTitle()) {
+                swapSong(ptr1, ptr1->next);  // Swap nodes
+                swapped = true;
             }
+            ptr1 = ptr1->next;
         }
-        sortedByAlphSongs.push_back(*temp);
-    }
-    for (int i = 0; i < count; i++)
-    {
-        addSong(sortedByAlphSongs[i].data);
-        sortedByAlphSongs.pop_back();
-    }
-    head->prev = nullptr;
-    tail->next = nullptr;
+        lptr = ptr1;  // Update the last sorted node
+    } while (swapped);
+
+    save("../resources/playlist.txt");
+    cout << "Sorted by Song Title" << endl;
 }
 
-void playList::sortByRecent()
-{
-    if (stack1.empty())
-    {
-        cout << "No recently played songs to sort by." << endl;
-        return;
+void playList::sortByAlphArtist() {
+    if (!head || !head->next) {
+        return;  // No need to sort if there's 0 or 1 song
     }
 
-    vector<node*> sortedByRecent; // Songs in the stack and in the playlist
-    vector<node*> remainingSongs; // Songs not in the stack
+    bool swapped;
+    node* ptr1;
+    node* lptr = nullptr;  // Pointer to the last sorted element
 
-    // Traverse the playlist and segregate songs
-    node* current = head;
-    while (current)
-    {
-        remainingSongs.push_back(current); // Add all songs to remaining by default
-        current = current->next;
-    }
+    do {
+        swapped = false;
+        ptr1 = head;
 
-    // Process the stack
-    stack<song*> tempStack = stack1; // Copy the stack
-    while (!tempStack.empty())
-    {
-        song* recentSong = tempStack.top();
-        tempStack.pop();
-
-        // Check if the song exists in the playlist
-        for (auto it = remainingSongs.begin(); it != remainingSongs.end(); ++it)
-        {
-            if ((*it)->data->getTitle() == recentSong->getTitle())
-            {
-                sortedByRecent.push_back(*it); // Add to sorted list
-                remainingSongs.erase(it);     // Remove from remaining songs
-                break;
+        while (ptr1->next != lptr) {
+            if (ptr1->data->getArtist() > ptr1->next->data->getArtist()) {
+                swapSong(ptr1, ptr1->next);  // Swap nodes
+                swapped = true;
             }
+            ptr1 = ptr1->next;
         }
-    }
+        lptr = ptr1;  // Update the last sorted node
+    } while (swapped);
 
-    // Rebuild the playlist
-    removeAllSongs(); // Clear the current playlist
-
-    // Add stack-prioritized songs first
-    for (int i = 0;i<sortedByRecent.size();i++)
-    {
-        addSong(sortedByRecent[i]->data);
-        sortedByRecent.pop_back();
-    }
-
-    // Add the remaining songs
-    for (int i = 0;i<remainingSongs.size();i++)
-    {
-        addSong(remainingSongs[i]->data);
-        remainingSongs.pop_back();
-    }
-
-    cout << "Playlist sorted by recent songs." << endl;
+    save("../resources/playlist.txt");
+    cout << "Sorted by Artist" << endl;
 }
+
+void playList::sortByRecent() {
+    if (!head || !head->next) {
+        return;  // No need to sort if there's 0 or 1 song
+    }
+
+    bool swapped;
+    node* ptr1;
+    node* lptr = nullptr;  // Pointer to the last sorted element
+
+    do {
+        swapped = false;
+        ptr1 = head;
+
+        while (ptr1->next != lptr) {
+            if (ptr1->data->getTimePlayed() < ptr1->next->data->getTimePlayed()) {
+                swapSong(ptr1, ptr1->next);  // Swap nodes
+                swapped = true;
+            }
+            ptr1 = ptr1->next;
+        }
+        lptr = ptr1;  // Update the last sorted node
+    } while (swapped);
+
+    save("../resources/playlist.txt");
+    cout << "Sorted by Most Recently Played" << endl;
+}
+
 
 void playList::inOrderTraversal(BSTNode* root, vector<song>& result) {
     if (root == nullptr) return;
@@ -352,6 +325,7 @@ void playList::rebuildLinkedListFromVector(vector<song>& songs) {
     for (auto& s : songs) {
         addSong(&s);
     }
+    save("../resources/playlist.txt");
 }
 
 // Wrapper for in-order traversal
@@ -423,29 +397,135 @@ bool playList::load(const string& playlistName, const string& playlistFile = "..
     return false;
 }
 
-void playList::save(const string& filename) {
-    ofstream outFile(filename, ios::app);  // Open file in append mode
+void playList::save(const string& filename = "../resources/playlist.txt") {
+    // First read all existing playlists
+    ifstream inFile(filename);
+    vector<string> lines;
+    bool playlistExists = false;
 
-    if (!outFile) {
-        cout << "Error opening file for saving!" << endl;
-        return;
+    if (inFile.is_open()) {
+        string line;
+        while (getline(inFile, line)) {
+            stringstream ss(line);
+            string existingPlaylistName;
+            getline(ss, existingPlaylistName, ',');
+
+            // If this is not our playlist, keep it
+            if (existingPlaylistName != this->name) {
+                lines.push_back(line);
+            } else {
+                playlistExists = true;
+            }
+        }
+        inFile.close();
     }
 
-    // Write the playlist name and count at the beginning
-    outFile << this->name << "," << getCount();
+    // Create the new line for our playlist
+    stringstream playlistLine;
+    playlistLine << this->name << "," << getCount();
 
-    // Write all the song names in the playlist
+    // Add all songs
     node* current = head;
     while (current) {
-        outFile << "," << current->data->getTitle();  // Assuming getTitle() returns the song name
+        playlistLine << "," << current->data->getTitle();
         current = current->next;
     }
 
-    outFile << endl;  // End the line for the playlist
+    // Add our playlist line to the vector
+    lines.push_back(playlistLine.str());
 
-    cout << "Playlist '" << this->name << "' saved successfully!" << endl;
-    outFile.close();  // Close the file
+    // Write all lines back to the file
+    ofstream outFile(filename);
+    if (outFile.is_open()) {
+        for (const string& line : lines) {
+            outFile << line << endl;
+        }
+        outFile.close();
+        cout << "Playlist '" << this->name << "' "
+             << (playlistExists ? "updated" : "saved")
+             << " successfully!" << endl;
+    } else {
+        cout << "Error: Unable to open file for saving!" << endl;
+    }  // Close the file
 }
+
+void playList::playSongs()
+{
+    if (head == nullptr) {
+        cout << "The playlist is empty!" << endl;
+        return;
+    }
+    node* temp = head;
+    while (temp)
+    {
+        temp->data->playSong(temp->data->getTitle());
+        temp = temp->next;
+    }
+}
+bool playList::doesPlaylistExist(const string& name, const string& filename) {
+    ifstream file(filename);
+    if (file.is_open()) {
+        string line;
+        while (getline(file, line)) {
+            stringstream ss(line);
+            string playlistName;
+            getline(ss, playlistName, ',');
+            if (playlistName == name) {
+                file.close();
+                return true;
+            }
+        }
+        file.close();
+    }
+    return false;
+}
+
+bool playList::containsSong(const string& songTitle) {
+    node* current = head;
+    while (current) {
+        if (current->data->getTitle() == songTitle) {
+            return true;
+        }
+        current = current->next;
+    }
+    return false;
+}
+
+// Update the shufflePlay function in playlist.cpp:
+void playList::shufflePlay() {
+    if (head == nullptr) {
+        cout << "\nPlaylist is empty!" << endl;
+        return;
+    }
+
+    int random = getRandomNumber();
+    node* temp = head;
+    for (int i = 0; i < random && temp != nullptr; i++) {
+        temp = temp->next;
+    }
+
+    if (temp && temp->data) {
+        cout << "\nNow playing random song:" << endl;
+        temp->data->playSong(temp->data->getTitle());
+    } else {
+        cout << "\nError: Could not play random song." << endl;
+    }
+}
+
+vector<string> playList::displaySongsInPlaylist() {
+    vector<string> songTitles;
+    node* temp = head;
+
+    while (temp) {
+        songTitles.push_back(temp->data->getTitle());
+        temp = temp->next;
+    }
+
+    return songTitles;
+}
+
+
+
 
 
 

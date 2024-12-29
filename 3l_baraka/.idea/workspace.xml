@@ -21,6 +21,7 @@
   <component name="CMakeRunConfigurationManager">
     <generated>
       <config projectName="3l_baraka" targetName="3l_baraka" />
+      <config projectName="3l_baraka" targetName="miniaudio" />
     </generated>
   </component>
   <component name="CMakeSettings">
@@ -29,63 +30,24 @@
     </configurations>
   </component>
   <component name="ChangeListManager">
-    <list default="true" id="456aa3d1-7c9b-4b3e-a6a7-f529baa531dd" name="Changes" comment="added BSTNODE CLASS">
-      <change afterPath="$PROJECT_DIR$/src/miniaudio.c" afterDir="false" />
+    <list default="true" id="456aa3d1-7c9b-4b3e-a6a7-f529baa531dd" name="Changes" comment="added EL PROJECT KOLO">
       <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/CMakeLists.txt" beforeDir="false" afterPath="$PROJECT_DIR$/CMakeLists.txt" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/build/.cache/clangd/index/algorithm.EC28B401975415CA.idx" beforeDir="false" afterPath="$PROJECT_DIR$/build/.cache/clangd/index/algorithm.EC28B401975415CA.idx" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/build/.cache/clangd/index/algorithmfwd.h.1AC6726766732629.idx" beforeDir="false" afterPath="$PROJECT_DIR$/build/.cache/clangd/index/algorithmfwd.h.1AC6726766732629.idx" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/build/.cache/clangd/index/deque.EF881DF49B579600.idx" beforeDir="false" afterPath="$PROJECT_DIR$/build/.cache/clangd/index/deque.EF881DF49B579600.idx" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/build/.cache/clangd/index/deque.tcc.ECB5A9833EAC68A4.idx" beforeDir="false" afterPath="$PROJECT_DIR$/build/.cache/clangd/index/deque.tcc.ECB5A9833EAC68A4.idx" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/build/.cache/clangd/index/execution_defs.h.58F24574E371D814.idx" beforeDir="false" afterPath="$PROJECT_DIR$/build/.cache/clangd/index/execution_defs.h.58F24574E371D814.idx" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/build/.cache/clangd/index/glue_algorithm_defs.h.30BA7989E9426703.idx" beforeDir="false" afterPath="$PROJECT_DIR$/build/.cache/clangd/index/glue_algorithm_defs.h.30BA7989E9426703.idx" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/build/.cache/clangd/index/main.cpp.8017FBEA6F61BA34.idx" beforeDir="false" afterPath="$PROJECT_DIR$/build/.cache/clangd/index/main.cpp.8017FBEA6F61BA34.idx" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/build/.cache/clangd/index/node.cpp.F9D17A50E6C41E27.idx" beforeDir="false" afterPath="$PROJECT_DIR$/build/.cache/clangd/index/node.cpp.F9D17A50E6C41E27.idx" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/build/.cache/clangd/index/node.h.327BF961BECFE6F2.idx" beforeDir="false" afterPath="$PROJECT_DIR$/build/.cache/clangd/index/node.h.327BF961BECFE6F2.idx" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/build/.cache/clangd/index/playlist.cpp.CFF8C4D70E441C11.idx" beforeDir="false" afterPath="$PROJECT_DIR$/build/.cache/clangd/index/playlist.cpp.CFF8C4D70E441C11.idx" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/build/.cache/clangd/index/playlist.h.1FA80E6CEE194C7D.idx" beforeDir="false" afterPath="$PROJECT_DIR$/build/.cache/clangd/index/playlist.h.1FA80E6CEE194C7D.idx" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/build/.cache/clangd/index/song.cpp.9DF849EE3188AD24.idx" beforeDir="false" afterPath="$PROJECT_DIR$/build/.cache/clangd/index/song.cpp.9DF849EE3188AD24.idx" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/build/.cache/clangd/index/song.h.E685A7FC81D6CD07.idx" beforeDir="false" afterPath="$PROJECT_DIR$/build/.cache/clangd/index/song.h.E685A7FC81D6CD07.idx" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/build/.cache/clangd/index/stack.D5C08ED2F068D1CA.idx" beforeDir="false" afterPath="$PROJECT_DIR$/build/.cache/clangd/index/stack.D5C08ED2F068D1CA.idx" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/build/.cache/clangd/index/stl_algo.h.DCA0CFFB6AE9C6D1.idx" beforeDir="false" afterPath="$PROJECT_DIR$/build/.cache/clangd/index/stl_algo.h.DCA0CFFB6AE9C6D1.idx" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/build/.cache/clangd/index/stl_deque.h.0BBF8F47A88669C2.idx" beforeDir="false" afterPath="$PROJECT_DIR$/build/.cache/clangd/index/stl_deque.h.0BBF8F47A88669C2.idx" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/build/.cache/clangd/index/stl_heap.h.E68735B539DE27CF.idx" beforeDir="false" afterPath="$PROJECT_DIR$/build/.cache/clangd/index/stl_heap.h.E68735B539DE27CF.idx" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/build/.cache/clangd/index/stl_stack.h.68E75CE80403A7BB.idx" beforeDir="false" afterPath="$PROJECT_DIR$/build/.cache/clangd/index/stl_stack.h.68E75CE80403A7BB.idx" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/build/.cache/clangd/index/stl_tempbuf.h.F6C29FBFD003EF56.idx" beforeDir="false" afterPath="$PROJECT_DIR$/build/.cache/clangd/index/stl_tempbuf.h.F6C29FBFD003EF56.idx" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/build/.cache/clangd/index/stl_uninitialized.h.36C9526AB94F06D8.idx" beforeDir="false" afterPath="$PROJECT_DIR$/build/.cache/clangd/index/stl_uninitialized.h.36C9526AB94F06D8.idx" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/build/.cache/clangd/index/uniform_int_dist.h.4FFAF00994AC2F45.idx" beforeDir="false" afterPath="$PROJECT_DIR$/build/.cache/clangd/index/uniform_int_dist.h.4FFAF00994AC2F45.idx" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/build/.cache/clangd/index/uses_allocator.h.13AED1C22A10EE6B.idx" beforeDir="false" afterPath="$PROJECT_DIR$/build/.cache/clangd/index/uses_allocator.h.13AED1C22A10EE6B.idx" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/build/.cmake/api/v1/reply/codemodel-v2-8bda46149f7ce70f0b81.json" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/build/.cmake/api/v1/reply/index-2024-12-24T23-13-30-0420.json" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/build/.cmake/api/v1/reply/target-3l_baraka-Debug-895f1eee047d496c0fe9.json" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/build/CMakeFiles/3l_baraka.dir/DependInfo.cmake" beforeDir="false" afterPath="$PROJECT_DIR$/build/CMakeFiles/3l_baraka.dir/DependInfo.cmake" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/build/CMakeFiles/3l_baraka.dir/build.make" beforeDir="false" afterPath="$PROJECT_DIR$/build/CMakeFiles/3l_baraka.dir/build.make" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/build/CMakeFiles/3l_baraka.dir/cmake_clean.cmake" beforeDir="false" afterPath="$PROJECT_DIR$/build/CMakeFiles/3l_baraka.dir/cmake_clean.cmake" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/build/CMakeFiles/3l_baraka.dir/compiler_depend.make" beforeDir="false" afterPath="$PROJECT_DIR$/build/CMakeFiles/3l_baraka.dir/compiler_depend.make" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/build/CMakeFiles/3l_baraka.dir/depend.make" beforeDir="false" afterPath="$PROJECT_DIR$/build/CMakeFiles/3l_baraka.dir/depend.make" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/build/CMakeFiles/3l_baraka.dir/link.txt" beforeDir="false" afterPath="$PROJECT_DIR$/build/CMakeFiles/3l_baraka.dir/link.txt" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/build/CMakeFiles/3l_baraka.dir/progress.make" beforeDir="false" afterPath="$PROJECT_DIR$/build/CMakeFiles/3l_baraka.dir/progress.make" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/build/CMakeFiles/Makefile.cmake" beforeDir="false" afterPath="$PROJECT_DIR$/build/CMakeFiles/Makefile.cmake" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/build/CMakeFiles/Makefile2" beforeDir="false" afterPath="$PROJECT_DIR$/build/CMakeFiles/Makefile2" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/build/CMakeFiles/TargetDirectories.txt" beforeDir="false" afterPath="$PROJECT_DIR$/build/CMakeFiles/TargetDirectories.txt" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/build/CMakeFiles/progress.marks" beforeDir="false" afterPath="$PROJECT_DIR$/build/CMakeFiles/progress.marks" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/build/Makefile" beforeDir="false" afterPath="$PROJECT_DIR$/build/Makefile" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/build/compile_commands.json" beforeDir="false" afterPath="$PROJECT_DIR$/build/compile_commands.json" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/cmake-build-debug/.cmake/api/v1/reply/codemodel-v2-8ab438dc4987edd2a597.json" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/cmake-build-debug/.cmake/api/v1/reply/index-2024-12-25T12-26-14-0710.json" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/cmake-build-debug/.cmake/api/v1/reply/target-3l_baraka-Debug-fd920871e7265c6a8a51.json" beforeDir="false" />
       <change beforePath="$PROJECT_DIR$/cmake-build-debug/.ninja_deps" beforeDir="false" afterPath="$PROJECT_DIR$/cmake-build-debug/.ninja_deps" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/cmake-build-debug/.ninja_log" beforeDir="false" afterPath="$PROJECT_DIR$/cmake-build-debug/.ninja_log" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/cmake-build-debug/3l_baraka" beforeDir="false" afterPath="$PROJECT_DIR$/cmake-build-debug/3l_baraka" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/cmake-build-debug/CMakeFiles/3l_baraka.dir/src/main.cpp.o" beforeDir="false" afterPath="$PROJECT_DIR$/cmake-build-debug/CMakeFiles/3l_baraka.dir/src/main.cpp.o" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/cmake-build-debug/CMakeFiles/3l_baraka.dir/src/node.cpp.o" beforeDir="false" afterPath="$PROJECT_DIR$/cmake-build-debug/CMakeFiles/3l_baraka.dir/src/node.cpp.o" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/cmake-build-debug/CMakeFiles/3l_baraka.dir/src/playlist.cpp.o" beforeDir="false" afterPath="$PROJECT_DIR$/cmake-build-debug/CMakeFiles/3l_baraka.dir/src/playlist.cpp.o" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/cmake-build-debug/CMakeFiles/3l_baraka.dir/src/song.cpp.o" beforeDir="false" afterPath="$PROJECT_DIR$/cmake-build-debug/CMakeFiles/3l_baraka.dir/src/song.cpp.o" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/cmake-build-debug/CMakeFiles/TargetDirectories.txt" beforeDir="false" afterPath="$PROJECT_DIR$/cmake-build-debug/CMakeFiles/TargetDirectories.txt" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/cmake-build-debug/CMakeFiles/clion-Debug-log.txt" beforeDir="false" afterPath="$PROJECT_DIR$/cmake-build-debug/CMakeFiles/clion-Debug-log.txt" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/cmake-build-debug/CMakeFiles/rules.ninja" beforeDir="false" afterPath="$PROJECT_DIR$/cmake-build-debug/CMakeFiles/rules.ninja" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/cmake-build-debug/Testing/Temporary/LastTest.log" beforeDir="false" afterPath="$PROJECT_DIR$/cmake-build-debug/Testing/Temporary/LastTest.log" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/cmake-build-debug/build.ninja" beforeDir="false" afterPath="$PROJECT_DIR$/cmake-build-debug/build.ninja" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/BSTNode.cpp" beforeDir="false" afterPath="$PROJECT_DIR$/src/BSTNode.cpp" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/BSTNode.h" beforeDir="false" afterPath="$PROJECT_DIR$/src/BSTNode.h" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/resources/musics.txt" beforeDir="false" afterPath="$PROJECT_DIR$/resources/musics.txt" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/resources/playlist.txt" beforeDir="false" afterPath="$PROJECT_DIR$/resources/playlist.txt" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/src/main.cpp" beforeDir="false" afterPath="$PROJECT_DIR$/src/main.cpp" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/node.cpp" beforeDir="false" afterPath="$PROJECT_DIR$/src/node.cpp" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/node.h" beforeDir="false" afterPath="$PROJECT_DIR$/src/node.h" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/src/playlist.cpp" beforeDir="false" afterPath="$PROJECT_DIR$/src/playlist.cpp" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/src/playlist.h" beforeDir="false" afterPath="$PROJECT_DIR$/src/playlist.h" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/src/song.cpp" beforeDir="false" afterPath="$PROJECT_DIR$/src/song.cpp" afterDir="false" />
@@ -116,7 +78,11 @@
   }
 }</component>
   <component name="HighlightingSettingsPerFile">
+    <setting file="file://$PROJECT_DIR$/src/BSTNode.h" root0="FORCE_HIGHLIGHTING" />
     <setting file="file://$PROJECT_DIR$/src/miniaudio.h" root0="SKIP_HIGHLIGHTING" />
+    <setting file="file://$PROJECT_DIR$/src/node.h" root0="FORCE_HIGHLIGHTING" />
+    <setting file="file://$PROJECT_DIR$/src/playlist.h" root0="FORCE_HIGHLIGHTING" />
+    <setting file="file://$PROJECT_DIR$/src/song.h" root0="FORCE_HIGHLIGHTING" />
   </component>
   <component name="ProjectApplicationVersion">
     <option name="ide" value="CLion" />
@@ -154,17 +120,26 @@
     &quot;vue.rearranger.settings.migration&quot;: &quot;true&quot;
   }
 }</component>
-  <component name="RunManager">
-    <configuration default="true" type="CLionExternalRunConfiguration" factoryName="Application" REDIRECT_INPUT="false" ELEVATE="false" USE_EXTERNAL_CONSOLE="false" EMULATE_TERMINAL="false" PASS_PARENT_ENVS_2="true">
-      <method v="2">
-        <option name="CLION.EXTERNAL.BUILD" enabled="true" />
-      </method>
-    </configuration>
+  <component name="RunManager" selected="CMake Application.3l_baraka">
     <configuration name="3l_baraka" type="CMakeRunConfiguration" factoryName="Application" REDIRECT_INPUT="false" ELEVATE="false" USE_EXTERNAL_CONSOLE="false" EMULATE_TERMINAL="false" PASS_PARENT_ENVS_2="true" PROJECT_NAME="3l_baraka" TARGET_NAME="3l_baraka" CONFIG_NAME="Debug" RUN_TARGET_PROJECT_NAME="3l_baraka" RUN_TARGET_NAME="3l_baraka">
       <method v="2">
         <option name="com.jetbrains.cidr.execution.CidrBuildBeforeRunTaskProvider$BuildBeforeRunTask" enabled="true" />
       </method>
     </configuration>
+    <configuration default="true" type="CMakeRunConfiguration" factoryName="Application" REDIRECT_INPUT="false" ELEVATE="false" USE_EXTERNAL_CONSOLE="false" EMULATE_TERMINAL="false" PASS_PARENT_ENVS_2="true">
+      <method v="2">
+        <option name="com.jetbrains.cidr.execution.CidrBuildBeforeRunTaskProvider$BuildBeforeRunTask" enabled="true" />
+      </method>
+    </configuration>
+    <configuration name="miniaudio" type="CMakeRunConfiguration" factoryName="Application" REDIRECT_INPUT="false" ELEVATE="false" USE_EXTERNAL_CONSOLE="false" EMULATE_TERMINAL="false" PASS_PARENT_ENVS_2="true" PROJECT_NAME="3l_baraka" TARGET_NAME="miniaudio" CONFIG_NAME="Debug">
+      <method v="2">
+        <option name="com.jetbrains.cidr.execution.CidrBuildBeforeRunTaskProvider$BuildBeforeRunTask" enabled="true" />
+      </method>
+    </configuration>
+    <list>
+      <item itemvalue="CMake Application.3l_baraka" />
+      <item itemvalue="CMake Application.miniaudio" />
+    </list>
   </component>
   <component name="SpellCheckerSettings" RuntimeDictionaries="0" Folders="0" CustomDictionaries="0" DefaultDictionary="application-level" UseSingleDictionary="true" transferred="true" />
   <component name="TaskManager">
@@ -182,7 +157,8 @@
       <workItem from="1735130023040" duration="115000" />
       <workItem from="1735303897878" duration="1973000" />
       <workItem from="1735400185257" duration="6196000" />
-      <workItem from="1735406907574" duration="3582000" />
+      <workItem from="1735406907574" duration="3912000" />
+      <workItem from="1735468537008" duration="8365000" />
     </task>
     <task id="LOCAL-00001" summary="removed QT code from files">
       <option name="closed" value="true" />
@@ -208,7 +184,15 @@
       <option name="project" value="LOCAL" />
       <updated>1735130112041</updated>
     </task>
-    <option name="localTasksCounter" value="4" />
+    <task id="LOCAL-00004" summary="added EL PROJECT KOLO">
+      <option name="closed" value="true" />
+      <created>1735410574036</created>
+      <option name="number" value="00004" />
+      <option name="presentableId" value="LOCAL-00004" />
+      <option name="project" value="LOCAL" />
+      <updated>1735410574036</updated>
+    </task>
+    <option name="localTasksCounter" value="5" />
     <servers />
   </component>
   <component name="TypeScriptGeneratedFilesManager">
@@ -223,7 +207,8 @@
     <MESSAGE value="removed QT code from files" />
     <MESSAGE value="done the remaining function in the playlist.cpp" />
     <MESSAGE value="added BSTNODE CLASS" />
-    <option name="LAST_COMMIT_MESSAGE" value="added BSTNODE CLASS" />
+    <MESSAGE value="added EL PROJECT KOLO" />
+    <option name="LAST_COMMIT_MESSAGE" value="added EL PROJECT KOLO" />
   </component>
   <component name="XSLT-Support.FileAssociations.UIState">
     <expand />

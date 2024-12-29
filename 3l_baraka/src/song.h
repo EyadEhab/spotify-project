@@ -32,6 +32,7 @@ public:
   string getArtist() const;
   float getDuration() const;
   int getPlays() const;
+  string getTimePlayed() const;
   void setTitle(const string &newTitle);
   void setArtist(const string &newArtist);
   void setDuration(float newDuration);
@@ -39,6 +40,8 @@ public:
   // Functionalities
   void playSong(const string &songName);
   void displaySongInfo() const;
+  bool saveTimePlayedAndPlayCount(const string& filename);
+  //bool saveTimePlayed();
   song* load(const string &, const string &);
   bool deleteSong(const string &filename, const string &titleToDelete);
   void searchAndPlay(const string &songName, const string &directory);
