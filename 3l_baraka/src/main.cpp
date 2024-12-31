@@ -26,9 +26,10 @@ void displayMenu() {
     cout << "4. Remove song from playlist" << endl;
     cout << "5. Display all songs" << endl;
     cout << "6. Play all songs" << endl;
-    cout << "7. Shuffle play" << endl;
-    cout << "8. Sort options" << endl;
-    cout << "9. Build and traverse BST" << endl;
+    //cout << "7. Shuffle play" << endl;
+    cout << "7. Sort options" << endl;
+    cout << "8. Build and traverse BST" << endl;
+    cout << "9. Play a song by name" << endl;
     cout << "0. Exit" << endl;
     cout << "Enter your choice: ";
 }
@@ -45,10 +46,10 @@ void displaySortMenu() {
 
 void displayBSTMenu() {
     cout << "\n=== BST Operations ===" << endl;
-    cout << "1. Build BST" << endl;
-    cout << "2. In-order traversal" << endl;
-    cout << "3. Pre-order traversal" << endl;
-    cout << "4. Post-order traversal" << endl;
+    //cout << "1. Build BST" << endl;
+    cout << "1. In-order traversal" << endl;
+    cout << "2. Pre-order traversal" << endl;
+    cout << "3. Post-order traversal" << endl;
     cout << "Enter your choice: ";
 }
 
@@ -132,6 +133,60 @@ vector<string> displayAvailableSongs(const string& filename = "../resources/musi
     file.close();
     return songTitles;
 }
+
+// Helper function to display all playlists and let the user choose one
+string choosePlaylistFromFile(const string& filename = "../resources/playlist.txt") {
+    ifstream playlistFile(filename);
+    if (!playlistFile.is_open()) {
+        cout << "\nError: Unable to open playlist file!" << endl;
+        return "";
+    }
+
+    // Read all playlists from the file
+    vector<string> playlists;
+    string line;
+    while (getline(playlistFile, line)) {
+        stringstream ss(line);
+        string playlistName;
+        getline(ss, playlistName, ','); // Extract the playlist name
+        playlists.push_back(playlistName);
+    }
+    playlistFile.close();
+
+    // Check if there are any playlists
+    if (playlists.empty()) {
+        cout << "\nNo playlists found!" << endl;
+        return "";
+    }
+
+    // Display all playlists with numbers
+    cout << "\n=== Available Playlists ===" << endl;
+    for (size_t i = 0; i < playlists.size(); ++i) {
+        cout << i + 1 << ". " << playlists[i] << endl;
+    }
+    cout << "0. Cancel" << endl;
+
+    // Get user choice
+    int playlistChoice;
+    cout << "\nEnter the number of the playlist you want to load (1-" << playlists.size() << " or 0 to cancel): ";
+    cin >> playlistChoice;
+    cin.ignore();
+
+    // Validate user choice
+    if (playlistChoice == 0) {
+        cout << "\nOperation canceled." << endl;
+        return "";
+    }
+    if (playlistChoice < 1 || playlistChoice > static_cast<int>(playlists.size())) {
+        cout << "\nError: Invalid playlist number!" << endl;
+        return "";
+    }
+
+    // Return the selected playlist name
+    return playlists[playlistChoice - 1];
+}
+
+
 int main() {
     playList* currentPlaylist = nullptr;
     int choice;
@@ -159,21 +214,28 @@ int main() {
                 break;
             }
 
-            case 2: {  // Load existing playlist
-                cout << "Enter playlist name to load: ";
-                getline(cin, playlistName);
+        case 2: {  // Load existing playlist
+                    // Let the user choose a playlist
+                    string selectedPlaylist = choosePlaylistFromFile();
+                    if (selectedPlaylist.empty()) {
+                        break; // User canceled or an error occurred
+                    }
 
-                // Create new playlist object
-                currentPlaylist = new playList(playlistName);
-                if (currentPlaylist->load(playlistName, "../resources/playlist.txt", "../resources/musics.txt")) {
-                    cout << "\nPlaylist loaded successfully!" << endl;
-                } else {
-                    cout << "\nError: Failed to load playlist." << endl;
+                    // Delete existing playlist if any
                     delete currentPlaylist;
                     currentPlaylist = nullptr;
-                }
-                break;
-            }
+
+                    // Create new playlist object and load the selected playlist
+                    currentPlaylist = new playList(selectedPlaylist);
+                    if (currentPlaylist->load(selectedPlaylist, "../resources/playlist.txt", "../resources/musics.txt")) {
+                        cout << "\nPlaylist '" << selectedPlaylist << "' loaded successfully!" << endl;
+                    } else {
+                        cout << "\nError: Failed to load playlist." << endl;
+                        delete currentPlaylist;
+                        currentPlaylist = nullptr;
+                    }
+                    break;
+        }
 
         case 3: {  // Add song
                     if (!currentPlaylist) {
@@ -291,17 +353,17 @@ int main() {
                     break;
         }
 
-            case 7: {  // Shuffle play
-                if (!currentPlaylist) {
-                    cout << "\nPlease create or load a playlist first!" << endl;
-                    break;
-                }
-                cout << endl;  // Add newline before playing
-                currentPlaylist->shufflePlay();
-                break;
-            }
+            // case 7: {  // Shuffle play
+            //     if (!currentPlaylist) {
+            //         cout << "\nPlease create or load a playlist first!" << endl;
+            //         break;
+            //     }
+            //     cout << endl;  // Add newline before playing
+            //     currentPlaylist->shufflePlay();
+            //     break;
+            // }
 
-        case 8: {  // Sort options
+        case 7: {  // Sort options
                     displaySortMenu();
                     int sortChoice;
                     if (!(cin >> sortChoice)) {
@@ -339,7 +401,7 @@ int main() {
                     //waitForEnter();
                     break;
         }
-        case 9: {  // BST operations
+        case 8: {  // BST operations
                     displayBSTMenu();
                     int bstChoice;
                     if (!(cin >> bstChoice)) {
@@ -364,6 +426,43 @@ int main() {
                         cout << "\nError: Invalid BST option!" << endl;
                     }
                     //waitForEnter();
+                    break;
+        }
+        case 9: {  // Play a song by its name
+                    // Display all available songs
+                    vector<string> songTitles = displayAvailableSongs();
+
+                    if (songTitles.empty()) {
+                        cout << "\nNo songs available to play!" << endl;
+                        break;
+                    }
+
+                    // Get user choice for song
+                    int songId;
+                    cout << "\nEnter the ID of the song you want to play (1-" << songTitles.size() << " or 0 to cancel): ";
+                    cin >> songId;
+
+                    if (songId == 0) {
+                        cout << "\nOperation canceled." << endl;
+                        break;
+                    }
+
+                    if (songId < 1 || songId > static_cast<int>(songTitles.size())) {
+                        cout << "\nError: Invalid song ID!" << endl;
+                        break;
+                    }
+
+                    // Get the selected song name
+                    string selectedSong = songTitles[songId - 1];
+
+                    // Load and play the selected song
+                    song s;
+                    song* loadedSong = s.load(selectedSong, "../resources/musics.txt");
+                    if (loadedSong->getTitle() != "") {
+                        loadedSong->playSong(selectedSong); // Do not pass a node* for single song playback
+                    } else {
+                        cout << "\nError: Failed to load song!" << endl;
+                    }
                     break;
         }
 

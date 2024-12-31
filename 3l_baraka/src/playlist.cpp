@@ -449,19 +449,22 @@ void playList::save(const string& filename = "../resources/playlist.txt") {
     }  // Close the file
 }
 
-void playList::playSongs()
-{
+void playList::playSongs() {
     if (head == nullptr) {
         cout << "The playlist is empty!" << endl;
         return;
     }
-    node* temp = head;
-    while (temp)
-    {
-        temp->data->playSong(temp->data->getTitle());
-        temp = temp->next;
+
+    node* current = head;
+    while (current) {
+        // Play the current song
+        current->data->playSong(current->data->getTitle(), current);
+
+        // Move to the next song
+        current = current->next;
     }
 }
+
 bool playList::doesPlaylistExist(const string& name, const string& filename) {
     ifstream file(filename);
     if (file.is_open()) {

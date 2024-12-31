@@ -30,26 +30,21 @@
     </configurations>
   </component>
   <component name="ChangeListManager">
-    <list default="true" id="456aa3d1-7c9b-4b3e-a6a7-f529baa531dd" name="Changes" comment="added EL PROJECT KOLO">
+    <list default="true" id="456aa3d1-7c9b-4b3e-a6a7-f529baa531dd" name="Changes" comment="added main fixed some bugs in playlist and song classes">
       <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/cmake-build-debug/.cmake/api/v1/reply/codemodel-v2-8ab438dc4987edd2a597.json" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/cmake-build-debug/.cmake/api/v1/reply/index-2024-12-25T12-26-14-0710.json" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/cmake-build-debug/.cmake/api/v1/reply/target-3l_baraka-Debug-fd920871e7265c6a8a51.json" beforeDir="false" />
       <change beforePath="$PROJECT_DIR$/cmake-build-debug/.ninja_deps" beforeDir="false" afterPath="$PROJECT_DIR$/cmake-build-debug/.ninja_deps" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/cmake-build-debug/.ninja_log" beforeDir="false" afterPath="$PROJECT_DIR$/cmake-build-debug/.ninja_log" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/cmake-build-debug/3l_baraka" beforeDir="false" afterPath="$PROJECT_DIR$/cmake-build-debug/3l_baraka" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/cmake-build-debug/CMakeFiles/3l_baraka.dir/src/main.cpp.o" beforeDir="false" afterPath="$PROJECT_DIR$/cmake-build-debug/CMakeFiles/3l_baraka.dir/src/main.cpp.o" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/cmake-build-debug/CMakeFiles/3l_baraka.dir/src/playlist.cpp.o" beforeDir="false" afterPath="$PROJECT_DIR$/cmake-build-debug/CMakeFiles/3l_baraka.dir/src/playlist.cpp.o" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/cmake-build-debug/CMakeFiles/3l_baraka.dir/src/song.cpp.o" beforeDir="false" afterPath="$PROJECT_DIR$/cmake-build-debug/CMakeFiles/3l_baraka.dir/src/song.cpp.o" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/cmake-build-debug/CMakeFiles/TargetDirectories.txt" beforeDir="false" afterPath="$PROJECT_DIR$/cmake-build-debug/CMakeFiles/TargetDirectories.txt" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/cmake-build-debug/CMakeFiles/clion-Debug-log.txt" beforeDir="false" afterPath="$PROJECT_DIR$/cmake-build-debug/CMakeFiles/clion-Debug-log.txt" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/cmake-build-debug/CMakeFiles/rules.ninja" beforeDir="false" afterPath="$PROJECT_DIR$/cmake-build-debug/CMakeFiles/rules.ninja" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/cmake-build-debug/Testing/Temporary/LastTest.log" beforeDir="false" afterPath="$PROJECT_DIR$/cmake-build-debug/Testing/Temporary/LastTest.log" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/resources/media/musics" beforeDir="false" />
       <change beforePath="$PROJECT_DIR$/resources/musics.txt" beforeDir="false" afterPath="$PROJECT_DIR$/resources/musics.txt" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/resources/playlist.txt" beforeDir="false" afterPath="$PROJECT_DIR$/resources/playlist.txt" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/resources/recentPlayed.txt" beforeDir="false" />
       <change beforePath="$PROJECT_DIR$/src/main.cpp" beforeDir="false" afterPath="$PROJECT_DIR$/src/main.cpp" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/src/playlist.cpp" beforeDir="false" afterPath="$PROJECT_DIR$/src/playlist.cpp" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/playlist.h" beforeDir="false" afterPath="$PROJECT_DIR$/src/playlist.h" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/src/song.cpp" beforeDir="false" afterPath="$PROJECT_DIR$/src/song.cpp" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/src/song.h" beforeDir="false" afterPath="$PROJECT_DIR$/src/song.h" afterDir="false" />
     </list>
@@ -116,17 +111,12 @@
     &quot;node.js.selected.package.eslint&quot;: &quot;(autodetect)&quot;,
     &quot;node.js.selected.package.tslint&quot;: &quot;(autodetect)&quot;,
     &quot;nodejs_package_manager_path&quot;: &quot;npm&quot;,
-    &quot;settings.editor.selected.configurable&quot;: &quot;preferences.externalTools&quot;,
+    &quot;settings.editor.selected.configurable&quot;: &quot;preferences.pluginManager&quot;,
     &quot;vue.rearranger.settings.migration&quot;: &quot;true&quot;
   }
 }</component>
   <component name="RunManager" selected="CMake Application.3l_baraka">
     <configuration name="3l_baraka" type="CMakeRunConfiguration" factoryName="Application" REDIRECT_INPUT="false" ELEVATE="false" USE_EXTERNAL_CONSOLE="false" EMULATE_TERMINAL="false" PASS_PARENT_ENVS_2="true" PROJECT_NAME="3l_baraka" TARGET_NAME="3l_baraka" CONFIG_NAME="Debug" RUN_TARGET_PROJECT_NAME="3l_baraka" RUN_TARGET_NAME="3l_baraka">
-      <method v="2">
-        <option name="com.jetbrains.cidr.execution.CidrBuildBeforeRunTaskProvider$BuildBeforeRunTask" enabled="true" />
-      </method>
-    </configuration>
-    <configuration default="true" type="CMakeRunConfiguration" factoryName="Application" REDIRECT_INPUT="false" ELEVATE="false" USE_EXTERNAL_CONSOLE="false" EMULATE_TERMINAL="false" PASS_PARENT_ENVS_2="true">
       <method v="2">
         <option name="com.jetbrains.cidr.execution.CidrBuildBeforeRunTaskProvider$BuildBeforeRunTask" enabled="true" />
       </method>
@@ -158,7 +148,16 @@
       <workItem from="1735303897878" duration="1973000" />
       <workItem from="1735400185257" duration="6196000" />
       <workItem from="1735406907574" duration="3912000" />
-      <workItem from="1735468537008" duration="8365000" />
+      <workItem from="1735468537008" duration="9979000" />
+      <workItem from="1735480908052" duration="5884000" />
+      <workItem from="1735560327927" duration="7871000" />
+      <workItem from="1735576566748" duration="10000" />
+      <workItem from="1735586347913" duration="2113000" />
+      <workItem from="1735595129373" duration="5000" />
+      <workItem from="1735598470745" duration="1656000" />
+      <workItem from="1735638714863" duration="2195000" />
+      <workItem from="1735642117510" duration="8000" />
+      <workItem from="1735654467591" duration="4000" />
     </task>
     <task id="LOCAL-00001" summary="removed QT code from files">
       <option name="closed" value="true" />
@@ -192,7 +191,15 @@
       <option name="project" value="LOCAL" />
       <updated>1735410574036</updated>
     </task>
-    <option name="localTasksCounter" value="5" />
+    <task id="LOCAL-00005" summary="added main fixed some bugs in playlist and song classes">
+      <option name="closed" value="true" />
+      <created>1735477022876</created>
+      <option name="number" value="00005" />
+      <option name="presentableId" value="LOCAL-00005" />
+      <option name="project" value="LOCAL" />
+      <updated>1735477022876</updated>
+    </task>
+    <option name="localTasksCounter" value="6" />
     <servers />
   </component>
   <component name="TypeScriptGeneratedFilesManager">
@@ -208,7 +215,8 @@
     <MESSAGE value="done the remaining function in the playlist.cpp" />
     <MESSAGE value="added BSTNODE CLASS" />
     <MESSAGE value="added EL PROJECT KOLO" />
-    <option name="LAST_COMMIT_MESSAGE" value="added EL PROJECT KOLO" />
+    <MESSAGE value="added main fixed some bugs in playlist and song classes" />
+    <option name="LAST_COMMIT_MESSAGE" value="added main fixed some bugs in playlist and song classes" />
   </component>
   <component name="XSLT-Support.FileAssociations.UIState">
     <expand />

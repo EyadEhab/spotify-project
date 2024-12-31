@@ -38,10 +38,11 @@ public:
   void setDuration(float newDuration);
   void updateTimePlayed();
   // Functionalities
-  void playSong(const string &songName);
+  void playSong(const string &songName, node* currentSongNode = nullptr);
+  void pauseSong(); // Add this for pausing playback
+  void resumeSong(); // Add this for resuming playback
   void displaySongInfo() const;
   bool saveTimePlayedAndPlayCount(const string& filename);
-  //bool saveTimePlayed();
   song* load(const string &, const string &);
   bool deleteSong(const string &filename, const string &titleToDelete);
   void searchAndPlay(const string &songName, const string &directory);
