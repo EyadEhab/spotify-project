@@ -152,147 +152,90 @@ int playList::getRandomNumber()
 }
 
 void playList::swapSong(node* a, node* b) {
-    // Swap the data of the two nodes
     song* temp = a->data;
     a->data = b->data;
     b->data = temp;
 }
 
-void playList::sortByNoOfPlays() {
-    if (!head || !head->next) {
-        return;  // No need to sort if there's 0 or 1 song
-    }
+void playList::bubbleSort(bool (*compare)(song*, song*)) {
+    if (!head || !head->next) return;
 
     bool swapped;
     node* ptr1;
-    node* lptr = nullptr;  // Pointer to the last sorted element
+    node* lptr = nullptr;
 
     do {
         swapped = false;
         ptr1 = head;
 
         while (ptr1->next != lptr) {
-            if (ptr1->data->getPlays() < ptr1->next->data->getPlays()) {
-                swapSong(ptr1, ptr1->next);  // Swap nodes
+            if (compare(ptr1->data, ptr1->next->data)) {
+                swapSong(ptr1, ptr1->next);
                 swapped = true;
             }
             ptr1 = ptr1->next;
         }
-        lptr = ptr1;  // Update the last sorted node
+        lptr = ptr1;
     } while (swapped);
 
     save("../resources/playlist.txt");
-    cout << "Sorted by No of Plays" << endl;
 }
 
+// Original sorting functions
+void playList::sortByNoOfPlays() {
+    bubbleSort([](song* a, song* b) { return a->getPlays() < b->getPlays(); });
+    cout << "\nPlaylist sorted by number of plays (descending)." << endl;
+}
 
 void playList::sortReverseOfPlays() {
-    if (!head || !head->next) {
-        return;  // No need to sort if there's 0 or 1 song
-    }
-
-    bool swapped;
-    node* ptr1;
-    node* lptr = nullptr;  // Pointer to the last sorted element
-
-    do {
-        swapped = false;
-        ptr1 = head;
-
-        while (ptr1->next != lptr) {
-            if (ptr1->data->getPlays() > ptr1->next->data->getPlays()) {
-                swapSong(ptr1, ptr1->next);  // Swap nodes
-                swapped = true;
-            }
-            ptr1 = ptr1->next;
-        }
-        lptr = ptr1;  // Update the last sorted node
-    } while (swapped);
-
-    save("../resources/playlist.txt");
-    cout << "Sorted by reverse No of Plays" << endl;
+    bubbleSort([](song* a, song* b) { return a->getPlays() > b->getPlays(); });
+    cout << "\nPlaylist sorted by number of plays (ascending)." << endl;
 }
 
-
 void playList::sortByAlphSong() {
-    if (!head || !head->next) {
-        return;  // No need to sort if there's 0 or 1 song
-    }
-
-    bool swapped;
-    node* ptr1;
-    node* lptr = nullptr;  // Pointer to the last sorted element
-
-    do {
-        swapped = false;
-        ptr1 = head;
-
-        while (ptr1->next != lptr) {
-            if (ptr1->data->getTitle() > ptr1->next->data->getTitle()) {
-                swapSong(ptr1, ptr1->next);  // Swap nodes
-                swapped = true;
-            }
-            ptr1 = ptr1->next;
-        }
-        lptr = ptr1;  // Update the last sorted node
-    } while (swapped);
-
-    save("../resources/playlist.txt");
-    cout << "Sorted by Song Title" << endl;
+    bubbleSort([](song* a, song* b) { return a->getTitle() > b->getTitle(); });
+    cout << "\nPlaylist sorted by song name (A-Z)." << endl;
 }
 
 void playList::sortByAlphArtist() {
-    if (!head || !head->next) {
-        return;  // No need to sort if there's 0 or 1 song
-    }
-
-    bool swapped;
-    node* ptr1;
-    node* lptr = nullptr;  // Pointer to the last sorted element
-
-    do {
-        swapped = false;
-        ptr1 = head;
-
-        while (ptr1->next != lptr) {
-            if (ptr1->data->getArtist() > ptr1->next->data->getArtist()) {
-                swapSong(ptr1, ptr1->next);  // Swap nodes
-                swapped = true;
-            }
-            ptr1 = ptr1->next;
-        }
-        lptr = ptr1;  // Update the last sorted node
-    } while (swapped);
-
-    save("../resources/playlist.txt");
-    cout << "Sorted by Artist" << endl;
+    bubbleSort([](song* a, song* b) { return a->getArtist() > b->getArtist(); });
+    cout << "\nPlaylist sorted by artist name (A-Z)." << endl;
 }
 
 void playList::sortByRecent() {
-    if (!head || !head->next) {
-        return;  // No need to sort if there's 0 or 1 song
-    }
+    bubbleSort([](song* a, song* b) { return a->getTimePlayed() < b->getTimePlayed(); });
+    cout << "\nPlaylist sorted by recently played (most recent first)." << endl;
+}
 
-    bool swapped;
-    node* ptr1;
-    node* lptr = nullptr;  // Pointer to the last sorted element
+void playList::sortByTimePlayed() {
+    bubbleSort([](song* a, song* b) { return a->getTimePlayed() < b->getTimePlayed(); });
+    cout << "\nPlaylist sorted by time played (most recent first)." << endl;
+}
 
-    do {
-        swapped = false;
-        ptr1 = head;
+// Reverse sorting functions
+void playList::sortByNoOfPlaysReverse() {
+    bubbleSort([](song* a, song* b) { return a->getPlays() > b->getPlays(); });
+    cout << "\nPlaylist sorted by number of plays (ascending)." << endl;
+}
 
-        while (ptr1->next != lptr) {
-            if (ptr1->data->getTimePlayed() < ptr1->next->data->getTimePlayed()) {
-                swapSong(ptr1, ptr1->next);  // Swap nodes
-                swapped = true;
-            }
-            ptr1 = ptr1->next;
-        }
-        lptr = ptr1;  // Update the last sorted node
-    } while (swapped);
+void playList::sortByAlphSongReverse() {
+    bubbleSort([](song* a, song* b) { return a->getTitle() < b->getTitle(); });
+    cout << "\nPlaylist sorted by song name (Z-A)." << endl;
+}
 
-    save("../resources/playlist.txt");
-    cout << "Sorted by Most Recently Played" << endl;
+void playList::sortByAlphArtistReverse() {
+    bubbleSort([](song* a, song* b) { return a->getArtist() < b->getArtist(); });
+    cout << "\nPlaylist sorted by artist name (Z-A)." << endl;
+}
+
+void playList::sortByRecentReverse() {
+    bubbleSort([](song* a, song* b) { return a->getTimePlayed() > b->getTimePlayed(); });
+    cout << "\nPlaylist sorted by recently played (least recent first)." << endl;
+}
+
+void playList::sortByTimePlayedReverse() {
+    bubbleSort([](song* a, song* b) { return a->getTimePlayed() > b->getTimePlayed(); });
+    cout << "\nPlaylist sorted by time played (least recent first)." << endl;
 }
 
 
@@ -441,9 +384,9 @@ void playList::save(const string& filename = "../resources/playlist.txt") {
             outFile << line << endl;
         }
         outFile.close();
-        cout << "Playlist '" << this->name << "' "
-             << (playlistExists ? "updated" : "saved")
-             << " successfully!" << endl;
+        // cout << "Playlist '" << this->name << "' "
+        //      << (playlistExists ? "updated" : "saved")
+        //      << " successfully!" << endl;
     } else {
         cout << "Error: Unable to open file for saving!" << endl;
     }  // Close the file

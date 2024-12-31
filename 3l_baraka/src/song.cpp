@@ -180,7 +180,7 @@ void song::playSong(const string& songName, node* currentSongNode) {
                 case 'p': // Pause
                     if (!paused) {
                         ma_sound_stop(&sound);
-                        cout << "\nSong paused. Press 'r' to resume." << endl;
+                        cout << "\nSong paused. Press 'r' to resume or Press 'q' to exit." << endl;
                         paused = true;
                     }
                     break;

@@ -1,4 +1,4 @@
+mazen,0
+yousef,0
 eyad,0
-ali,1,amrdiab
-yousef,1,amrdiab
-mazen,2,amrdiab,tamer
+ali,1,tamer

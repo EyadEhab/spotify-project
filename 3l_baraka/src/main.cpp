@@ -30,6 +30,7 @@ void displayMenu() {
     cout << "7. Sort options" << endl;
     cout << "8. Build and traverse BST" << endl;
     cout << "9. Play a song by name" << endl;
+    cout << "10. Delete a song from the music database" << endl;
     cout << "0. Exit" << endl;
     cout << "Enter your choice: ";
 }
@@ -38,9 +39,14 @@ void displaySortMenu() {
     cout << "\n=== Sort Options ===" << endl;
     cout << "1. Sort by number of plays (descending)" << endl;
     cout << "2. Sort by number of plays (ascending)" << endl;
-    cout << "3. Sort by song name" << endl;
-    cout << "4. Sort by artist name" << endl;
-    cout << "5. Sort by recently played" << endl;
+    cout << "3. Sort by song name (A-Z)" << endl;
+    cout << "4. Sort by song name (Z-A)" << endl;
+    cout << "5. Sort by artist name (A-Z)" << endl;
+    cout << "6. Sort by artist name (Z-A)" << endl;
+    cout << "7. Sort by recently played (most recent first)" << endl;
+    cout << "8. Sort by recently played (least recent first)" << endl;
+    cout << "9. Sort by time played (most recent first)" << endl;
+    cout << "10. Sort by time played (least recent first)" << endl;
     cout << "Enter your choice: ";
 }
 
@@ -168,17 +174,21 @@ string choosePlaylistFromFile(const string& filename = "../resources/playlist.tx
 
     // Get user choice
     int playlistChoice;
-    cout << "\nEnter the number of the playlist you want to load (1-" << playlists.size() << " or 0 to cancel): ";
-    cin >> playlistChoice;
-    cin.ignore();
+    while (true) {
+        cout << "\nEnter the number of the playlist you want to load (1-" << playlists.size() << " or 0 to cancel): ";
+        if (!(cin >> playlistChoice) || playlistChoice < 0 || playlistChoice > static_cast<int>(playlists.size())) {
+            cin.clear(); // Clear the error flag
+            cin.ignore(numeric_limits<streamsize>::max(), '\n'); // Discard invalid input
+            cout << "Invalid input! Please enter a number between 0 and " << playlists.size() << ": ";
+            continue; // Stay in the loop until a valid input is entered
+        }
+        break; // Exit the loop if a valid choice is entered
+    }
+    cin.ignore(); // Ignore the newline character left in the input buffer
 
     // Validate user choice
     if (playlistChoice == 0) {
         cout << "\nOperation canceled." << endl;
-        return "";
-    }
-    if (playlistChoice < 1 || playlistChoice > static_cast<int>(playlists.size())) {
-        cout << "\nError: Invalid playlist number!" << endl;
         return "";
     }
 
@@ -195,8 +205,14 @@ int main() {
     do {
         cout << endl;  // Add a newline before menu for better spacing
         displayMenu();
-        cin >> choice;
-        cin.ignore();
+
+        // Handle invalid input (non-numeric or out-of-range)
+        while (!(cin >> choice) || choice < 0 || choice > 10) {
+            cin.clear();  // Clear the error flag
+            cin.ignore(numeric_limits<streamsize>::max(), '\n');  // Discard invalid input
+            cout << "Invalid choice! Please enter a number between 0 and 10: ";
+        }
+        cin.ignore();  // Ignore the newline character left in the input buffer
 
         switch (choice) {
             case 1: {  // Create new playlist
@@ -204,7 +220,7 @@ int main() {
                 getline(cin, playlistName);
 
                 // Check if playlist already exists
-                if (currentPlaylist->doesPlaylistExist(playlistName)) {
+                if (currentPlaylist && currentPlaylist->doesPlaylistExist(playlistName)) {
                     cout << "\nError: A playlist with this name already exists!" << endl;
                     break;
                 }
@@ -215,10 +231,14 @@ int main() {
             }
 
         case 2: {  // Load existing playlist
-                    // Let the user choose a playlist
-                    string selectedPlaylist = choosePlaylistFromFile();
-                    if (selectedPlaylist.empty()) {
-                        break; // User canceled or an error occurred
+                    string selectedPlaylist;
+                    while (true) {
+                        selectedPlaylist = choosePlaylistFromFile();
+                        if (selectedPlaylist.empty()) {
+                            cout << "Invalid input! Please enter a number between 0 and the number of playlists: ";
+                            continue; // Stay in the loop until a valid input is entered
+                        }
+                        break; // Exit the loop if a valid playlist is selected
                     }
 
                     // Delete existing playlist if any
@@ -237,182 +257,176 @@ int main() {
                     break;
         }
 
-        case 3: {  // Add song
-                    if (!currentPlaylist) {
-                        cout << "\nPlease create or load a playlist first!" << endl;
-                        break;
-                    }
+            case 3: {  // Add song
+                if (!currentPlaylist) {
+                    cout << "\nPlease create or load a playlist first!" << endl;
+                    break;
+                }
 
-                    // Display available songs to add
-                    vector<string> songTitles = displayAvailableSongsToAdd(currentPlaylist);
+                // Display available songs to add
+                vector<string> songTitles = displayAvailableSongsToAdd(currentPlaylist);
 
-                    if (songTitles.empty()) {
-                        cout << "\nNo songs available to add!" << endl;
-                        break;
-                    }
+                if (songTitles.empty()) {
+                    cout << "\nNo songs available to add!" << endl;
+                    break;
+                }
 
-                    // Get user choice for song
-                    int songId;
-                    cout << "\nEnter the ID of the song you want to add (1-" << songTitles.size() << " or 0 to cancel): ";
-                    cin >> songId;
+                // Get user choice for song
+                int songId;
+                cout << "\nEnter the ID of the song you want to add (1-" << songTitles.size() << " or 0 to cancel): ";
+                while (!(cin >> songId) || songId < 0 || songId > static_cast<int>(songTitles.size())) {
+                    cin.clear();
+                    cin.ignore(numeric_limits<streamsize>::max(), '\n');
+                    cout << "Invalid input! Please enter a number between 0 and " << songTitles.size() << ": ";
+                }
+                cin.ignore();
 
-                    if (songId == 0) {
-                        cout << "\nNo song selected to add!" << endl;
-                        break;
-                    }
+                if (songId == 0) {
+                    cout << "\nNo song selected to add!" << endl;
+                    break;
+                }
 
-                    if (songId < 1 || songId > static_cast<int>(songTitles.size())) {
-                        cout << "\nError: Invalid song ID!" << endl;
-                        break;
-                    }
+                string selectedSong = songTitles[songId - 1];
 
-                    string selectedSong = songTitles[songId - 1];
+                // Add the selected song to the playlist
+                song s;
+                song* loadedSong = s.load(selectedSong, "../resources/musics.txt");
+                if (loadedSong->getTitle() != "") {
+                    currentPlaylist->addSong(loadedSong);
+                    cout << "\nSong '" << selectedSong << "' added successfully!" << endl;
+                }
+                break;
+            }
 
-                    // Add the selected song to the playlist
+            case 4: {  // Remove song
+                if (!currentPlaylist) {
+                    cout << "\nPlease create or load a playlist first!" << endl;
+                    break;
+                }
+
+                // Display all songs in the current playlist
+                vector<string> songTitles = currentPlaylist->displaySongsInPlaylist();
+
+                if (songTitles.empty()) {
+                    cout << "\nNo songs available in the playlist!" << endl;
+                    break;
+                }
+
+                // Show the list of available songs in the playlist
+                cout << "\n=== Available Songs in Playlist ===" << endl;
+                cout << "ID\tTitle\t\tArtist\t\tDuration\tPlays" << endl;
+                cout << "------------------------------------------------" << endl;
+
+                for (size_t i = 0; i < songTitles.size(); ++i) {
+                    string songTitle = songTitles[i];
                     song s;
-                    song* loadedSong = s.load(selectedSong, "../resources/musics.txt");
-                    if (loadedSong->getTitle() != "") {
-                        currentPlaylist->addSong(loadedSong);
-                        cout << "\nSong '" << selectedSong << "' added successfully!" << endl;
-                    }
+                    song* loadedSong = s.load(songTitle, "../resources/musics.txt");
+                    cout << i + 1 << ". " << songTitle << "\t" << loadedSong->getArtist() << "\t\t"
+                         << loadedSong->getDuration() << "s\t\t" << loadedSong->getPlays() << endl;
+                }
+
+                // Add the cancel option
+                cout << "0. Do not remove any song." << endl;
+
+                // Ask user to choose a song to remove
+                int songId;
+                cout << "\nEnter the ID of the song you want to remove (1-" << songTitles.size() << " or 0 to cancel): ";
+                while (!(cin >> songId) || songId < 0 || songId > static_cast<int>(songTitles.size())) {
+                    cin.clear();
+                    cin.ignore(numeric_limits<streamsize>::max(), '\n');
+                    cout << "Invalid input! Please enter a number between 0 and " << songTitles.size() << ": ";
+                }
+                cin.ignore();
+
+                if (songId == 0) {
+                    cout << "\nNo song selected to remove!" << endl;
                     break;
-        }
+                }
 
-        case 4: {  // Remove song
-                    if (!currentPlaylist) {
-                        cout << "\nPlease create or load a playlist first!" << endl;
-                        break;
-                    }
+                string songTitle = songTitles[songId - 1];
 
-                    // Display all songs in the current playlist
-                    vector<string> songTitles = currentPlaylist->displaySongsInPlaylist();
+                // Remove the song from the playlist
+                currentPlaylist->removeSong(songTitle);
+                cout << "\nSong '" << songTitle << "' removed successfully!" << endl;
+                break;
+            }
 
-                    if (songTitles.empty()) {
-                        cout << "\nNo songs available in the playlist!" << endl;
-                        break;
-                    }
-
-                    // Show the list of available songs in the playlist in the desired format
-                    cout << "\n=== Available Songs in Playlist ===" << endl;
-                    cout << "ID\tTitle\t\tArtist\t\tDuration\tPlays" << endl;
-                    cout << "------------------------------------------------" << endl;
-
-                    for (size_t i = 0; i < songTitles.size(); ++i) {
-                        string songTitle = songTitles[i];
-
-                        // Assuming you have a method to get song details like artist, duration, and plays.
-                        song s;
-                        song* loadedSong = s.load(songTitle, "../resources/musics.txt");
-
-                        // Display song information with ID
-                        cout << i + 1 << ". " << songTitle << "\t" << loadedSong->getArtist() << "\t\t"
-                             << loadedSong->getDuration() << "s\t\t" << loadedSong->getPlays() << endl;
-                    }
-
-                    // Add the cancel option
-                    cout << "0. Do not remove any song." << endl;
-
-                    // Ask user to choose a song to remove
-                    int songId;
-                    cout << "\nEnter the ID of the song you want to remove (1-" << songTitles.size() << " or 0 to cancel): ";
-                    cin >> songId;
-
-                    if (songId == 0) {
-                        cout << "\nNo song selected to remove!" << endl;
-                        break;
-                    }
-
-                    if (songId < 1 || songId > static_cast<int>(songTitles.size())) {
-                        cout << "\nError: Invalid song ID!" << endl;
-                        break;
-                    }
-
-                    string songTitle = songTitles[songId - 1];
-
-                    // Remove the song from the playlist
-                    currentPlaylist->removeSong(songTitle);
-                    cout << "\nSong '" << songTitle << "' removed successfully!" << endl;
+            case 5: {  // Display songs
+                if (!currentPlaylist) {
+                    cout << "Please create or load a playlist first!" << endl;
                     break;
-        }
+                }
+                currentPlaylist->displaySongs();
+                break;
+            }
 
-        case 5: {  // Display songs
-                    if (!currentPlaylist) {
-                        cout << "Please create or load a playlist first!" << endl;
-                        break;
-                    }
-                    currentPlaylist->displaySongs();
+            case 6: {  // Play all songs
+                if (!currentPlaylist) {
+                    cout << "Please create or load a playlist first!" << endl;
                     break;
-        }
-
-        case 6: {  // Play all songs
-                    if (!currentPlaylist) {
-                        cout << "Please create or load a playlist first!" << endl;
-                        break;
-                    }
-                    currentPlaylist->playSongs();
-                    break;
-        }
-
-            // case 7: {  // Shuffle play
-            //     if (!currentPlaylist) {
-            //         cout << "\nPlease create or load a playlist first!" << endl;
-            //         break;
-            //     }
-            //     cout << endl;  // Add newline before playing
-            //     currentPlaylist->shufflePlay();
-            //     break;
-            // }
+                }
+                currentPlaylist->playSongs();
+                break;
+            }
 
         case 7: {  // Sort options
                     displaySortMenu();
                     int sortChoice;
-                    if (!(cin >> sortChoice)) {
-                        cout << "\nError: Invalid input!" << endl;
-                        //clearInputBuffer();
-                        //waitForEnter();
-                        break;
+                    while (!(cin >> sortChoice) || sortChoice < 1 || sortChoice > 10) {
+                        cin.clear();
+                        cin.ignore(numeric_limits<streamsize>::max(), '\n');
+                        cout << "Invalid input! Please enter a number between 1 and 10: ";
                     }
-                    //clearInputBuffer();
+                    cin.ignore();
 
                     switch (sortChoice) {
                     case 1:
                         currentPlaylist->sortByNoOfPlays();
-                        cout << "\nPlaylist sorted by number of plays (descending)." << endl;
                         break;
                     case 2:
                         currentPlaylist->sortReverseOfPlays();
-                        cout << "\nPlaylist sorted by number of plays (ascending)." << endl;
                         break;
                     case 3:
                         currentPlaylist->sortByAlphSong();
-                        cout << "\nPlaylist sorted by song name." << endl;
                         break;
                     case 4:
-                        currentPlaylist->sortByAlphArtist();
-                        cout << "\nPlaylist sorted by artist name." << endl;
+                        currentPlaylist->sortByAlphSongReverse();
                         break;
                     case 5:
+                        currentPlaylist->sortByAlphArtist();
+                        break;
+                    case 6:
+                        currentPlaylist->sortByAlphArtistReverse();
+                        break;
+                    case 7:
                         currentPlaylist->sortByRecent();
-                        cout << "\nPlaylist sorted by recently played." << endl;
+                        break;
+                    case 8:
+                        currentPlaylist->sortByRecentReverse();
+                        break;
+                    case 9:
+                        currentPlaylist->sortByTimePlayed();
+                        break;
+                    case 10:
+                        currentPlaylist->sortByTimePlayedReverse();
                         break;
                     default:
                         cout << "\nError: Invalid sort option!" << endl;
                     }
-                    //waitForEnter();
                     break;
         }
-        case 8: {  // BST operations
-                    displayBSTMenu();
-                    int bstChoice;
-                    if (!(cin >> bstChoice)) {
-                        cout << "\nError: Invalid input!" << endl;
-                        //clearInputBuffer();
-                        //waitForEnter();
-                        break;
-                    }
-                    //clearInputBuffer();
 
-                    switch (bstChoice) {
+            case 8: {  // BST operations
+                displayBSTMenu();
+                int bstChoice;
+                while (!(cin >> bstChoice) || bstChoice < 1 || bstChoice > 3) {
+                    cin.clear();
+                    cin.ignore(numeric_limits<streamsize>::max(), '\n');
+                    cout << "Invalid input! Please enter a number between 1 and 3: ";
+                }
+                cin.ignore();
+
+                switch (bstChoice) {
                     case 1:
                         currentPlaylist->inOrderRebuild();
                         break;
@@ -424,47 +438,108 @@ int main() {
                         break;
                     default:
                         cout << "\nError: Invalid BST option!" << endl;
-                    }
-                    //waitForEnter();
+                }
+                break;
+            }
+
+            case 9: {  // Play a song by its name
+                vector<string> songTitles = displayAvailableSongs();
+
+                if (songTitles.empty()) {
+                    cout << "\nNo songs available to play!" << endl;
                     break;
-        }
-        case 9: {  // Play a song by its name
-                    // Display all available songs
-                    vector<string> songTitles = displayAvailableSongs();
+                }
 
-                    if (songTitles.empty()) {
-                        cout << "\nNo songs available to play!" << endl;
-                        break;
-                    }
+                int songId;
+                cout << "\nEnter the ID of the song you want to play (1-" << songTitles.size() << " or 0 to cancel): ";
+                while (!(cin >> songId) || songId < 0 || songId > static_cast<int>(songTitles.size())) {
+                    cin.clear();
+                    cin.ignore(numeric_limits<streamsize>::max(), '\n');
+                    cout << "Invalid input! Please enter a number between 0 and " << songTitles.size() << ": ";
+                }
+                cin.ignore();
 
-                    // Get user choice for song
-                    int songId;
-                    cout << "\nEnter the ID of the song you want to play (1-" << songTitles.size() << " or 0 to cancel): ";
-                    cin >> songId;
-
-                    if (songId == 0) {
-                        cout << "\nOperation canceled." << endl;
-                        break;
-                    }
-
-                    if (songId < 1 || songId > static_cast<int>(songTitles.size())) {
-                        cout << "\nError: Invalid song ID!" << endl;
-                        break;
-                    }
-
-                    // Get the selected song name
-                    string selectedSong = songTitles[songId - 1];
-
-                    // Load and play the selected song
-                    song s;
-                    song* loadedSong = s.load(selectedSong, "../resources/musics.txt");
-                    if (loadedSong->getTitle() != "") {
-                        loadedSong->playSong(selectedSong); // Do not pass a node* for single song playback
-                    } else {
-                        cout << "\nError: Failed to load song!" << endl;
-                    }
+                if (songId == 0) {
+                    cout << "\nOperation canceled." << endl;
                     break;
+                }
+
+                string selectedSong = songTitles[songId - 1];
+
+                song s;
+                song* loadedSong = s.load(selectedSong, "../resources/musics.txt");
+                if (loadedSong->getTitle() != "") {
+                    loadedSong->playSong(selectedSong);
+                } else {
+                    cout << "\nError: Failed to load song!" << endl;
+                }
+                break;
+            }
+        case 10: {  // Delete a song from the music database
+    // Display all available songs
+    vector<string> songTitles = displayAvailableSongs();
+
+    if (songTitles.empty()) {
+        cout << "\nNo songs available to delete!" << endl;
+        break;
+    }
+
+    // Get user choice for song to delete
+    int songId;
+    while (true) {
+        cout << "\nEnter the ID of the song you want to delete (1-" << songTitles.size() << " or 0 to cancel): ";
+        if (!(cin >> songId) || songId < 0 || songId > static_cast<int>(songTitles.size())) {
+            cin.clear(); // Clear the error flag
+            cin.ignore(numeric_limits<streamsize>::max(), '\n'); // Discard invalid input
+            cout << "Invalid input! Please enter a number between 0 and " << songTitles.size() << ": ";
+            continue; // Stay in the loop until a valid input is entered
         }
+        break; // Exit the loop if a valid choice is entered
+    }
+    cin.ignore(); // Ignore the newline character left in the input buffer
+
+    if (songId == 0) {
+        cout << "\nOperation canceled." << endl;
+        break;
+    }
+
+    // Get the selected song name
+    string selectedSong = songTitles[songId - 1];
+
+    // Delete the selected song from the music database
+    song s;
+    if (s.deleteSong(selectedSong, "../resources/musics.txt")) {
+        cout << "\nSong '" << selectedSong << "' deleted successfully!" << endl;
+
+        // Remove the song from all playlists
+        ifstream playlistFile("../resources/playlist.txt");
+        vector<string> playlistLines;
+
+        if (playlistFile.is_open()) {
+            string line;
+            while (getline(playlistFile, line)) {
+                stringstream ss(line);
+                string playlistName;
+                getline(ss, playlistName, ','); // Extract the playlist name
+
+                // Create a temporary playlist object to remove the song
+                playList tempPlaylist(playlistName);
+                if (tempPlaylist.load(playlistName, "../resources/playlist.txt", "../resources/musics.txt")) {
+                    tempPlaylist.removeSong(selectedSong); // Remove the song from the playlist
+                    tempPlaylist.save("../resources/playlist.txt"); // Save the updated playlist
+                }
+            }
+            playlistFile.close();
+            cout << "Song '" << selectedSong << "' removed from all playlists." << endl;
+        } else {
+            cerr << "Error: Unable to open playlist file!" << endl;
+        }
+    } else {
+        cout << "\nError: Failed to delete song '" << selectedSong << "'." << endl;
+    }
+    break;
+}
+
 
             case 0:
                 cout << "\nThank you for using the Music Player!" << endl;

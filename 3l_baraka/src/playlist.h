@@ -36,8 +36,11 @@ public:
   int getCount();
   int getRandomNumber();
   void swapSong(node *, node *);
+  void bubbleSort(bool (*compare)(song*, song*));
   void sortByNoOfPlays();
   void sortReverseOfPlays();
+  void sortByTimePlayed();
+  void sortByNoOfPlaysReverse();
   void sortByAlphSong();
   void sortByAlphArtist();
   void sortByRecent();
@@ -45,6 +48,10 @@ public:
   void insertIntoBST(BSTNode*& root, const song* s);
   void insertIntoBST(BSTNode *&, const song &);
   void clearBST(BSTNode*& root);
+  void sortByAlphSongReverse();
+  void sortByAlphArtistReverse();
+  void sortByRecentReverse();
+  void sortByTimePlayedReverse();
   void inOrderTraversal(BSTNode *, vector<song> &);
   void preOrderTraversal(BSTNode *, vector<song> &);
   void postOrderTraversal(BSTNode *, vector<song> &);
