@@ -47,6 +47,7 @@ void displaySortMenu() {
     cout << "8. Sort by recently played (least recent first)" << endl;
     cout << "9. Sort by time played (most recent first)" << endl;
     cout << "10. Sort by time played (least recent first)" << endl;
+    cout << "0. Cancel" << endl;
     cout << "Enter your choice: ";
 }
 
@@ -56,6 +57,7 @@ void displayBSTMenu() {
     cout << "1. In-order traversal" << endl;
     cout << "2. Pre-order traversal" << endl;
     cout << "3. Post-order traversal" << endl;
+    cout << "0. Cancel" << endl;
     cout << "Enter your choice: ";
 }
 
@@ -370,14 +372,22 @@ int main() {
             }
 
         case 7: {  // Sort options
+                    if (!currentPlaylist) {
+                        cout << "Please create or load a playlist first!" << endl;
+                        break;
+                    }
                     displaySortMenu();
                     int sortChoice;
-                    while (!(cin >> sortChoice) || sortChoice < 1 || sortChoice > 10) {
+                    while (!(cin >> sortChoice) || sortChoice < 0 || sortChoice > 10) {
                         cin.clear();
                         cin.ignore(numeric_limits<streamsize>::max(), '\n');
-                        cout << "Invalid input! Please enter a number between 1 and 10: ";
+                        cout << "Invalid input! Please enter a number between 0 and 10: ";
                     }
                     cin.ignore();
+                    if (sortChoice == 0) {
+                        cout << "\nSort operation canceled." << endl;
+                        break; // Exit the case if the user chooses to cancel
+                    }
 
                     switch (sortChoice) {
                     case 1:
@@ -417,14 +427,22 @@ int main() {
         }
 
             case 8: {  // BST operations
+                    if (!currentPlaylist) {
+                        cout << "Please create or load a playlist first!" << endl;
+                        break;
+                    }
                 displayBSTMenu();
                 int bstChoice;
-                while (!(cin >> bstChoice) || bstChoice < 1 || bstChoice > 3) {
+                while (!(cin >> bstChoice) || bstChoice < 0 || bstChoice > 3) {
                     cin.clear();
                     cin.ignore(numeric_limits<streamsize>::max(), '\n');
-                    cout << "Invalid input! Please enter a number between 1 and 3: ";
+                    cout << "Invalid input! Please enter a number between 0 and 3: ";
                 }
                 cin.ignore();
+                    if (bstChoice == 0) {
+                        cout << "\nSort operation canceled." << endl;
+                        break; // Exit the case if the user chooses to cancel
+                    }
 
                 switch (bstChoice) {
                     case 1:
