@@ -25,6 +25,11 @@ void playList::addSong(song* songData) {
     save("../resources/playlist.txt");
 }
 
+string playList::getName()
+{
+    return this->name;
+}
+
 void playList::removeSong(string name) {
     if (head == nullptr) {
         cout << "Playlist is empty!" << endl;
@@ -112,7 +117,7 @@ void playList::insertIntoBST(BSTNode*& root, const song* s)
         root = new BSTNode(*s);
         return;
     }
-    if (s->getTitle() < root->data.getTitle()) {
+    if (s->getTitle() < root->data.getTitle()) { //
         insertIntoBST(root->left, s);
     } else {
         insertIntoBST(root->right, s);
@@ -142,14 +147,14 @@ void playList::buildTree(BSTNode* root) {
 
 
 
-int playList::getRandomNumber()
-{
-    random_device rd; // Obtain a random number from hardware
-    mt19937 gen(rd()); // Seed the generator
-    uniform_int_distribution<> distr(0, getCount() - 1); // Define the range [0, max - 1]
-
-    return distr(gen);
-}
+// int playList::getRandomNumber()
+// {
+//     random_device rd; // Obtain a random number from hardware
+//     mt19937 gen(rd()); // Seed the generator
+//     uniform_int_distribution<> distr(0, getCount() - 1); // Define the range [0, max - 1]
+//
+//     return distr(gen);
+// }
 
 void playList::swapSong(node* a, node* b) {
     song* temp = a->data;
@@ -261,37 +266,12 @@ void playList::postOrderTraversal(BSTNode* root, vector<song>& result) {
 }
 
 void playList::rebuildLinkedListFromVector(vector<song>& songs) {
-    // Create a new temporary list
-    node* newHead = nullptr;
-    node* newTail = nullptr;
-    int newCount = 0;
-
-    // Build the new list
+    // Clear the existing linked list
+    removeAllSongs();
+    // Rebuild the linked list from the vector
     for (auto& s : songs) {
-        node* newNode = new node(new song(s));
-        if (!newHead) {
-            newHead = newTail = newNode;
-        } else {
-            newTail->next = newNode;
-            newNode->prev = newTail;
-            newTail = newNode;
-        }
-        newCount++;
+        addSong(&s);  // Add song to the list
     }
-
-    // Delete old list
-    while (head) {
-        node* temp = head;
-        head = head->next;
-        delete temp;
-    }
-
-    // Update list pointers and count
-    head = newHead;
-    tail = newTail;
-    count = newCount;
-
-    save("../resources/playlist.txt");
 }
 
 // Wrapper for in-order traversal
@@ -304,14 +284,7 @@ void playList::inOrderRebuild() {
     inOrderTraversal(root, result);
 
     // Update existing nodes without deleting
-    node* current = head;
-    int i = 0;
-
-    while (current && i < result.size()) {
-        *(current->data) = result[i];  // Update song data
-        current = current->next;
-        i++;
-    }
+    rebuildLinkedListFromVector(result);
 
     save("../resources/playlist.txt");
 }
@@ -320,19 +293,9 @@ void playList::preOrderRebuild() {
     if (!root) {
         buildTree(root);
     }
-
     vector<song> result;
     preOrderTraversal(root, result);
-
-    node* current = head;
-    int i = 0;
-
-    while (current && i < result.size()) {
-        *(current->data) = result[i];
-        current = current->next;
-        i++;
-    }
-
+    rebuildLinkedListFromVector(result);
     save("../resources/playlist.txt");
 }
 
@@ -340,62 +303,62 @@ void playList::postOrderRebuild() {
     if (!root) {
         buildTree(root);
     }
-
     vector<song> result;
     postOrderTraversal(root, result);
-
-    node* current = head;
-    int i = 0;
-
-    while (current && i < result.size()) {
-        *(current->data) = result[i];
-        current = current->next;
-        i++;
-    }
+    rebuildLinkedListFromVector(result);
 
     save("../resources/playlist.txt");
 }
 
 
-
-bool playList::load(const string& playlistName, const string& playlistFile = "../resources/playlist.txt", const string& musicFile = "../resources/musics.txt") {
+bool playList::load(const string& playlistName, const string& playlistFile, const string& musicFile) {
     ifstream file(playlistFile);
     if (!file.is_open()) {
-        cerr << "Failed to open file: " << playlistFile << endl;
+        cerr << "Error: Unable to open playlist file: " << playlistFile << endl;
         return false;
     }
 
     string line;
+    bool playlistFound = false;
+
     while (getline(file, line)) {
         stringstream ss(line);
-        string filePlaylistName, songName;
+        string filePlaylistName;
+        getline(ss, filePlaylistName, ','); // Extract the playlist name
+
+        if (filePlaylistName != playlistName) {
+            continue; // Skip if this is not the playlist we're looking for
+        }
+
+        playlistFound = true;
+        name = filePlaylistName; // Set the playlist name
+
         int numberOfSongs;
+        ss >> numberOfSongs; // Read the number of songs
+        ss.ignore(1); // Ignore the comma
 
-        // Read the playlist name and count
-        getline(ss, filePlaylistName, ',');
-        if (filePlaylistName != playlistName) continue;
-        ss >> numberOfSongs;  // Read the song count
-        ss.ignore(1);  // Ignore the comma
-
-        name = filePlaylistName;
-
-        // Read song names
+        string songName;
         while (getline(ss, songName, ',')) {
             song s;
-            if (s.load(songName, musicFile)->getArtist() != "") {
-                addSong(s.load(songName, musicFile));
+            song* loadedSong = s.load(songName, musicFile);
+            if (loadedSong->getTitle() != "") {
+                addSong(loadedSong); // Add the song to the playlist
             } else {
-                cerr << "Failed to load song: " << songName << endl;
+                cerr << "Error: Failed to load song: " << songName << endl;
             }
         }
 
-        file.close();
-        return true;
+        break; // Exit the loop after loading the playlist
     }
 
     file.close();
-    cerr << "Playlist not found in playlist.txt: " << playlistName << endl;
-    return false;
+
+    if (!playlistFound) {
+        cerr << "Error: Playlist '" << playlistName << "' not found in " << playlistFile << endl;
+        return false;
+    }
+
+    return true;
 }
 
 void playList::save(const string& filename = "../resources/playlist.txt") {
@@ -430,7 +393,7 @@ void playList::save(const string& filename = "../resources/playlist.txt") {
     while (current) {
         playlistLine << "," << current->data->getTitle();
         current = current->next;
-    }
+    }//
 
     // Add our playlist line to the vector
     lines.push_back(playlistLine.str());
@@ -461,10 +424,15 @@ void playList::playSongs() {
         // Play the current song
         current->data->playSong(current->data->getTitle(), current);
 
-        // Move to the next song
+        // Move to the next song if playback was not interrupted
+
         current = current->next;
+
+            // If playback was interrupted (e.g., user quit), stop the playlist
+            return;
+        }
     }
-}
+
 
 bool playList::doesPlaylistExist(const string& name, const string& filename) {
     ifstream file(filename);
@@ -496,25 +464,7 @@ bool playList::containsSong(const string& songTitle) {
 }
 
 // Update the shufflePlay function in playlist.cpp:
-void playList::shufflePlay() {
-    if (head == nullptr) {
-        cout << "\nPlaylist is empty!" << endl;
-        return;
-    }
 
-    int random = getRandomNumber();
-    node* temp = head;
-    for (int i = 0; i < random && temp != nullptr; i++) {
-        temp = temp->next;
-    }
-
-    if (temp && temp->data) {
-        cout << "\nNow playing random song:" << endl;
-        temp->data->playSong(temp->data->getTitle());
-    } else {
-        cout << "\nError: Could not play random song." << endl;
-    }
-}
 
 vector<string> playList::displaySongsInPlaylist() {
     vector<string> songTitles;

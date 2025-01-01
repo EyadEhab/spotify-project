@@ -15,25 +15,22 @@
 using namespace std;
 
 
-// Function to set terminal to non-blocking mode
+//Function to set terminal to non-blocking mode
 void setNonBlocking(bool enable) {
     struct termios ttystate;
     tcgetattr(STDIN_FILENO, &ttystate);
 
     if (enable) {
-        ttystate.c_lflag &= ~ICANON; // Disable canonical mode
-        ttystate.c_lflag &= ~ECHO;   // Disable echo
-        ttystate.c_cc[VMIN] = 0;     // Minimum number of characters to read
-        ttystate.c_cc[VTIME] = 0;    // Time to wait for input (0 = no wait)
+        ttystate.c_lflag &= ~(ICANON | ECHO);
+        ttystate.c_cc[VMIN] = 0;
+        ttystate.c_cc[VTIME] = 0;
     } else {
-        ttystate.c_lflag |= ICANON;  // Enable canonical mode
-        ttystate.c_lflag |= ECHO;    // Enable echo
+        ttystate.c_lflag |= ICANON | ECHO;
     }
 
     tcsetattr(STDIN_FILENO, TCSANOW, &ttystate);
 }
 
-// Function to check if a key is pressed
 bool isKeyPressed() {
     struct timeval tv = {0, 0};
     fd_set fds;
@@ -42,18 +39,35 @@ bool isKeyPressed() {
     return select(STDIN_FILENO + 1, &fds, NULL, NULL, &tv) == 1;
 }
 
-// Function to get the pressed key
 char getKey() {
     char ch = 0;
-    if (read(STDIN_FILENO, &ch, 1) != 1) {
-        ch = 0;
-    }
+    read(STDIN_FILENO, &ch, 1);
     return ch;
+}
+
+void displayProgressBar(float currentPosition, float totalDuration) {
+    int progress = static_cast<int>((currentPosition / totalDuration) * 100);
+    progress = min(100, max(0, progress));
+
+    cout << "\rProgress: [";
+    int barWidth = 50;
+    int pos = barWidth * progress / 100;
+
+    for (int i = 0; i < barWidth; ++i) {
+        cout << (i < pos ? "=" : (i == pos ? ">" : " "));
+    }
+
+    cout << "] " << progress << "% ("
+         << static_cast<int>(currentPosition) << "/"
+         << static_cast<int>(totalDuration) << "s)" << flush;
 }
 // Constructor
 song::song(const string title, const string artist, int duration)
-    : title(title), artist(artist), duration(duration), plays(0), filepath("../resources/media/") ,timePlayed(""){
-    ma_engine_init(NULL, &engine);
+    : title(title), artist(artist), duration(duration), plays(0), filepath("../resources/media/"), timePlayed("") {
+    ma_result result = ma_engine_init(NULL, &engine);
+    if (result != MA_SUCCESS) {
+        cerr << "Error: Failed to initialize audio engine. Error code: " << result << endl;
+    }
 }
 
 // Getters
@@ -231,27 +245,13 @@ void song::playSong(const string& songName, node* currentSongNode) {
         }
 
         // Sleep to reduce CPU usage
-        this_thread::sleep_for(chrono::milliseconds(100));
+        this_thread::sleep_for(chrono::milliseconds(1000));
     }
 
     // Restore terminal to blocking mode
     setNonBlocking(false);
-
-    if (!quit) {
-
-
-        cout << "\nPlayback completed!" << endl;
-    }
-
     // Cleanup
     ma_sound_uninit(&sound); // Clean up the sound object
-}
-
-void song::searchAndPlay(const string& songName, const string& directory) {
-    // Simplified version without Qt file operations
-    cout << "Searching for song: " << songName << " in directory: " << directory << endl;
-    cout << "File operations will need to be implemented using standard C++ file handling" << endl;
-    playSong(songName);
 }
 
 void song::displaySongInfo() const {
@@ -292,14 +292,6 @@ bool song::saveTimePlayedAndPlayCount(const string& filename = "../resources/mus
         }
     }
     inFile.close();
-
-    if (!songFound) {
-        // Song is not in the file, add it
-        string newLine = title + "," + artist + "," + to_string(duration) + "," +
-                         to_string(plays) + "," + timePlayed;
-        lines.push_back(newLine);
-        cout << "Song '" << title << "' added to the music database." << endl;
-    }
 
     // Write the updated content back to the file
     ofstream outFile(filename);

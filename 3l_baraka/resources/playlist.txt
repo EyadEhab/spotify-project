@@ -1,5 +1,1 @@
-eyad,0
-mazen,6,tamer,amrdiab,KARMA,Arsenik-Dawama,Arsenik-Star,Wrong-Way-Blues
-yousef,0
-ali,0
-ahmed,6,Arsenik-Star,Arsenik-Dawama,Wrong-Way-Blues,KARMA,amrdiab,tamer
+eyad,2,shta,KARMA

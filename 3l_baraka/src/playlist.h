@@ -19,11 +19,11 @@ private:
   int count;
   node *head;
   node *tail;
-  stack<song *> stack1;
 
 public:
   playList(string);
   void addSong(song* song);
+  string getName();
   void removeSong(string name);
   void removeAllSongs();
   void displaySongs();
@@ -58,7 +58,7 @@ public:
   void reverseOrderTraversal(BSTNode *, vector<song> &);
   void rebuildTree(BSTNode *root);
   void displayPlaylist();
-  void rebuildLinkedListFromVector(vector<song> &);
+  void rebuildLinkedListFromVector(vector<song>& songs);
   void inOrderRebuild();
   void preOrderRebuild();
   void inorderRebuild();

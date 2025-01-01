@@ -5,19 +5,11 @@
 #include <vector>
 #include "playlist.h"
 #include "song.h"
+#include <iomanip> // For setw and left/right alignment
 
 using namespace std;
 
-// void clearInputBuffer() {
-//     cin.clear();
-//     cin.ignore(numeric_limits<streamsize>::max(), '\n');
-// }
-//
-// void waitForEnter() {
-//     cout << "\nPress Enter to continue...";
-//     clearInputBuffer();
-// }
-
+//delete playlist  case 2 bug BUBBLE SORT
 void displayMenu() {
     cout << "\n=== Music Player Menu ===" << endl;
     cout << "1. Create new playlist" << endl;
@@ -28,9 +20,12 @@ void displayMenu() {
     cout << "6. Play all songs" << endl;
     //cout << "7. Shuffle play" << endl;
     cout << "7. Sort options" << endl;
-    cout << "8. Build and traverse BST" << endl;
+    cout << "8. traverse BST" << endl;
     cout << "9. Play a song by name" << endl;
     cout << "10. Delete a song from the music database" << endl;
+    cout << "11. Search a Song From App" << endl;
+    cout << "12. Search a Playlist from App" << endl;
+    cout << "13. Delete a playlist" << endl;
     cout << "0. Exit" << endl;
     cout << "Enter your choice: ";
 }
@@ -60,7 +55,6 @@ void displayBSTMenu() {
     cout << "0. Cancel" << endl;
     cout << "Enter your choice: ";
 }
-
 vector<string> displayAvailableSongsToAdd(playList* currentPlaylist, const string& filename = "../resources/musics.txt") {
     ifstream file(filename);
     vector<string> availableSongs;
@@ -75,8 +69,8 @@ vector<string> displayAvailableSongsToAdd(playList* currentPlaylist, const strin
 
     // Display available songs
     cout << "\n=== Available Songs ===" << endl;
-    cout << "ID\tTitle\t\tArtist\t\tDuration\tPlays" << endl;
-    cout << "------------------------------------------------" << endl;
+    cout << left << setw(5) << "ID" << setw(20) << "Title" << setw(20) << "Artist" << setw(10) << "Duration" << setw(10) << "Plays" << endl;
+    cout << "-------------------------------------------------------------" << endl;
 
     string line;
     int id = 1;
@@ -91,7 +85,7 @@ vector<string> displayAvailableSongsToAdd(playList* currentPlaylist, const strin
 
         // Only add songs that are not already in the playlist
         if (find(playlistSongs.begin(), playlistSongs.end(), title) == playlistSongs.end()) {
-            cout << id << ". " << title << "\t\t" << artist << "\t\t" << duration << "s\t\t" << plays << endl;
+            cout << left << setw(5) << id << setw(20) << title << setw(20) << artist << setw(10) << duration + "s" << setw(10) << plays << endl;
             availableSongs.push_back(title);
             id++;
         }
@@ -102,6 +96,24 @@ vector<string> displayAvailableSongsToAdd(playList* currentPlaylist, const strin
 
     file.close();
     return availableSongs;
+}
+
+bool doesPlaylistExist(const string& name, const string& filename) {
+    ifstream file(filename);
+    if (file.is_open()) {
+        string line;
+        while (getline(file, line)) {
+            stringstream ss(line);
+            string playlistName;
+            getline(ss, playlistName, ',');
+            if (playlistName == name) {
+                file.close();
+                return true;
+            }
+        }
+        file.close();
+    }
+    return false;
 }
 
 vector<string> displayAvailableSongs(const string& filename = "../resources/musics.txt") {
@@ -141,6 +153,52 @@ vector<string> displayAvailableSongs(const string& filename = "../resources/musi
     file.close();
     return songTitles;
 }
+// Function to delete a playlist
+bool deletePlaylist(const string& playlistName, const string& filename = "../resources/playlist.txt") {
+    ifstream inFile(filename);
+    if (!inFile.is_open()) {
+        cerr << "Error: Unable to open playlist file!" << endl;
+        return false;
+    }
+
+    vector<string> lines;
+    bool playlistFound = false;
+    string line;
+
+    // Read all lines from the file
+    while (getline(inFile, line)) {
+        stringstream ss(line);
+        string existingPlaylistName;
+        getline(ss, existingPlaylistName, ',');
+
+        // If this is not the playlist to delete, keep it
+        if (existingPlaylistName != playlistName) {
+            lines.push_back(line);
+        } else {
+            playlistFound = true; // Mark that the playlist was found
+        }
+    }
+    inFile.close();
+
+    if (!playlistFound) {
+        cout << "Playlist '" << playlistName << "' not found!" << endl;
+        return false;
+    }
+
+    // Write the updated lines back to the file
+    ofstream outFile(filename);
+    if (outFile.is_open()) {
+        for (const string& updatedLine : lines) {
+            outFile << updatedLine << endl;
+        }
+        outFile.close();
+        cout << "Playlist '" << playlistName << "' deleted successfully!" << endl;
+        return true;
+    } else {
+        cerr << "Error: Unable to open file for writing!" << endl;
+        return false;
+    }
+}
 
 // Helper function to display all playlists and let the user choose one
 string choosePlaylistFromFile(const string& filename = "../resources/playlist.txt") {
@@ -169,7 +227,7 @@ string choosePlaylistFromFile(const string& filename = "../resources/playlist.tx
 
     // Display all playlists with numbers
     cout << "\n=== Available Playlists ===" << endl;
-    for (size_t i = 0; i < playlists.size(); ++i) {
+    for (int i = 0; i < playlists.size(); ++i) {
         cout << i + 1 << ". " << playlists[i] << endl;
     }
     cout << "0. Cancel" << endl;
@@ -191,11 +249,29 @@ string choosePlaylistFromFile(const string& filename = "../resources/playlist.tx
     // Validate user choice
     if (playlistChoice == 0) {
         cout << "\nOperation canceled." << endl;
-        return "";
+        return ""; // Return an empty string to indicate cancellation
     }
 
     // Return the selected playlist name
     return playlists[playlistChoice - 1];
+}
+
+bool searchSongInDatabase(const string& songName, const string& filePath) {
+    ifstream file(filePath);
+    if (!file.is_open()) {
+        cerr << "Error: Unable to open music database file!" << endl;
+        return false;
+    }
+
+    string line;
+    while (getline(file, line)) {
+        if (line == songName) {  // Check if the song name matches
+            file.close();
+            return true;
+        }
+    }
+    file.close();
+    return false; // Song not found
 }
 
 
@@ -209,17 +285,23 @@ int main() {
         displayMenu();
 
         // Handle invalid input (non-numeric or out-of-range)
-        while (!(cin >> choice) || choice < 0 || choice > 10) {
+        while (!(cin >> choice) || choice < 0 || choice > 13) {
             cin.clear();  // Clear the error flag
             cin.ignore(numeric_limits<streamsize>::max(), '\n');  // Discard invalid input
-            cout << "Invalid choice! Please enter a number between 0 and 10: ";
+            cout << "Invalid choice! Please enter a number between 0 and 13: ";
         }
         cin.ignore();  // Ignore the newline character left in the input buffer
 
         switch (choice) {
-            case 1: {  // Create new playlist
-                cout << "Enter playlist name: ";
+        case 1: {  // Create new playlist
+                cout << "Enter playlist name (or 0 to cancel): ";
                 getline(cin, playlistName);
+
+                // Check if the user canceled the operation
+                if (playlistName == "0") {
+                    cout << "\nPlaylist creation canceled." << endl;
+                    break; // Exit the case if the user cancels
+                }
 
                 // Check if playlist already exists
                 if (currentPlaylist && currentPlaylist->doesPlaylistExist(playlistName)) {
@@ -227,20 +309,15 @@ int main() {
                     break;
                 }
 
+                // Create the new playlist
                 currentPlaylist = new playList(playlistName);
-                cout << "\nPlaylist created successfully!" << endl;
+                cout << "\nPlaylist '" << playlistName << "' created successfully!" << endl;
                 break;
-            }
-
+        }
         case 2: {  // Load existing playlist
-                    string selectedPlaylist;
-                    while (true) {
-                        selectedPlaylist = choosePlaylistFromFile();
-                        if (selectedPlaylist.empty()) {
-                            cout << "Invalid input! Please enter a number between 0 and the number of playlists: ";
-                            continue; // Stay in the loop until a valid input is entered
-                        }
-                        break; // Exit the loop if a valid playlist is selected
+                    string selectedPlaylist = choosePlaylistFromFile();
+                    if (selectedPlaylist.empty()) {
+                        break; // Exit the case if the user cancels or an error occurs
                     }
 
                     // Delete existing playlist if any
@@ -252,7 +329,7 @@ int main() {
                     if (currentPlaylist->load(selectedPlaylist, "../resources/playlist.txt", "../resources/musics.txt")) {
                         cout << "\nPlaylist '" << selectedPlaylist << "' loaded successfully!" << endl;
                     } else {
-                        cout << "\nError: Failed to load playlist." << endl;
+                        cout << "\nError: Failed to load playlist '" << selectedPlaylist << "'." << endl;
                         delete currentPlaylist;
                         currentPlaylist = nullptr;
                     }
@@ -557,7 +634,58 @@ int main() {
     }
     break;
 }
+        case 11:
+                {
+                    cout << "enter a song to search" << endl;
+                    string song;
+                    cin >> song;
+                    bool is_found ;
+                    is_found = searchSongInDatabase(song,"../resources/musics.txt");
+                    if (is_found)
+                    {
+                        cout << "\nSong '" << song << "' found!" << endl;
+                    }
+                    else
+                    {
+                        cout << "\nSong '" << song << "' not found!" << endl;
+                    }
+                    break;
+                }
+        case 12:
+                {
+                    cout << "enter a playlist to search" << endl;
+                    string playlist;
+                    cin >> playlist;
+                    bool is_found;
+                    is_found= doesPlaylistExist(playlist,"../resources/playlist.txt");
+                    if (is_found)
+                    {
+                        cout << "\nPlaylist '" << playlist << "' found!" << endl;
+                    }
+                    else
+                    {
+                        cout << "\nPlaylist '" << playlist << "' not found!" << endl;
+                    }
+                    break;
+                }
+            case 13: {  // Delete a playlist
+                string selectedPlaylist = choosePlaylistFromFile();
+                if (selectedPlaylist.empty()) {
+                    cout << "\nOperation canceled." << endl;
+                    break;
+                }
 
+                // Delete the selected playlist
+                if (deletePlaylist(selectedPlaylist)) {
+                    // If the current playlist is the one being deleted, reset it
+                    if (currentPlaylist && currentPlaylist->getName() == selectedPlaylist) {
+                        delete currentPlaylist;
+                        currentPlaylist = nullptr;
+                        cout << "Current playlist has been deleted and unloaded." << endl;
+                    }
+                }
+                break;
+                }
 
             case 0:
                 cout << "\nThank you for using the Music Player!" << endl;
