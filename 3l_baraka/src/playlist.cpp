@@ -261,41 +261,99 @@ void playList::postOrderTraversal(BSTNode* root, vector<song>& result) {
 }
 
 void playList::rebuildLinkedListFromVector(vector<song>& songs) {
-    // Clear the existing linked list
-    removeAllSongs();
+    // Create a new temporary list
+    node* newHead = nullptr;
+    node* newTail = nullptr;
+    int newCount = 0;
 
-    // Rebuild linked list from the vector
+    // Build the new list
     for (auto& s : songs) {
-        addSong(&s);
+        node* newNode = new node(new song(s));
+        if (!newHead) {
+            newHead = newTail = newNode;
+        } else {
+            newTail->next = newNode;
+            newNode->prev = newTail;
+            newTail = newNode;
+        }
+        newCount++;
     }
+
+    // Delete old list
+    while (head) {
+        node* temp = head;
+        head = head->next;
+        delete temp;
+    }
+
+    // Update list pointers and count
+    head = newHead;
+    tail = newTail;
+    count = newCount;
+
     save("../resources/playlist.txt");
 }
 
 // Wrapper for in-order traversal
 void playList::inOrderRebuild() {
+    if (!root) {
+        buildTree(root);  // Build the BST if not already built
+    }
+
     vector<song> result;
     inOrderTraversal(root, result);
-    rebuildLinkedListFromVector(result);
-    cout << "Rebuilt linked list in in-order:" << endl;
-    displaySongs();
+
+    // Update existing nodes without deleting
+    node* current = head;
+    int i = 0;
+
+    while (current && i < result.size()) {
+        *(current->data) = result[i];  // Update song data
+        current = current->next;
+        i++;
+    }
+
+    save("../resources/playlist.txt");
 }
 
-// Wrapper for pre-order traversal
 void playList::preOrderRebuild() {
+    if (!root) {
+        buildTree(root);
+    }
+
     vector<song> result;
     preOrderTraversal(root, result);
-    rebuildLinkedListFromVector(result);
-    cout << "Rebuilt linked list in pre-order:" << endl;
-    displaySongs();
+
+    node* current = head;
+    int i = 0;
+
+    while (current && i < result.size()) {
+        *(current->data) = result[i];
+        current = current->next;
+        i++;
+    }
+
+    save("../resources/playlist.txt");
 }
 
-// Wrapper for post-order traversal
 void playList::postOrderRebuild() {
+    if (!root) {
+        buildTree(root);
+    }
+
     vector<song> result;
     postOrderTraversal(root, result);
-    rebuildLinkedListFromVector(result);
-    cout << "Rebuilt linked list in post-order:" << endl;
-    displaySongs();
+
+    node* current = head;
+    int i = 0;
+
+    while (current && i < result.size()) {
+        *(current->data) = result[i];
+        current = current->next;
+        i++;
+    }
+
+    save("../resources/playlist.txt");
 }
 
 

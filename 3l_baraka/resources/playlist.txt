@@ -1,5 +1,5 @@
-mazen,0
-yousef,0
 eyad,0
-ali,1,tamer
-ahmed,4,EL-HALAL,EL-HOB-FEIN,We-Meen-Ekhtar,tamer
+mazen,6,tamer,amrdiab,KARMA,Arsenik-Dawama,Arsenik-Star,Wrong-Way-Blues
+yousef,0
+ali,0
+ahmed,6,Arsenik-Star,Arsenik-Dawama,Wrong-Way-Blues,KARMA,amrdiab,tamer

@@ -30,17 +30,15 @@
     </configurations>
   </component>
   <component name="ChangeListManager">
-    <list default="true" id="456aa3d1-7c9b-4b3e-a6a7-f529baa531dd" name="Changes" comment="fixed sort functions added reverse sort and more error handling in main.cpp">
+    <list default="true" id="456aa3d1-7c9b-4b3e-a6a7-f529baa531dd" name="Changes" comment="added some songs and added some error handling in main.cpp">
       <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/cmake-build-debug/.ninja_deps" beforeDir="false" afterPath="$PROJECT_DIR$/cmake-build-debug/.ninja_deps" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/cmake-build-debug/.ninja_log" beforeDir="false" afterPath="$PROJECT_DIR$/cmake-build-debug/.ninja_log" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/cmake-build-debug/3l_baraka" beforeDir="false" afterPath="$PROJECT_DIR$/cmake-build-debug/3l_baraka" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/cmake-build-debug/CMakeFiles/3l_baraka.dir/src/main.cpp.o" beforeDir="false" afterPath="$PROJECT_DIR$/cmake-build-debug/CMakeFiles/3l_baraka.dir/src/main.cpp.o" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/cmake-build-debug/CMakeFiles/3l_baraka.dir/src/song.cpp.o" beforeDir="false" afterPath="$PROJECT_DIR$/cmake-build-debug/CMakeFiles/3l_baraka.dir/src/song.cpp.o" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/cmake-build-debug/CMakeFiles/3l_baraka.dir/src/playlist.cpp.o" beforeDir="false" afterPath="$PROJECT_DIR$/cmake-build-debug/CMakeFiles/3l_baraka.dir/src/playlist.cpp.o" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/cmake-build-debug/Testing/Temporary/LastTest.log" beforeDir="false" afterPath="$PROJECT_DIR$/cmake-build-debug/Testing/Temporary/LastTest.log" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/resources/musics.txt" beforeDir="false" afterPath="$PROJECT_DIR$/resources/musics.txt" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/resources/playlist.txt" beforeDir="false" afterPath="$PROJECT_DIR$/resources/playlist.txt" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/main.cpp" beforeDir="false" afterPath="$PROJECT_DIR$/src/main.cpp" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/playlist.cpp" beforeDir="false" afterPath="$PROJECT_DIR$/src/playlist.cpp" afterDir="false" />
     </list>
     <option name="SHOW_DIALOG" value="false" />
     <option name="HIGHLIGHT_CONFLICTS" value="true" />
@@ -153,7 +151,8 @@
       <workItem from="1735642117510" duration="8000" />
       <workItem from="1735654467591" duration="3491000" />
       <workItem from="1735658151194" duration="1600000" />
-      <workItem from="1735738151685" duration="5383000" />
+      <workItem from="1735738151685" duration="7502000" />
+      <workItem from="1735748174244" duration="467000" />
     </task>
     <task id="LOCAL-00001" summary="removed QT code from files">
       <option name="closed" value="true" />
@@ -219,7 +218,15 @@
       <option name="project" value="LOCAL" />
       <updated>1735658856228</updated>
     </task>
-    <option name="localTasksCounter" value="9" />
+    <task id="LOCAL-00009" summary="added some songs and added some error handling in main.cpp">
+      <option name="closed" value="true" />
+      <created>1735744358259</created>
+      <option name="number" value="00009" />
+      <option name="presentableId" value="LOCAL-00009" />
+      <option name="project" value="LOCAL" />
+      <updated>1735744358259</updated>
+    </task>
+    <option name="localTasksCounter" value="10" />
     <servers />
   </component>
   <component name="TypeScriptGeneratedFilesManager">
@@ -238,7 +245,8 @@
     <MESSAGE value="added main fixed some bugs in playlist and song classes" />
     <MESSAGE value="fixed count ++ bug and some in the main.cpp" />
     <MESSAGE value="fixed sort functions added reverse sort and more error handling in main.cpp" />
-    <option name="LAST_COMMIT_MESSAGE" value="fixed sort functions added reverse sort and more error handling in main.cpp" />
+    <MESSAGE value="added some songs and added some error handling in main.cpp" />
+    <option name="LAST_COMMIT_MESSAGE" value="added some songs and added some error handling in main.cpp" />
   </component>
   <component name="XSLT-Support.FileAssociations.UIState">
     <expand />
