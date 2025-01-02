@@ -5,6 +5,8 @@ file(REMOVE_RECURSE
   "CMakeFiles/3l_baraka.dir/src/BSTNode.cpp.o.d"
   "CMakeFiles/3l_baraka.dir/src/main.cpp.o"
   "CMakeFiles/3l_baraka.dir/src/main.cpp.o.d"
+  "CMakeFiles/3l_baraka.dir/src/miniaudio.c.o"
+  "CMakeFiles/3l_baraka.dir/src/miniaudio.c.o.d"
   "CMakeFiles/3l_baraka.dir/src/node.cpp.o"
   "CMakeFiles/3l_baraka.dir/src/node.cpp.o.d"
   "CMakeFiles/3l_baraka.dir/src/playlist.cpp.o"
@@ -14,6 +16,6 @@ file(REMOVE_RECURSE
 )
 
 # Per-language clean rules from dependency scanning.
-foreach(lang CXX)
+foreach(lang C CXX)
   include(CMakeFiles/3l_baraka.dir/cmake_clean_${lang}.cmake OPTIONAL)
 endforeach()

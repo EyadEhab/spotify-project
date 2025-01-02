@@ -106,10 +106,10 @@ void song::updateTimePlayed() {
     timePlayed = ss.str();
 }
 
-void song::playSong(const string& songName, node* currentSongNode) {
-    cout << plays<<endl;
+bool song::playSong(const string& songName, node* currentSongNode) {
+
     plays++;
-    cout << plays<<endl;
+
     updateTimePlayed();
     saveTimePlayedAndPlayCount("../resources/musics.txt");
 
@@ -122,7 +122,7 @@ void song::playSong(const string& songName, node* currentSongNode) {
     if (result != MA_SUCCESS) {
         cerr << "Failed to load sound file: " << fullPath << endl;
         cerr << "Error: " << ma_result_description(result) << endl;
-        return;
+        return false;
     }
 
     // Start playing the sound
@@ -130,7 +130,7 @@ void song::playSong(const string& songName, node* currentSongNode) {
     if (result != MA_SUCCESS) {
         cerr << "Failed to start playback: " << ma_result_description(result) << endl;
         ma_sound_uninit(&sound);
-        return;
+        return false;
     }
 
     // Get the duration in seconds
@@ -140,7 +140,7 @@ void song::playSong(const string& songName, node* currentSongNode) {
     if (totalDuration <= 0) {
         cerr << "Invalid sound duration" << endl;
         ma_sound_uninit(&sound);
-        return;
+        return false;
     }
 
     // Display initial song info
@@ -212,7 +212,7 @@ void song::playSong(const string& songName, node* currentSongNode) {
                         currentSongNode = currentSongNode->next; // Move to the next song
                         currentSongNode->data->playSong(currentSongNode->data->getTitle(), currentSongNode); // Play the next song
                         quit = true; // Exit the current playback
-                        return;
+                        return false;
                     } else if (currentSongNode) {
                         cout << "\nEnd of playlist reached." << endl;
                     }
@@ -224,7 +224,7 @@ void song::playSong(const string& songName, node* currentSongNode) {
                         currentSongNode = currentSongNode->prev; // Move to the previous song
                         currentSongNode->data->playSong(currentSongNode->data->getTitle(), currentSongNode); // Play the previous song
                         quit = true; // Exit the current playback
-                        return;
+                        return false;;
                     } else if (currentSongNode) {
                         cout << "\nBeginning of playlist reached." << endl;
                     }
@@ -233,6 +233,8 @@ void song::playSong(const string& songName, node* currentSongNode) {
                     quit = true;
                     ma_sound_stop(&sound);
                     cout << "\nPlayback stopped." << endl;
+                    //ma_sound_uninit(&sound);
+                    //return;
                     break;
                 default:
                     break;
@@ -245,14 +247,20 @@ void song::playSong(const string& songName, node* currentSongNode) {
         }
 
         // Sleep to reduce CPU usage
-        this_thread::sleep_for(chrono::milliseconds(1000));
+        this_thread::sleep_for(chrono::milliseconds(100));
     }
 
     // Restore terminal to blocking mode
     setNonBlocking(false);
+
+
+
     // Cleanup
-    ma_sound_uninit(&sound); // Clean up the sound object
+    ma_sound_uninit(&sound);
+    // Clean up the sound object
+    return quit;
 }
+
 
 void song::displaySongInfo() const {
     cout << "Song Info:" << endl;

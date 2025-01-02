@@ -30,6 +30,11 @@ string playList::getName()
     return this->name;
 }
 
+node* playList::getHead()
+{
+    return head;
+}
+
 void playList::removeSong(string name) {
     if (head == nullptr) {
         cout << "Playlist is empty!" << endl;
@@ -87,7 +92,7 @@ void playList::removeAllSongs() {
         delete temp;
     }
     tail = nullptr;
-    count = 0;
+    count = 0;  // Reset count to 0
     save("../resources/playlist.txt");
 }
 
@@ -272,6 +277,7 @@ void playList::rebuildLinkedListFromVector(vector<song>& songs) {
     for (auto& s : songs) {
         addSong(&s);  // Add song to the list
     }
+    save("../resources/playlist.txt");
 }
 
 // Wrapper for in-order traversal
@@ -286,7 +292,7 @@ void playList::inOrderRebuild() {
     // Update existing nodes without deleting
     rebuildLinkedListFromVector(result);
 
-    save("../resources/playlist.txt");
+
 }
 
 void playList::preOrderRebuild() {
@@ -296,7 +302,7 @@ void playList::preOrderRebuild() {
     vector<song> result;
     preOrderTraversal(root, result);
     rebuildLinkedListFromVector(result);
-    save("../resources/playlist.txt");
+
 }
 
 void playList::postOrderRebuild() {
@@ -307,7 +313,7 @@ void playList::postOrderRebuild() {
     postOrderTraversal(root, result);
     rebuildLinkedListFromVector(result);
 
-    save("../resources/playlist.txt");
+
 }
 
 
@@ -393,7 +399,7 @@ void playList::save(const string& filename = "../resources/playlist.txt") {
     while (current) {
         playlistLine << "," << current->data->getTitle();
         current = current->next;
-    }//
+    }
 
     // Add our playlist line to the vector
     lines.push_back(playlistLine.str());
@@ -405,33 +411,30 @@ void playList::save(const string& filename = "../resources/playlist.txt") {
             outFile << line << endl;
         }
         outFile.close();
-        // cout << "Playlist '" << this->name << "' "
-        //      << (playlistExists ? "updated" : "saved")
-        //      << " successfully!" << endl;
     } else {
         cout << "Error: Unable to open file for saving!" << endl;
-    }  // Close the file
+    }
 }
 
-void playList::playSongs() {
-    if (head == nullptr) {
-        cout << "The playlist is empty!" << endl;
-        return;
-    }
-
-    node* current = head;
-    while (current) {
-        // Play the current song
-        current->data->playSong(current->data->getTitle(), current);
-
-        // Move to the next song if playback was not interrupted
-
-        current = current->next;
-
-            // If playback was interrupted (e.g., user quit), stop the playlist
-            return;
-        }
-    }
+// void playList::playSongs() {
+//     if (head == nullptr) {
+//         cout << "The playlist is empty!" << endl;
+//         return;
+//     }
+//
+//     node* current = head;
+//     while (current) {
+//         // Play the current song
+//         bool continuePlayback = current->data->playSong(current->data->getTitle(), TODO);
+//         // Move to the next song if playback was not interrupted
+//         if (continuePlayback) {
+//             current = current->next;
+//         } else {
+//             // If playback was interrupted (e.g., user quit), stop the playlist
+//             return;
+//         }
+//     }
+// }
 
 
 bool playList::doesPlaylistExist(const string& name, const string& filename) {
@@ -464,12 +467,30 @@ bool playList::containsSong(const string& songTitle) {
 }
 
 // Update the shufflePlay function in playlist.cpp:
+void playList::playSongs() {
+    if (head == nullptr) {
+        cout << "The playlist is empty!" << endl;
+        return;
+    }
 
+    node* current = head;
+    while (current) {
+        // Play the current song
+        current->data->playSong(current->data->getTitle(), current);
+
+        // Move to the next song
+        current = current->next;
+    }
+}
 
 vector<string> playList::displaySongsInPlaylist() {
     vector<string> songTitles;
-    node* temp = head;
+    if (!head) {
+        cout << "The playlist is empty!" << endl;
+        return songTitles; // Return an empty vector
+    }
 
+    node* temp = head;
     while (temp) {
         songTitles.push_back(temp->data->getTitle());
         temp = temp->next;

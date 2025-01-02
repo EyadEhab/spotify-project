@@ -63,10 +63,12 @@ CMAKE_BINARY_DIR = "/media/eyad/a5ca1888-ccc2-42dc-9e91-871ec5dce3b3/eyad/All/ci
 # Directory level rules for the build root directory
 
 # The main recursive "all" target.
+all: CMakeFiles/miniaudio.dir/all
 all: CMakeFiles/3l_baraka.dir/all
 .PHONY : all
 
 # The main recursive "codegen" target.
+codegen: CMakeFiles/miniaudio.dir/codegen
 codegen: CMakeFiles/3l_baraka.dir/codegen
 .PHONY : codegen
 
@@ -75,22 +77,54 @@ preinstall:
 .PHONY : preinstall
 
 # The main recursive "clean" target.
+clean: CMakeFiles/miniaudio.dir/clean
 clean: CMakeFiles/3l_baraka.dir/clean
 .PHONY : clean
+
+#=============================================================================
+# Target rules for target CMakeFiles/miniaudio.dir
+
+# All Build rule for target.
+CMakeFiles/miniaudio.dir/all:
+	$(MAKE) $(MAKESILENT) -f CMakeFiles/miniaudio.dir/build.make CMakeFiles/miniaudio.dir/depend
+	$(MAKE) $(MAKESILENT) -f CMakeFiles/miniaudio.dir/build.make CMakeFiles/miniaudio.dir/build
+	@$(CMAKE_COMMAND) -E cmake_echo_color "--switch=$(COLOR)" --progress-dir="/media/eyad/a5ca1888-ccc2-42dc-9e91-871ec5dce3b3/eyad/All/cis year 2/first term/data struc/spotify-project/3l_baraka/build/CMakeFiles" --progress-num=8,9 "Built target miniaudio"
+.PHONY : CMakeFiles/miniaudio.dir/all
+
+# Build rule for subdir invocation for target.
+CMakeFiles/miniaudio.dir/rule: cmake_check_build_system
+	$(CMAKE_COMMAND) -E cmake_progress_start "/media/eyad/a5ca1888-ccc2-42dc-9e91-871ec5dce3b3/eyad/All/cis year 2/first term/data struc/spotify-project/3l_baraka/build/CMakeFiles" 2
+	$(MAKE) $(MAKESILENT) -f CMakeFiles/Makefile2 CMakeFiles/miniaudio.dir/all
+	$(CMAKE_COMMAND) -E cmake_progress_start "/media/eyad/a5ca1888-ccc2-42dc-9e91-871ec5dce3b3/eyad/All/cis year 2/first term/data struc/spotify-project/3l_baraka/build/CMakeFiles" 0
+.PHONY : CMakeFiles/miniaudio.dir/rule
+
+# Convenience name for target.
+miniaudio: CMakeFiles/miniaudio.dir/rule
+.PHONY : miniaudio
+
+# codegen rule for target.
+CMakeFiles/miniaudio.dir/codegen:
+	$(MAKE) $(MAKESILENT) -f CMakeFiles/miniaudio.dir/build.make CMakeFiles/miniaudio.dir/codegen
+.PHONY : CMakeFiles/miniaudio.dir/codegen
+
+# clean rule for target.
+CMakeFiles/miniaudio.dir/clean:
+	$(MAKE) $(MAKESILENT) -f CMakeFiles/miniaudio.dir/build.make CMakeFiles/miniaudio.dir/clean
+.PHONY : CMakeFiles/miniaudio.dir/clean
 
 #=============================================================================
 # Target rules for target CMakeFiles/3l_baraka.dir
 
 # All Build rule for target.
-CMakeFiles/3l_baraka.dir/all:
+CMakeFiles/3l_baraka.dir/all: CMakeFiles/miniaudio.dir/all
 	$(MAKE) $(MAKESILENT) -f CMakeFiles/3l_baraka.dir/build.make CMakeFiles/3l_baraka.dir/depend
 	$(MAKE) $(MAKESILENT) -f CMakeFiles/3l_baraka.dir/build.make CMakeFiles/3l_baraka.dir/build
-	@$(CMAKE_COMMAND) -E cmake_echo_color "--switch=$(COLOR)" --progress-dir="/media/eyad/a5ca1888-ccc2-42dc-9e91-871ec5dce3b3/eyad/All/cis year 2/first term/data struc/spotify-project/3l_baraka/build/CMakeFiles" --progress-num=1,2,3,4,5,6 "Built target 3l_baraka"
+	@$(CMAKE_COMMAND) -E cmake_echo_color "--switch=$(COLOR)" --progress-dir="/media/eyad/a5ca1888-ccc2-42dc-9e91-871ec5dce3b3/eyad/All/cis year 2/first term/data struc/spotify-project/3l_baraka/build/CMakeFiles" --progress-num=1,2,3,4,5,6,7 "Built target 3l_baraka"
 .PHONY : CMakeFiles/3l_baraka.dir/all
 
 # Build rule for subdir invocation for target.
 CMakeFiles/3l_baraka.dir/rule: cmake_check_build_system
-	$(CMAKE_COMMAND) -E cmake_progress_start "/media/eyad/a5ca1888-ccc2-42dc-9e91-871ec5dce3b3/eyad/All/cis year 2/first term/data struc/spotify-project/3l_baraka/build/CMakeFiles" 6
+	$(CMAKE_COMMAND) -E cmake_progress_start "/media/eyad/a5ca1888-ccc2-42dc-9e91-871ec5dce3b3/eyad/All/cis year 2/first term/data struc/spotify-project/3l_baraka/build/CMakeFiles" 9
 	$(MAKE) $(MAKESILENT) -f CMakeFiles/Makefile2 CMakeFiles/3l_baraka.dir/all
 	$(CMAKE_COMMAND) -E cmake_progress_start "/media/eyad/a5ca1888-ccc2-42dc-9e91-871ec5dce3b3/eyad/All/cis year 2/first term/data struc/spotify-project/3l_baraka/build/CMakeFiles" 0
 .PHONY : CMakeFiles/3l_baraka.dir/rule

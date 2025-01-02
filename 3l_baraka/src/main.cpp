@@ -4,6 +4,7 @@
 #include <sstream>
 #include <vector>
 #include "playlist.h"
+#include "miniaudio.h"
 #include "song.h"
 #include <iomanip> // For setw and left/right alignment
 
@@ -126,8 +127,8 @@ vector<string> displayAvailableSongs(const string& filename = "../resources/musi
     }
 
     cout << "\n=== Available Songs ===" << endl;
-    cout << "ID\tTitle\t\tArtist\t\tDuration\tPlays" << endl;
-    cout << "------------------------------------------------" << endl;
+    cout << left << setw(5) << "ID" << setw(20) << "Title" << setw(20) << "Artist" << setw(10) << "Duration" << setw(10) << "Plays" << endl;
+    cout << "-------------------------------------------------------------" << endl;
 
     string line;
     int id = 1;
@@ -140,8 +141,7 @@ vector<string> displayAvailableSongs(const string& filename = "../resources/musi
         getline(ss, duration, ',');
         getline(ss, plays, ',');
 
-        cout << id << "\t" << title << "\t\t" << artist << "\t\t"
-             << duration << "s\t\t" << plays << endl;
+        cout << left << setw(5) << id << setw(20) << title << setw(20) << artist << setw(10) << duration + "s" << setw(10) << plays << endl;
 
         songTitles.push_back(title);
         id++;
@@ -259,21 +259,25 @@ string choosePlaylistFromFile(const string& filename = "../resources/playlist.tx
 bool searchSongInDatabase(const string& songName, const string& filePath) {
     ifstream file(filePath);
     if (!file.is_open()) {
-        cerr << "Error: Unable to open music database file!" << endl;
+        cerr << "Error: Unable to open music database file: " << filePath << endl;
         return false;
     }
 
     string line;
     while (getline(file, line)) {
-        if (line == songName) {  // Check if the song name matches
+        stringstream ss(line);
+        string title;
+        getline(ss, title, ','); // Extract the song title (first field in CSV)
+
+        if (title == songName) {  // Check if the song name matches
             file.close();
             return true;
         }
     }
+
     file.close();
     return false; // Song not found
 }
-
 
 int main() {
     playList* currentPlaylist = nullptr;
@@ -311,29 +315,40 @@ int main() {
 
                 // Create the new playlist
                 currentPlaylist = new playList(playlistName);
+                currentPlaylist->save("../resources/playlist.txt");
                 cout << "\nPlaylist '" << playlistName << "' created successfully!" << endl;
                 break;
         }
         case 2: {  // Load existing playlist
-                    string selectedPlaylist = choosePlaylistFromFile();
-                    if (selectedPlaylist.empty()) {
-                        break; // Exit the case if the user cancels or an error occurs
-                    }
+                // Display available playlists and let the user choose one
+                string selectedPlaylist = choosePlaylistFromFile();
+                if (selectedPlaylist.empty()) {
+                    cout << "\nOperation canceled or no playlists found." << endl;
+                    break; // Exit the case if the user cancels or an error occurs
+                }
 
-                    // Delete existing playlist if any
+                // Check if the selected playlist is already loaded
+                if (currentPlaylist && currentPlaylist->getName() == selectedPlaylist) {
+                    cout << "\nPlaylist '" << selectedPlaylist << "' is already loaded!" << endl;
+                    break; // Exit the case if the playlist is already loaded
+                }
+
+                // Delete existing playlist if any
+                if (currentPlaylist) {
                     delete currentPlaylist;
                     currentPlaylist = nullptr;
+                }
 
-                    // Create new playlist object and load the selected playlist
-                    currentPlaylist = new playList(selectedPlaylist);
-                    if (currentPlaylist->load(selectedPlaylist, "../resources/playlist.txt", "../resources/musics.txt")) {
-                        cout << "\nPlaylist '" << selectedPlaylist << "' loaded successfully!" << endl;
-                    } else {
-                        cout << "\nError: Failed to load playlist '" << selectedPlaylist << "'." << endl;
-                        delete currentPlaylist;
-                        currentPlaylist = nullptr;
-                    }
-                    break;
+                // Create new playlist object and load the selected playlist
+                currentPlaylist = new playList(selectedPlaylist);
+                if (currentPlaylist->load(selectedPlaylist, "../resources/playlist.txt", "../resources/musics.txt")) {
+                    cout << "\nPlaylist '" << selectedPlaylist << "' loaded successfully!" << endl;
+                } else {
+                    cout << "\nError: Failed to load playlist '" << selectedPlaylist << "'." << endl;
+                    delete currentPlaylist;
+                    currentPlaylist = nullptr;
+                }
+                break;
         }
 
             case 3: {  // Add song
@@ -396,7 +411,7 @@ int main() {
                 cout << "ID\tTitle\t\tArtist\t\tDuration\tPlays" << endl;
                 cout << "------------------------------------------------" << endl;
 
-                for (size_t i = 0; i < songTitles.size(); ++i) {
+                for (int i = 0; i < songTitles.size(); i++) {
                     string songTitle = songTitles[i];
                     song s;
                     song* loadedSong = s.load(songTitle, "../resources/musics.txt");
@@ -439,14 +454,41 @@ int main() {
                 break;
             }
 
-            case 6: {  // Play all songs
+        case 6: {  // Play all songs
                 if (!currentPlaylist) {
                     cout << "Please create or load a playlist first!" << endl;
                     break;
                 }
-                currentPlaylist->playSongs();
+
+                // Get the list of songs in the playlist
+                vector<string> songTitles = currentPlaylist->displaySongsInPlaylist();
+
+                if (songTitles.empty()) {
+                    cout << "The playlist is empty!" << endl;
+                    break;
+                }
+
+                // Start from the first song in the playlist
+                node* currentSongNode = currentPlaylist->getHead(); // Assuming you have a getHead() method in playList class
+
+                 // Flag to control quitting the entire playback
+                while (currentSongNode) {
+                    song* loadedSong = currentSongNode->data;
+                    if (loadedSong->getTitle() != "") {
+                        bool quit = loadedSong->playSong(loadedSong->getTitle(), currentSongNode); // Call playSong
+                        if (quit) {
+                            cout << "Playback stopped by user." << endl;
+                            break; // Exit the loop if the user quits
+                        }
+                    } else {
+                        cout << "Error: Failed to load song '" << currentSongNode->data->getTitle() << "'." << endl;
+                    }
+
+                    // Move to the next song
+                    currentSongNode = currentSongNode->next;
+                }
                 break;
-            }
+        }
 
         case 7: {  // Sort options
                     if (!currentPlaylist) {
@@ -537,7 +579,7 @@ int main() {
                 break;
             }
 
-            case 9: {  // Play a song by its name
+        case 9: {  // Play a song by its name
                 vector<string> songTitles = displayAvailableSongs();
 
                 if (songTitles.empty()) {
@@ -564,12 +606,16 @@ int main() {
                 song s;
                 song* loadedSong = s.load(selectedSong, "../resources/musics.txt");
                 if (loadedSong->getTitle() != "") {
-                    loadedSong->playSong(selectedSong);
+                    bool quitFlag = false; // Flag to control quitting the playback
+                    loadedSong->playSong(selectedSong, nullptr); // Call playSong
+                    if (quitFlag) {
+                        cout << "\nPlayback stopped by user." << endl;
+                    }
                 } else {
                     cout << "\nError: Failed to load song!" << endl;
                 }
                 break;
-            }
+        }
         case 10: {  // Delete a song from the music database
     // Display all available songs
     vector<string> songTitles = displayAvailableSongs();
@@ -651,24 +697,20 @@ int main() {
                     }
                     break;
                 }
-        case 12:
-                {
-                    cout << "enter a playlist to search" << endl;
-                    string playlist;
-                    cin >> playlist;
-                    bool is_found;
-                    is_found= doesPlaylistExist(playlist,"../resources/playlist.txt");
-                    if (is_found)
-                    {
-                        cout << "\nPlaylist '" << playlist << "' found!" << endl;
-                    }
-                    else
-                    {
-                        cout << "\nPlaylist '" << playlist << "' not found!" << endl;
-                    }
-                    break;
+        case 12: {
+                cout << "Enter a playlist to search: ";
+                string playlist;
+                getline(cin, playlist); // Read the entire line, including spaces
+
+                bool is_found = doesPlaylistExist(playlist, "../resources/playlist.txt");
+                if (is_found) {
+                    cout << "\nPlaylist '" << playlist << "' found!" << endl;
+                } else {
+                    cout << "\nPlaylist '" << playlist << "' not found!" << endl;
                 }
-            case 13: {  // Delete a playlist
+                break;
+        }
+        case 13: {  // Delete a playlist
                 string selectedPlaylist = choosePlaylistFromFile();
                 if (selectedPlaylist.empty()) {
                     cout << "\nOperation canceled." << endl;
@@ -685,7 +727,7 @@ int main() {
                     }
                 }
                 break;
-                }
+        }
 
             case 0:
                 cout << "\nThank you for using the Music Player!" << endl;

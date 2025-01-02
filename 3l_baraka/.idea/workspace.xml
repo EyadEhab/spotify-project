@@ -30,15 +30,120 @@
     </configurations>
   </component>
   <component name="ChangeListManager">
-    <list default="true" id="456aa3d1-7c9b-4b3e-a6a7-f529baa531dd" name="Changes" comment="added some songs and added some error handling in main.cpp">
+    <list default="true" id="456aa3d1-7c9b-4b3e-a6a7-f529baa531dd" name="Changes" comment="added document">
       <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/build/.cache/clangd/index/BSTNode.cpp.C3F1E5512E73AE7D.idx" beforeDir="false" afterPath="$PROJECT_DIR$/build/.cache/clangd/index/BSTNode.cpp.C3F1E5512E73AE7D.idx" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/build/.cache/clangd/index/BSTNode.h.D0DE4DC6499FFA6C.idx" beforeDir="false" afterPath="$PROJECT_DIR$/build/.cache/clangd/index/BSTNode.h.D0DE4DC6499FFA6C.idx" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/build/.cache/clangd/index/__stdarg___va_copy.h.D1E92CE6433CAC3C.idx" beforeDir="false" afterPath="$PROJECT_DIR$/build/.cache/clangd/index/__stdarg___va_copy.h.D1E92CE6433CAC3C.idx" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/build/.cache/clangd/index/__stdarg_va_arg.h.E6A56EBB7775A22A.idx" beforeDir="false" afterPath="$PROJECT_DIR$/build/.cache/clangd/index/__stdarg_va_arg.h.E6A56EBB7775A22A.idx" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/build/.cache/clangd/index/__stdarg_va_copy.h.0DA3FEDF566BC589.idx" beforeDir="false" afterPath="$PROJECT_DIR$/build/.cache/clangd/index/__stdarg_va_copy.h.0DA3FEDF566BC589.idx" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/build/.cache/clangd/index/__stdarg_va_list.h.07B0239505F544D6.idx" beforeDir="false" afterPath="$PROJECT_DIR$/build/.cache/clangd/index/__stdarg_va_list.h.07B0239505F544D6.idx" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/build/.cache/clangd/index/basic_file.h.7467CE9FE27B5488.idx" beforeDir="false" afterPath="$PROJECT_DIR$/build/.cache/clangd/index/basic_file.h.7467CE9FE27B5488.idx" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/build/.cache/clangd/index/bessel_function.tcc.9C77A6B533668A50.idx" beforeDir="false" afterPath="$PROJECT_DIR$/build/.cache/clangd/index/bessel_function.tcc.9C77A6B533668A50.idx" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/build/.cache/clangd/index/beta_function.tcc.8E54281154455577.idx" beforeDir="false" afterPath="$PROJECT_DIR$/build/.cache/clangd/index/beta_function.tcc.8E54281154455577.idx" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/build/.cache/clangd/index/bit.7A4CBE95C931CBAA.idx" beforeDir="false" afterPath="$PROJECT_DIR$/build/.cache/clangd/index/bit.7A4CBE95C931CBAA.idx" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/build/.cache/clangd/index/c++io.h.0E7F46C2DC9EED6D.idx" beforeDir="false" afterPath="$PROJECT_DIR$/build/.cache/clangd/index/c++io.h.0E7F46C2DC9EED6D.idx" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/build/.cache/clangd/index/chrono.57563F70344EE059.idx" beforeDir="false" afterPath="$PROJECT_DIR$/build/.cache/clangd/index/chrono.57563F70344EE059.idx" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/build/.cache/clangd/index/chrono.h.0EED74F272BEA017.idx" beforeDir="false" afterPath="$PROJECT_DIR$/build/.cache/clangd/index/chrono.h.0EED74F272BEA017.idx" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/build/.cache/clangd/index/cmath.19FE077C5829F3D3.idx" beforeDir="false" afterPath="$PROJECT_DIR$/build/.cache/clangd/index/cmath.19FE077C5829F3D3.idx" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/build/.cache/clangd/index/codecvt.h.E89C991EE653B70F.idx" beforeDir="false" afterPath="$PROJECT_DIR$/build/.cache/clangd/index/codecvt.h.E89C991EE653B70F.idx" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/build/.cache/clangd/index/ctime.4F46A7B0C036AE27.idx" beforeDir="false" afterPath="$PROJECT_DIR$/build/.cache/clangd/index/ctime.4F46A7B0C036AE27.idx" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/build/.cache/clangd/index/ell_integral.tcc.ADD0623041966AEE.idx" beforeDir="false" afterPath="$PROJECT_DIR$/build/.cache/clangd/index/ell_integral.tcc.ADD0623041966AEE.idx" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/build/.cache/clangd/index/exp_integral.tcc.1A06ECDCA9196BFB.idx" beforeDir="false" afterPath="$PROJECT_DIR$/build/.cache/clangd/index/exp_integral.tcc.1A06ECDCA9196BFB.idx" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/build/.cache/clangd/index/flt-eval-method.h.8058951BDB657B4B.idx" beforeDir="false" afterPath="$PROJECT_DIR$/build/.cache/clangd/index/flt-eval-method.h.8058951BDB657B4B.idx" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/build/.cache/clangd/index/fp-fast.h.72CDF40E7648EF43.idx" beforeDir="false" afterPath="$PROJECT_DIR$/build/.cache/clangd/index/fp-fast.h.72CDF40E7648EF43.idx" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/build/.cache/clangd/index/fp-logb.h.EA7AC5545F14BC26.idx" beforeDir="false" afterPath="$PROJECT_DIR$/build/.cache/clangd/index/fp-logb.h.EA7AC5545F14BC26.idx" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/build/.cache/clangd/index/fstream.22B5A18379DE532B.idx" beforeDir="false" afterPath="$PROJECT_DIR$/build/.cache/clangd/index/fstream.22B5A18379DE532B.idx" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/build/.cache/clangd/index/fstream.tcc.28905A01564BA154.idx" beforeDir="false" afterPath="$PROJECT_DIR$/build/.cache/clangd/index/fstream.tcc.28905A01564BA154.idx" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/build/.cache/clangd/index/gamma.tcc.82F8500A42FB97D7.idx" beforeDir="false" afterPath="$PROJECT_DIR$/build/.cache/clangd/index/gamma.tcc.82F8500A42FB97D7.idx" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/build/.cache/clangd/index/glue_numeric_defs.h.B3131095AC43E904.idx" beforeDir="false" afterPath="$PROJECT_DIR$/build/.cache/clangd/index/glue_numeric_defs.h.B3131095AC43E904.idx" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/build/.cache/clangd/index/hypergeometric.tcc.905C5EDA663C2B0B.idx" beforeDir="false" afterPath="$PROJECT_DIR$/build/.cache/clangd/index/hypergeometric.tcc.905C5EDA663C2B0B.idx" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/build/.cache/clangd/index/iomanip.0CF98852CDA67E51.idx" beforeDir="false" afterPath="$PROJECT_DIR$/build/.cache/clangd/index/iomanip.0CF98852CDA67E51.idx" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/build/.cache/clangd/index/iscanonical.h.C53E44E13856FCEA.idx" beforeDir="false" afterPath="$PROJECT_DIR$/build/.cache/clangd/index/iscanonical.h.C53E44E13856FCEA.idx" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/build/.cache/clangd/index/legendre_function.tcc.4FCDE4AE3030C750.idx" beforeDir="false" afterPath="$PROJECT_DIR$/build/.cache/clangd/index/legendre_function.tcc.4FCDE4AE3030C750.idx" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/build/.cache/clangd/index/libintl.h.929023AD77A09335.idx" beforeDir="false" afterPath="$PROJECT_DIR$/build/.cache/clangd/index/libintl.h.929023AD77A09335.idx" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/build/.cache/clangd/index/libm-simd-decl-stubs.h.06B70A57602EA3C8.idx" beforeDir="false" afterPath="$PROJECT_DIR$/build/.cache/clangd/index/libm-simd-decl-stubs.h.06B70A57602EA3C8.idx" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/build/.cache/clangd/index/limits.2DBC865CC5D8FFAD.idx" beforeDir="false" afterPath="$PROJECT_DIR$/build/.cache/clangd/index/limits.2DBC865CC5D8FFAD.idx" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/build/.cache/clangd/index/locale.97F5A0DBD0DD95A0.idx" beforeDir="false" afterPath="$PROJECT_DIR$/build/.cache/clangd/index/locale.97F5A0DBD0DD95A0.idx" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/build/.cache/clangd/index/locale_conv.h.A51066D97861E67D.idx" beforeDir="false" afterPath="$PROJECT_DIR$/build/.cache/clangd/index/locale_conv.h.A51066D97861E67D.idx" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/build/.cache/clangd/index/locale_facets_nonio.h.3A7D49C831949C54.idx" beforeDir="false" afterPath="$PROJECT_DIR$/build/.cache/clangd/index/locale_facets_nonio.h.3A7D49C831949C54.idx" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/build/.cache/clangd/index/locale_facets_nonio.tcc.5CD215F0C72C26F1.idx" beforeDir="false" afterPath="$PROJECT_DIR$/build/.cache/clangd/index/locale_facets_nonio.tcc.5CD215F0C72C26F1.idx" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/build/.cache/clangd/index/main.cpp.8017FBEA6F61BA34.idx" beforeDir="false" afterPath="$PROJECT_DIR$/build/.cache/clangd/index/main.cpp.8017FBEA6F61BA34.idx" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/build/.cache/clangd/index/math-vector.h.B3EAC58DA1700969.idx" beforeDir="false" afterPath="$PROJECT_DIR$/build/.cache/clangd/index/math-vector.h.B3EAC58DA1700969.idx" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/build/.cache/clangd/index/math.h.DE4D39AAF5AC2C76.idx" beforeDir="false" afterPath="$PROJECT_DIR$/build/.cache/clangd/index/math.h.DE4D39AAF5AC2C76.idx" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/build/.cache/clangd/index/mathcalls-helper-functions.h.934C8C52064E404C.idx" beforeDir="false" afterPath="$PROJECT_DIR$/build/.cache/clangd/index/mathcalls-helper-functions.h.934C8C52064E404C.idx" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/build/.cache/clangd/index/mathcalls-narrow.h.EF4B0E9378BD4EE1.idx" beforeDir="false" afterPath="$PROJECT_DIR$/build/.cache/clangd/index/mathcalls-narrow.h.EF4B0E9378BD4EE1.idx" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/build/.cache/clangd/index/mathcalls.h.655A2220FF0677F8.idx" beforeDir="false" afterPath="$PROJECT_DIR$/build/.cache/clangd/index/mathcalls.h.655A2220FF0677F8.idx" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/build/.cache/clangd/index/messages_members.h.7C544B0555A6DDD7.idx" beforeDir="false" afterPath="$PROJECT_DIR$/build/.cache/clangd/index/messages_members.h.7C544B0555A6DDD7.idx" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/build/.cache/clangd/index/miniaudio.h.CF26458928034182.idx" beforeDir="false" afterPath="$PROJECT_DIR$/build/.cache/clangd/index/miniaudio.h.CF26458928034182.idx" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/build/.cache/clangd/index/modified_bessel_func.tcc.C04B9CA9800FDEFF.idx" beforeDir="false" afterPath="$PROJECT_DIR$/build/.cache/clangd/index/modified_bessel_func.tcc.C04B9CA9800FDEFF.idx" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/build/.cache/clangd/index/node.cpp.F9D17A50E6C41E27.idx" beforeDir="false" afterPath="$PROJECT_DIR$/build/.cache/clangd/index/node.cpp.F9D17A50E6C41E27.idx" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/build/.cache/clangd/index/node.h.327BF961BECFE6F2.idx" beforeDir="false" afterPath="$PROJECT_DIR$/build/.cache/clangd/index/node.h.327BF961BECFE6F2.idx" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/build/.cache/clangd/index/numeric.2FA14A1FF5EFE620.idx" beforeDir="false" afterPath="$PROJECT_DIR$/build/.cache/clangd/index/numeric.2FA14A1FF5EFE620.idx" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/build/.cache/clangd/index/opt_random.h.A4B76090BAC4E9F9.idx" beforeDir="false" afterPath="$PROJECT_DIR$/build/.cache/clangd/index/opt_random.h.A4B76090BAC4E9F9.idx" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/build/.cache/clangd/index/parse_numbers.h.516676493056B825.idx" beforeDir="false" afterPath="$PROJECT_DIR$/build/.cache/clangd/index/parse_numbers.h.516676493056B825.idx" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/build/.cache/clangd/index/playlist.cpp.CFF8C4D70E441C11.idx" beforeDir="false" afterPath="$PROJECT_DIR$/build/.cache/clangd/index/playlist.cpp.CFF8C4D70E441C11.idx" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/build/.cache/clangd/index/playlist.h.1FA80E6CEE194C7D.idx" beforeDir="false" afterPath="$PROJECT_DIR$/build/.cache/clangd/index/playlist.h.1FA80E6CEE194C7D.idx" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/build/.cache/clangd/index/poly_hermite.tcc.B63165CF85B03B2E.idx" beforeDir="false" afterPath="$PROJECT_DIR$/build/.cache/clangd/index/poly_hermite.tcc.B63165CF85B03B2E.idx" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/build/.cache/clangd/index/poly_laguerre.tcc.A887A194E0F817C0.idx" beforeDir="false" afterPath="$PROJECT_DIR$/build/.cache/clangd/index/poly_laguerre.tcc.A887A194E0F817C0.idx" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/build/.cache/clangd/index/quoted_string.h.F7E5ACD3235E556D.idx" beforeDir="false" afterPath="$PROJECT_DIR$/build/.cache/clangd/index/quoted_string.h.F7E5ACD3235E556D.idx" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/build/.cache/clangd/index/random.041BB8AD8F66931D.idx" beforeDir="false" afterPath="$PROJECT_DIR$/build/.cache/clangd/index/random.041BB8AD8F66931D.idx" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/build/.cache/clangd/index/random.h.B0DA8EC617050DC7.idx" beforeDir="false" afterPath="$PROJECT_DIR$/build/.cache/clangd/index/random.h.B0DA8EC617050DC7.idx" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/build/.cache/clangd/index/random.tcc.8DCEA62E7DE7F715.idx" beforeDir="false" afterPath="$PROJECT_DIR$/build/.cache/clangd/index/random.tcc.8DCEA62E7DE7F715.idx" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/build/.cache/clangd/index/ratio.EA236AAB334AA6B0.idx" beforeDir="false" afterPath="$PROJECT_DIR$/build/.cache/clangd/index/ratio.EA236AAB334AA6B0.idx" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/build/.cache/clangd/index/riemann_zeta.tcc.6FEBE8CA98A8E188.idx" beforeDir="false" afterPath="$PROJECT_DIR$/build/.cache/clangd/index/riemann_zeta.tcc.6FEBE8CA98A8E188.idx" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/build/.cache/clangd/index/song.cpp.9DF849EE3188AD24.idx" beforeDir="false" afterPath="$PROJECT_DIR$/build/.cache/clangd/index/song.cpp.9DF849EE3188AD24.idx" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/build/.cache/clangd/index/song.h.E685A7FC81D6CD07.idx" beforeDir="false" afterPath="$PROJECT_DIR$/build/.cache/clangd/index/song.h.E685A7FC81D6CD07.idx" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/build/.cache/clangd/index/specfun.h.61BF5B29C26D1B65.idx" beforeDir="false" afterPath="$PROJECT_DIR$/build/.cache/clangd/index/specfun.h.61BF5B29C26D1B65.idx" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/build/.cache/clangd/index/special_function_util.h.2F9AA2ADB658D1F4.idx" beforeDir="false" afterPath="$PROJECT_DIR$/build/.cache/clangd/index/special_function_util.h.2F9AA2ADB658D1F4.idx" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/build/.cache/clangd/index/sstream.E43003115B3CFE35.idx" beforeDir="false" afterPath="$PROJECT_DIR$/build/.cache/clangd/index/sstream.E43003115B3CFE35.idx" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/build/.cache/clangd/index/sstream.tcc.BEAE2F9646F9A4C7.idx" beforeDir="false" afterPath="$PROJECT_DIR$/build/.cache/clangd/index/sstream.tcc.BEAE2F9646F9A4C7.idx" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/build/.cache/clangd/index/std_thread.h.950D2D16787CF6A6.idx" beforeDir="false" afterPath="$PROJECT_DIR$/build/.cache/clangd/index/std_thread.h.950D2D16787CF6A6.idx" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/build/.cache/clangd/index/stl_bvector.h.6A23B1308B5FC03B.idx" beforeDir="false" afterPath="$PROJECT_DIR$/build/.cache/clangd/index/stl_bvector.h.6A23B1308B5FC03B.idx" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/build/.cache/clangd/index/stl_numeric.h.E258F4F081A29574.idx" beforeDir="false" afterPath="$PROJECT_DIR$/build/.cache/clangd/index/stl_numeric.h.E258F4F081A29574.idx" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/build/.cache/clangd/index/stl_vector.h.BB1F633720B92338.idx" beforeDir="false" afterPath="$PROJECT_DIR$/build/.cache/clangd/index/stl_vector.h.BB1F633720B92338.idx" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/build/.cache/clangd/index/this_thread_sleep.h.6559E1983B129B8F.idx" beforeDir="false" afterPath="$PROJECT_DIR$/build/.cache/clangd/index/this_thread_sleep.h.6559E1983B129B8F.idx" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/build/.cache/clangd/index/thread.FBBF7AAD4E2BD305.idx" beforeDir="false" afterPath="$PROJECT_DIR$/build/.cache/clangd/index/thread.FBBF7AAD4E2BD305.idx" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/build/.cache/clangd/index/time_members.h.C541801FBDA4361A.idx" beforeDir="false" afterPath="$PROJECT_DIR$/build/.cache/clangd/index/time_members.h.C541801FBDA4361A.idx" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/build/.cache/clangd/index/tuple.6EBDA8953B564B33.idx" beforeDir="false" afterPath="$PROJECT_DIR$/build/.cache/clangd/index/tuple.6EBDA8953B564B33.idx" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/build/.cache/clangd/index/unique_ptr.h.EF5D6BADBAEB0F5F.idx" beforeDir="false" afterPath="$PROJECT_DIR$/build/.cache/clangd/index/unique_ptr.h.EF5D6BADBAEB0F5F.idx" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/build/.cache/clangd/index/vector.5E05454928EED652.idx" beforeDir="false" afterPath="$PROJECT_DIR$/build/.cache/clangd/index/vector.5E05454928EED652.idx" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/build/.cache/clangd/index/vector.tcc.BEA3DE6AB8B7FDDA.idx" beforeDir="false" afterPath="$PROJECT_DIR$/build/.cache/clangd/index/vector.tcc.BEA3DE6AB8B7FDDA.idx" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/build/.cmake/api/v1/reply/codemodel-v2-ad2b8cea98076cb5a782.json" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/build/.cmake/api/v1/reply/index-2024-12-28T17-22-27-0256.json" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/build/.cmake/api/v1/reply/target-3l_baraka-Debug-9e203185b11f271c477c.json" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/build/CMakeFiles/3l_baraka.dir/DependInfo.cmake" beforeDir="false" afterPath="$PROJECT_DIR$/build/CMakeFiles/3l_baraka.dir/DependInfo.cmake" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/build/CMakeFiles/3l_baraka.dir/build.make" beforeDir="false" afterPath="$PROJECT_DIR$/build/CMakeFiles/3l_baraka.dir/build.make" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/build/CMakeFiles/3l_baraka.dir/cmake_clean.cmake" beforeDir="false" afterPath="$PROJECT_DIR$/build/CMakeFiles/3l_baraka.dir/cmake_clean.cmake" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/build/CMakeFiles/3l_baraka.dir/flags.make" beforeDir="false" afterPath="$PROJECT_DIR$/build/CMakeFiles/3l_baraka.dir/flags.make" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/build/CMakeFiles/3l_baraka.dir/link.txt" beforeDir="false" afterPath="$PROJECT_DIR$/build/CMakeFiles/3l_baraka.dir/link.txt" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/build/CMakeFiles/3l_baraka.dir/progress.make" beforeDir="false" afterPath="$PROJECT_DIR$/build/CMakeFiles/3l_baraka.dir/progress.make" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/build/CMakeFiles/3l_baraka.dir/src/main.cpp.o" beforeDir="false" afterPath="$PROJECT_DIR$/build/CMakeFiles/3l_baraka.dir/src/main.cpp.o" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/build/CMakeFiles/Makefile.cmake" beforeDir="false" afterPath="$PROJECT_DIR$/build/CMakeFiles/Makefile.cmake" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/build/CMakeFiles/Makefile2" beforeDir="false" afterPath="$PROJECT_DIR$/build/CMakeFiles/Makefile2" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/build/CMakeFiles/TargetDirectories.txt" beforeDir="false" afterPath="$PROJECT_DIR$/build/CMakeFiles/TargetDirectories.txt" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/build/CMakeFiles/progress.marks" beforeDir="false" afterPath="$PROJECT_DIR$/build/CMakeFiles/progress.marks" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/build/Makefile" beforeDir="false" afterPath="$PROJECT_DIR$/build/Makefile" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/build/compile_commands.json" beforeDir="false" afterPath="$PROJECT_DIR$/build/compile_commands.json" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/cmake-build-debug/.cmake/api/v1/reply/index-2024-12-29T10-35-38-0368.json" beforeDir="false" />
       <change beforePath="$PROJECT_DIR$/cmake-build-debug/.ninja_deps" beforeDir="false" afterPath="$PROJECT_DIR$/cmake-build-debug/.ninja_deps" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/cmake-build-debug/.ninja_log" beforeDir="false" afterPath="$PROJECT_DIR$/cmake-build-debug/.ninja_log" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/cmake-build-debug/3l_baraka" beforeDir="false" afterPath="$PROJECT_DIR$/cmake-build-debug/3l_baraka" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/cmake-build-debug/CMakeFiles/3l_baraka.dir/src/BSTNode.cpp.o" beforeDir="false" afterPath="$PROJECT_DIR$/cmake-build-debug/CMakeFiles/3l_baraka.dir/src/BSTNode.cpp.o" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/cmake-build-debug/CMakeFiles/3l_baraka.dir/src/main.cpp.o" beforeDir="false" afterPath="$PROJECT_DIR$/cmake-build-debug/CMakeFiles/3l_baraka.dir/src/main.cpp.o" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/cmake-build-debug/CMakeFiles/3l_baraka.dir/src/playlist.cpp.o" beforeDir="false" afterPath="$PROJECT_DIR$/cmake-build-debug/CMakeFiles/3l_baraka.dir/src/playlist.cpp.o" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/cmake-build-debug/CMakeFiles/3l_baraka.dir/src/song.cpp.o" beforeDir="false" afterPath="$PROJECT_DIR$/cmake-build-debug/CMakeFiles/3l_baraka.dir/src/song.cpp.o" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/cmake-build-debug/Testing/Temporary/LastTest.log" beforeDir="false" afterPath="$PROJECT_DIR$/cmake-build-debug/Testing/Temporary/LastTest.log" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/resources/media/KARMA .mp3" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/resources/musics.txt" beforeDir="false" afterPath="$PROJECT_DIR$/resources/musics.txt" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/resources/playlist.txt" beforeDir="false" afterPath="$PROJECT_DIR$/resources/playlist.txt" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/.idea/editor.xml" beforeDir="false" afterPath="$PROJECT_DIR$/src/.idea/editor.xml" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/.idea/material_theme_project_new.xml" beforeDir="false" afterPath="$PROJECT_DIR$/src/.idea/material_theme_project_new.xml" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main.cpp" beforeDir="false" afterPath="$PROJECT_DIR$/src/main.cpp" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/src/playlist.cpp" beforeDir="false" afterPath="$PROJECT_DIR$/src/playlist.cpp" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/playlist.h" beforeDir="false" afterPath="$PROJECT_DIR$/src/playlist.h" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/song.cpp" beforeDir="false" afterPath="$PROJECT_DIR$/src/song.cpp" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/song.h" beforeDir="false" afterPath="$PROJECT_DIR$/src/song.h" afterDir="false" />
     </list>
     <option name="SHOW_DIALOG" value="false" />
     <option name="HIGHLIGHT_CONFLICTS" value="true" />
@@ -66,6 +171,7 @@
 }</component>
   <component name="HighlightingSettingsPerFile">
     <setting file="file://$PROJECT_DIR$/src/BSTNode.h" root0="FORCE_HIGHLIGHTING" />
+    <setting file="mock:///media/eyad/a5ca1888-ccc2-42dc-9e91-871ec5dce3b3/eyad/All/cis year 2/first term/data struc/spotify-project/3l_baraka/src/main.cpp" root0="SKIP_HIGHLIGHTING" />
     <setting file="file://$PROJECT_DIR$/src/miniaudio.h" root0="SKIP_HIGHLIGHTING" />
     <setting file="file://$PROJECT_DIR$/src/node.h" root0="FORCE_HIGHLIGHTING" />
     <setting file="file://$PROJECT_DIR$/src/playlist.h" root0="FORCE_HIGHLIGHTING" />
@@ -108,7 +214,7 @@
   }
 }</component>
   <component name="RunManager" selected="CMake Application.3l_baraka">
-    <configuration name="3l_baraka" type="CMakeRunConfiguration" factoryName="Application" REDIRECT_INPUT="false" ELEVATE="false" USE_EXTERNAL_CONSOLE="false" EMULATE_TERMINAL="false" PASS_PARENT_ENVS_2="true" PROJECT_NAME="3l_baraka" TARGET_NAME="3l_baraka" CONFIG_NAME="Debug" RUN_TARGET_PROJECT_NAME="3l_baraka" RUN_TARGET_NAME="3l_baraka">
+    <configuration name="3l_baraka" type="CMakeRunConfiguration" factoryName="Application" REDIRECT_INPUT="false" ELEVATE="false" USE_EXTERNAL_CONSOLE="false" EMULATE_TERMINAL="false" PASS_PARENT_ENVS_2="true" PROJECT_NAME="3l_baraka" TARGET_NAME="3l_baraka" RUN_TARGET_PROJECT_NAME="3l_baraka" RUN_TARGET_NAME="3l_baraka">
       <method v="2">
         <option name="com.jetbrains.cidr.execution.CidrBuildBeforeRunTaskProvider$BuildBeforeRunTask" enabled="true" />
       </method>
@@ -152,7 +258,11 @@
       <workItem from="1735654467591" duration="3491000" />
       <workItem from="1735658151194" duration="1600000" />
       <workItem from="1735738151685" duration="7502000" />
-      <workItem from="1735748174244" duration="467000" />
+      <workItem from="1735748174244" duration="12497000" />
+      <workItem from="1735761953292" duration="7308000" />
+      <workItem from="1735769422722" duration="1257000" />
+      <workItem from="1735771078735" duration="4844000" />
+      <workItem from="1735776042102" duration="4204000" />
     </task>
     <task id="LOCAL-00001" summary="removed QT code from files">
       <option name="closed" value="true" />
@@ -226,7 +336,31 @@
       <option name="project" value="LOCAL" />
       <updated>1735744358259</updated>
     </task>
-    <option name="localTasksCounter" value="10" />
+    <task id="LOCAL-00010" summary="fixed shuffle">
+      <option name="closed" value="true" />
+      <created>1735748741849</created>
+      <option name="number" value="00010" />
+      <option name="presentableId" value="LOCAL-00010" />
+      <option name="project" value="LOCAL" />
+      <updated>1735748741849</updated>
+    </task>
+    <task id="LOCAL-00011" summary="fixing errors">
+      <option name="closed" value="true" />
+      <created>1735769694487</created>
+      <option name="number" value="00011" />
+      <option name="presentableId" value="LOCAL-00011" />
+      <option name="project" value="LOCAL" />
+      <updated>1735769694487</updated>
+    </task>
+    <task id="LOCAL-00012" summary="added document">
+      <option name="closed" value="true" />
+      <created>1735769863531</created>
+      <option name="number" value="00012" />
+      <option name="presentableId" value="LOCAL-00012" />
+      <option name="project" value="LOCAL" />
+      <updated>1735769863531</updated>
+    </task>
+    <option name="localTasksCounter" value="13" />
     <servers />
   </component>
   <component name="TypeScriptGeneratedFilesManager">
@@ -246,7 +380,10 @@
     <MESSAGE value="fixed count ++ bug and some in the main.cpp" />
     <MESSAGE value="fixed sort functions added reverse sort and more error handling in main.cpp" />
     <MESSAGE value="added some songs and added some error handling in main.cpp" />
-    <option name="LAST_COMMIT_MESSAGE" value="added some songs and added some error handling in main.cpp" />
+    <MESSAGE value="fixed shuffle" />
+    <MESSAGE value="fixing errors" />
+    <MESSAGE value="added document" />
+    <option name="LAST_COMMIT_MESSAGE" value="added document" />
   </component>
   <component name="XSLT-Support.FileAssociations.UIState">
     <expand />

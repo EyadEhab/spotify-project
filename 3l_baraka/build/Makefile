@@ -117,6 +117,19 @@ depend:
 .PHONY : depend
 
 #=============================================================================
+# Target rules for targets named miniaudio
+
+# Build rule for target.
+miniaudio: cmake_check_build_system
+	$(MAKE) $(MAKESILENT) -f CMakeFiles/Makefile2 miniaudio
+.PHONY : miniaudio
+
+# fast build rule for target.
+miniaudio/fast:
+	$(MAKE) $(MAKESILENT) -f CMakeFiles/miniaudio.dir/build.make CMakeFiles/miniaudio.dir/build
+.PHONY : miniaudio/fast
+
+#=============================================================================
 # Target rules for targets named 3l_baraka
 
 # Build rule for target.
@@ -176,6 +189,33 @@ src/main.s: src/main.cpp.s
 src/main.cpp.s:
 	$(MAKE) $(MAKESILENT) -f CMakeFiles/3l_baraka.dir/build.make CMakeFiles/3l_baraka.dir/src/main.cpp.s
 .PHONY : src/main.cpp.s
+
+src/miniaudio.o: src/miniaudio.c.o
+.PHONY : src/miniaudio.o
+
+# target to build an object file
+src/miniaudio.c.o:
+	$(MAKE) $(MAKESILENT) -f CMakeFiles/miniaudio.dir/build.make CMakeFiles/miniaudio.dir/src/miniaudio.c.o
+	$(MAKE) $(MAKESILENT) -f CMakeFiles/3l_baraka.dir/build.make CMakeFiles/3l_baraka.dir/src/miniaudio.c.o
+.PHONY : src/miniaudio.c.o
+
+src/miniaudio.i: src/miniaudio.c.i
+.PHONY : src/miniaudio.i
+
+# target to preprocess a source file
+src/miniaudio.c.i:
+	$(MAKE) $(MAKESILENT) -f CMakeFiles/miniaudio.dir/build.make CMakeFiles/miniaudio.dir/src/miniaudio.c.i
+	$(MAKE) $(MAKESILENT) -f CMakeFiles/3l_baraka.dir/build.make CMakeFiles/3l_baraka.dir/src/miniaudio.c.i
+.PHONY : src/miniaudio.c.i
+
+src/miniaudio.s: src/miniaudio.c.s
+.PHONY : src/miniaudio.s
+
+# target to generate assembly for a file
+src/miniaudio.c.s:
+	$(MAKE) $(MAKESILENT) -f CMakeFiles/miniaudio.dir/build.make CMakeFiles/miniaudio.dir/src/miniaudio.c.s
+	$(MAKE) $(MAKESILENT) -f CMakeFiles/3l_baraka.dir/build.make CMakeFiles/3l_baraka.dir/src/miniaudio.c.s
+.PHONY : src/miniaudio.c.s
 
 src/node.o: src/node.cpp.o
 .PHONY : src/node.o
@@ -258,12 +298,16 @@ help:
 	@echo "... edit_cache"
 	@echo "... rebuild_cache"
 	@echo "... 3l_baraka"
+	@echo "... miniaudio"
 	@echo "... src/BSTNode.o"
 	@echo "... src/BSTNode.i"
 	@echo "... src/BSTNode.s"
 	@echo "... src/main.o"
 	@echo "... src/main.i"
 	@echo "... src/main.s"
+	@echo "... src/miniaudio.o"
+	@echo "... src/miniaudio.i"
+	@echo "... src/miniaudio.s"
 	@echo "... src/node.o"
 	@echo "... src/node.i"
 	@echo "... src/node.s"

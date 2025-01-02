@@ -1,0 +1,2 @@
+/usr/bin/llvm-ar-15 qc libminiaudio.a CMakeFiles/miniaudio.dir/src/miniaudio.c.o
+/usr/bin/llvm-ranlib-15 libminiaudio.a

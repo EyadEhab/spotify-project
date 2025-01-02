@@ -24,6 +24,7 @@ public:
   playList(string);
   void addSong(song* song);
   string getName();
+  node* getHead();
   void removeSong(string name);
   void removeAllSongs();
   void displaySongs();

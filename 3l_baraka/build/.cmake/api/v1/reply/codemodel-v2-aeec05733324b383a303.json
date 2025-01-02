@@ -15,7 +15,8 @@
 					"source" : ".",
 					"targetIndexes" : 
 					[
-						0
+						0,
+						1
 					]
 				}
 			],
@@ -30,7 +31,8 @@
 					"name" : "3l_baraka",
 					"targetIndexes" : 
 					[
-						0
+						0,
+						1
 					]
 				}
 			],
@@ -39,8 +41,15 @@
 				{
 					"directoryIndex" : 0,
 					"id" : "3l_baraka::@6890427a1f51a3e7e1df",
-					"jsonFile" : "target-3l_baraka-Debug-9e203185b11f271c477c.json",
+					"jsonFile" : "target-3l_baraka-Debug-849a3a9943e3c01e4ad3.json",
 					"name" : "3l_baraka",
+					"projectIndex" : 0
+				},
+				{
+					"directoryIndex" : 0,
+					"id" : "miniaudio::@6890427a1f51a3e7e1df",
+					"jsonFile" : "target-miniaudio-Debug-32a1c4c59b717f6576ea.json",
+					"name" : "miniaudio",
 					"projectIndex" : 0
 				}
 			]

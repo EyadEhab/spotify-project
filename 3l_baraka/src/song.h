@@ -38,7 +38,7 @@ public:
   void setDuration(float newDuration);
   void updateTimePlayed();
   // Functionalities
-  void playSong(const string &songName, node* currentSongNode = nullptr);
+  bool playSong(const string& songName, node* currentSongNode = nullptr);
   void pauseSong(); // Add this for pausing playback
   void resumeSong(); // Add this for resuming playback
   void displaySongInfo() const;
