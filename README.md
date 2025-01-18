@@ -88,6 +88,8 @@ How to Run
    cd music-player
    Compile the Program:
       g++ main.cpp playlist.cpp song.cpp -o music_player -lminiaudio
+      or if you have comiling issues do this instead
+      g++ main.cpp playlist.cpp song.cpp node.cpp BSTNode.cpp miniaudio.c -o music_player -lpthread -ldl
       Run the Program:
         ./music_player
   Follow the On-Screen Instructions:
